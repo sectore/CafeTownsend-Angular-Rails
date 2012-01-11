@@ -6,9 +6,22 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+
+<body class="<%= params[:controller] %>">
+
+<div id="user_nav">
+	<% if logged_in? %>
+		Hello <%= current_user.name %>.
+		<%= link_to "Log out", logout_path %>
+	<% else %>
+		<%= link_to "log in", login_path %>
+	<% end %>
+</div>
+
+<% flash.each do |name, msg| %>
+	<%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
 
 <%= yield %>
-
-</body>
 </html>
+

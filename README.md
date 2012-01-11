@@ -12,7 +12,17 @@ coming soon
 coming soon
 
 ##Local installation
-coming soon
+1) Open Terminal
+
+	git clone git://github.com/sectore/CafeTownsend-Angular-Rails.git
+	cd CafeTownsend-Angular-Rails
+	bundle install
+	rake db:migrate
+	rake db:seed
+	rails server
+
+2) Open [http://localhost:3000](http://localhost:3000/) within [Chrome](https://www.google.com/chrome)
+
 
 ##Author
 Jens Krause // [WEBSECTOR.DE](http://www.websector.de)
