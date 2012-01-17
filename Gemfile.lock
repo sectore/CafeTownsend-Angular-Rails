@@ -33,6 +33,7 @@ GEM
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
+    closure-compiler (1.1.4)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -109,15 +110,13 @@ GEM
     turn (0.8.3)
       ansi
     tzinfo (0.3.31)
-    uglifier (1.2.2)
-      execjs (>= 0.3.0)
-      multi_json (>= 1.0.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
+  closure-compiler
   coffee-rails (~> 3.1.1)
   jquery-rails
   pg
@@ -126,4 +125,3 @@ DEPENDENCIES
   sqlite3
   thin
   turn
-  uglifier (>= 1.0.3)
