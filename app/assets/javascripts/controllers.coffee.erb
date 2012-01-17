@@ -1,0 +1,223 @@
+###
+Application Controller
+###
+
+class @CafeTownsendCtrl extends Router
+
+	constructor: ($route, $xhr, @$location, @SessionService, @$log) ->
+		super($route, $xhr)
+		@session = new @SessionService()
+		# flag for showing / hiding debugging outputs within any views
+		@debug = false
+
+	# routes handling
+	routes:->
+		{
+			default: '/login'
+			'/login':
+				template: '<%= asset_path("login.html") %>'
+				controller: LoginCtrl
+			'/employees':
+				template: '<%= asset_path("employees.html") %>'
+				controller: EmployeesOverviewCtrl
+			'/employees/new':
+				template: '<%= asset_path("employee.html") %>'
+				controller: CreateEmployeeCtrl
+			'/employees/:employee_id/edit':
+				template: '<%= asset_path("employee.html") %>'
+				controller: EditEmployeeCtrl
+		}
+
+
+	###
+	helper methods
+	###
+	authorized:->
+		@session and @session.authorized is "true"
+
+	handleNonAuthorizedAccess:->
+		@$location.path 'login' if !@authorized()
+
+	getCurrentParams:->
+		@$route.current.params
+
+
+CafeTownsendCtrl.$inject = ['$route', '$xhr', '$location', 'SessionService', '$log']
+
+
+###
+Controller for handling log in an user
+###
+
+class @LoginCtrl
+
+	login: ->
+		@session.$login(@session.user, @loginResultHandler, @loginErrorHandler)
+
+	loginResultHandler:->
+		if @authorized()
+			@$location.path 'employees'
+		else
+			@message = "Invalid username or password!"
+
+
+	loginErrorHandler:(error)->
+		@message = "Error: " + error
+
+	#helper method called by view to show or hide message
+	showMessage:(message)->
+		message? and message.length
+
+
+###
+Controller for handling log out an user
+###
+class @LogoutCtrl
+
+
+	logout: ->
+		if @authorized()
+			@session.$logout(user_id: @session.user.id, @logoutResultHandler, @logoutErrorHandler)
+
+	logoutResultHandler:->
+		# a succesfull log out results in {"authorized":"false"} sent from server side
+		if !@authorized()
+			@$location.path 'login'
+
+	logoutErrorHandler:(error)->
+		alert "Error trying to log out (error: " + error + ")"
+
+
+
+###
+	Abstract Controller for handling employees
+	Nnote:
+	It wont be never instantiated. Instead of using this controller within views
+	it will be subclassed by controller, e.g. by EmployeesOverviewCtrl
+###
+class @AbstractEmployeesCtrl
+
+	constructor: (@EmployeesService) ->
+		@handleNonAuthorizedAccess()
+		@selectedEmployee = null
+		@EmployeesService = EmployeesService
+		###
+		RegEx for date format YYYY-MM-DD:
+		@see: http://www.regular-expressions.info/regexbuddy/datemmddyyyy.html
+		###
+		@datePattern = /(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])/
+
+	###
+		deleting an employee
+	###
+	delete:->
+		# non-GET instance actions: instance.$action([parameters], [success], [error])
+		# @see http://docs.angularjs.org/#!/api/angular.service.$resource
+		if @selectedEmployee?
+			@EmployeesService.delete(employee_id: @selectedEmployee.id, @deleteResultHandler, @deleteErrorHandler) if confirm('Are you sure you want to delete ' + @selectedEmployee.first_name + ' ' + @selectedEmployee.last_name + '?')
+
+	deleteResultHandler:->
+		@selectedEmployee = null
+		@browseToOverview()
+
+	deleteErrorHandler:(error)->
+		alert "Error trying to delete an employee (error: " + error + ")"
+
+
+	###
+	triggering view changes
+	###
+	browseToOverview:->
+		@$location.path 'employees'
+
+	browseToNew:->
+		@$location.path 'employees/new'
+
+	browseToEdit:->
+		@$location.path 'employees/' + @selectedEmployee.id + '/edit' if @selectedEmployee?
+
+
+###
+Controller for handling overview of employees
+###
+class @EmployeesOverviewCtrl extends AbstractEmployeesCtrl
+
+	constructor: (EmployeesService) ->
+		super(EmployeesService)
+		@getEmployees()
+
+
+	getEmployees:->
+		@employees = @EmployeesService.query()
+
+	select:(employee)->
+		@selectedEmployee = employee
+
+	deleteResultHandler:->
+		super
+		@getEmployees()
+
+EmployeesOverviewCtrl.$inject = ['EmployeesService']
+
+
+###
+Controller to edit an employee
+###
+class @EditEmployeeCtrl extends AbstractEmployeesCtrl
+
+
+	constructor: (EmployeesService, @$route) ->
+		super(EmployeesService)
+		# Note:
+		# @getCurrentParams() is defined within CafeTownsendCtrl
+		# and here available provided by Angular (by extending classes within same scope)
+		id = @getCurrentParams().employee_id
+
+		@selectedEmployee = @EmployeesService.get(
+			employee_id: id
+		)
+
+		@isCreateForm = false
+
+	submit:->
+		@update()
+
+	update: ->
+		@selectedEmployee.$update({ employee_id: @selectedEmployee.id }, @updateResultHandler, @updateErrorHandler ) if @selectedEmployee?
+
+	updateResultHandler:->
+		@browseToOverview()
+
+	updateErrorHandler:(error)->
+		alert "Error updating an employee (error: " + error + ")"
+
+
+EditEmployeeCtrl.$inject = ['EmployeesService', '$route']
+
+
+###
+Controller to create an employee
+###
+class @CreateEmployeeCtrl extends AbstractEmployeesCtrl
+
+	constructor: (EmployeesService) ->
+		super(EmployeesService)
+		@selectedEmployee = new @EmployeesService()
+		@isCreateForm = true
+
+	submit:->
+		@save()
+
+	save: ->
+		# non-GET instance actions: instance.$action([parameters], [success], [error])
+		# @see: http://docs.angularjs.org/#!/api/angular.service.$resource
+		@selectedEmployee.$save(employee: @selectedEmployee, @saveResultHandler, @saveErrorHandler)
+
+	saveResultHandler:->
+		@browseToOverview()
+
+	saveErrorHandler:(error)->
+		alert "Error trying to save a new employee (error: " + error + ")"
+
+
+CreateEmployeeCtrl.$inject = ['EmployeesService']

@@ -1,16 +1,21 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
-  helper_method :current_user, :logged_in?
+
+  layout nil
+
+  before_filter :intercept_html_requests
 
   private
 
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  def ensure_authenticated
+    if session[:user_id].blank?
+      render :json => { authorized: false }
+    end
   end
 
-  def logged_in?
-    current_user != nil
+  def intercept_html_requests
+    render 'layouts/application' if request.format == Mime::HTML
   end
-
 
 end

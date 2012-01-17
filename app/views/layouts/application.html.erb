@@ -1,27 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:ng="http://angularjs.org/">
 <head>
-  <title>CafeTownsendAngularRails</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+	<title>CafeTownsend-AngularJS-Rails</title>
+	<%= stylesheet_link_tag "application" %>
+	<%= csrf_meta_tags %>
+
 </head>
 
-<body class="<%= params[:controller] %>">
+<body ng:controller="CafeTownsendCtrl">
 
-<div id="user_nav">
-	<% if logged_in? %>
-		Hello <%= current_user.name %>.
-		<%= link_to "Log out", logout_path %>
-	<% else %>
-		<%= link_to "log in", login_path %>
-	<% end %>
+<div class="main-view">
+	<header ng:controller="LogoutCtrl">
+		<div
+			ng:show="authorized()"
+			ng:class="authorized() && 'active'">
+			<p class="main-button" ng:click="logout()">Logout</p>
+			<p id="greetings">Hello {{session.user.name}}</p>
+		</div>
+	</header>
+
+	<div class="main-view-content"
+		 ng:class="authorized() && 'main-view-content-loggedIn'">
+
+		<ng:view></ng:view>
+
+	</div>
+
+	<footer>
+		<p>
+			Built with <a href="http://angularjs.org/">AngularJS</a>,
+			<a href="http://coffeescript.org/">CoffeeScript</a>,
+			<a href="http://sass-lang.com/">Sass</a> and <a href="http://rubyonrails.org/">Rails</a>.<br/>
+		</p>
+
+		<p>
+			<a href="https://github.com/sectore/CafeTownsend-Angular-Rails">Get source code</a> by
+			<a href="http://www.websector.de">Jens Krause</a> @2012
+		</p>
+	</footer>
 </div>
 
-<% flash.each do |name, msg| %>
-	<%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
 
-<%= yield %>
+<script src="/javascripts/angular-0.10.5.min.js" ng:autobind></script>
+<script src="/javascripts/angle-up.js"></script>
+<%= javascript_include_tag "application" -%>
+</body>
+
 </html>
-

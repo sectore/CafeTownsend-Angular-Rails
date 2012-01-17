@@ -1,7 +1,12 @@
 CafeTownsendAngularRails::Application.routes.draw do
 
-  get "logout" => "sessions#destroy", :as => "logout"
-  get "login" => "sessions#new", :as => "login"
-  root :to => "sessions#new"
+
+  #match "logout" => "sessions#destroy", :as => "logout"
+  match "login" => "sessions#create", :as => "login"
+
+  root :to => "sessions#create"
+
   resources :sessions
+  resources :employees
+
 end

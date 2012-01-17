@@ -1,20 +1,25 @@
 class SessionsController < ApplicationController
-  def new
-  end
 
+  respond_to :json
+
+  # POST /sessions
   def create
     user = User.find_by_name(params[:name])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to root_url, :notice => "Logged in!"
+      render :json => { user: user, authorized: 'true' }
     else
-      flash.now.alert = "Invalid email or password"
-      render "new"
+      #raise StandardError
+      render :json => { authorized: 'false' }
     end
   end
 
+
+  # DELETE /sessions/1
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Logged out!"
+    render :json => { authorized: 'false' }
   end
+
+
 end

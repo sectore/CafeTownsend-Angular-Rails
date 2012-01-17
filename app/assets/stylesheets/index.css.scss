@@ -1,0 +1,337 @@
+// Place all the styles related to the employees controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//
+//  Mixins
+//
+@import "mixin";
+
+//
+//	constants
+//
+$MAIN_CONTENT_WIDTH: 480px;
+$MAIN_CONTENT_MARGIN: 0 auto;
+
+$MAIN_FONT: "Arial", "Helvetica", "sans-serif";
+$MAIN_FONT_SIZE: 17px;
+
+$TRANSITION_DURATION: .5s;
+$TRANSITION_EASE_FUNC: linear;
+
+//
+//	global tags
+//
+body,
+html,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+*:focus {
+	outline: none;
+}
+
+
+body {
+  line-height: 19px;
+  font-size: $MAIN_FONT_SIZE;
+  font-family: $MAIN_FONT;
+  color: #363636;
+  font-weight: normal;
+  background-color: #FFF;
+}
+
+a {
+
+  text-decoration: underline;
+  color: #888;
+  &:hover{
+    color: #7989D6;
+  }
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.main-view{
+	width: $MAIN_CONTENT_WIDTH;
+	margin: $MAIN_CONTENT_MARGIN;
+	padding: 80px 0 0 0;
+}
+
+.main-view-content {
+	position: relative; /* needed to move header content */
+	@include border-box;
+	@include box-shadow( 0, 0, 15px, #888);
+	width: 480px;
+	height: 430px;
+	background: #FFF url(/images/header.png) no-repeat top left;
+	padding-top: 140px;
+	border: 10px solid #7989D6;
+}
+
+.main-view-content-loggedIn {
+	height: 560px !important;
+}
+
+.error-message{
+    color: #FF3366;
+}
+
+header
+footer
+.content{
+	width: $MAIN_CONTENT_WIDTH;
+	margin: $MAIN_CONTENT_MARGIN;
+}
+
+header{
+
+	height: 50px;
+
+	div{
+		position: relative;
+		height: 50px;
+		top: 50px;
+
+		p#greetings{
+			position: absolute;
+			bottom: 4px;
+			left: 40px;
+		}
+
+		p.main-button{
+			position: absolute;
+			right: 15px;
+			bottom: -5px;
+		}
+	}
+
+	div.active{
+		top: 0px;
+	}
+}
+
+footer{
+	padding-top: 8px;
+	font-size: 15px;
+	line-height: 21px;
+	color: #888;
+	text-align: center;
+	text-shadow: white 1px 1px 1px;
+}
+
+
+/*
+	@overridden
+	.ng-invalid
+	.ng-valid
+	are CSS classes used by angular
+	http://docs-next.angularjs.org/guide/dev_guide.templates.css-styling
+*/
+form{
+	@include vbox;
+	padding: 20px;
+
+	label{
+		@include hbox;
+		padding: 10px 0;
+	}
+
+	label span{
+		display: block;
+		width: 100px;
+	}
+
+	p.error-message{
+     width: 100%;
+ 	}
+
+	input{
+		@include border-box;
+		width: 270px;
+		height: 35px;
+		padding: 5px 10px;
+		padding-right: 20px;
+		border: 1px solid #AAA;
+		@include box-shadow( 0px 0px 3px #ccc );
+		@include border-radius( 0 10px 15px #eee );
+		font-size: $MAIN_FONT_SIZE;
+
+		&:focus{
+			background: #FFF;
+			border: 1px solid #555;
+			@include box-shadow( 0 0 3px #aaa );
+
+		}
+
+		&:focus.ng-invalid{
+				background: #FFF url("/images/invalid.png") no-repeat 98% center !important;
+				border-color: #FF3366;
+			}
+
+	}
+
+	input.ng-valid{
+			background: #FFF url("/images/valid.png") no-repeat 98% center;
+		}
+
+	div.formFooter{
+		@include hbox;
+		margin-top: 10px;
+	}
+
+	button[type="submit"].main-button{
+    	margin: 10px 20px 0 100px;
+
+
+	}
+
+	p.main-button{
+    	margin: 10px 20px 0 0;
+	}
+
+	p.bDelete,
+	p.bCancel{
+		color: #888;
+		text-decoration: underline;
+
+		&:hover{
+			color: #363636;
+			cursor: pointer;
+		}
+	}
+
+}
+
+
+legend{
+	display: none;
+}
+
+fieldset{
+	border: none;
+}
+
+#login-form{
+	margin-top: 10px;
+
+	p.error-message{
+      padding-left: 100px;
+  	}
+	p.info {
+		padding-left: 100px;
+		padding-top: 10px;
+		font-size: 13px;
+		color: #AAA;
+	}
+}
+
+.main-button{
+
+	@include border-box;
+	width: 125px;
+
+	background-color: #7989D6;
+	border: 5px solid #FFF;
+
+	padding: 5px 0;
+
+	font-size: 17px;
+
+	text-align: center;
+
+	color: #FFF;
+
+	@include box-shadow( 0, 0, 8px, #888);
+
+	@include transition( background-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
+	@include transition( color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
+	@include transition( border-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
+
+	&:hover{
+		background-color: #FFF;
+		border-color: #7989D6;
+		color: #5D6DB6;
+		cursor: pointer;
+    }
+
+    &:disabled{
+        opacity: .5;
+    	&:hover{
+			background-color: #7989D6;
+			border-color: #FFF;
+			color: #FFF;
+			cursor: default;
+    	}
+    }
+
+}
+
+.subButton{
+	display:block;
+	@include border-box;
+	width: 100px;
+
+	padding: 5px 0;
+
+	@include vbg-gradient(#FFF, #F4F4F4);
+	border: 1px solid #363636;
+
+	color: #363636;
+	font-size: 15px;
+
+	text-decoration: none;
+	text-align: center;
+
+	&:hover{
+		opacity:.85;
+		cursor: pointer;
+		@include vbg-gradient(#F4F4F4, #FFF);
+	}
+}
+
+#employee-list-container{
+	overflow-y: auto;
+	height: 340px;
+}
+
+#employee-list{
+	width: 100%;
+
+	li{
+		padding: 15px 30px;
+		@include transition( background-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
+        color: #5D6DB6;
+
+		&:hover{
+			background-color: #7989D6;
+			color: #FFF;
+			cursor: pointer;
+		}
+
+		&.active{
+			background-color: #7989D6;
+			color: #FFF;
+		}
+	}
+
+}
+
+
+#sub-nav{
+	@include hbox;
+	height: 60px;
+	background-color: #DEDEDE;
+
+	li{
+		padding-left: 30px;
+	}
+
+
+}
