@@ -43,3 +43,4 @@ group :production do
   gem 'thin'
 end
 
+gem 'inherited_resources'
