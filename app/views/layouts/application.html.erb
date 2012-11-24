@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org/">
+<html xmlns:ng="http://angularjs.org/" ng-app="myapp">
 <head>
 	<title>CafeTownsend-AngularJS-Rails</title>
 	<%= stylesheet_link_tag "application" %>
@@ -41,7 +41,9 @@
 </div>
 
 
-<script src="/javascripts/angular-0.10.5.min.js" ng:autobind></script>
+<script src="/javascripts/angular.min.js" ng:autobind></script>
+<script src="/javascripts/angular-resource.js" ng:autobind></script>
+
 <%= javascript_include_tag "application" -%>
 </body>
 

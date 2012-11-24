@@ -4,7 +4,7 @@ Application Controller
 
 class @CafeTownsendCtrl
 
-	constructor: (@$route, @$xhr, @$location, @SessionService, @$log) ->
+	constructor: (@$route, @$http, @$location, @SessionService, @$log) ->
 		@setupXhr()
 		@initRoutes()
 		@session = new @SessionService()
@@ -38,13 +38,13 @@ class @CafeTownsendCtrl
 	# Copied from angular-up 'Router' and 'RailsRouter'
 	# @see: https://github.com/ludicast/angle-up/blob/master/app/src/angle-up.coffee
 	setupXhr:->
-		@$xhr.defaults.headers.post['Content-Type'] = 'application/json'
-		@$xhr.defaults.headers.put['Content-Type'] = 'application/json'
+		@$http.defaults.headers.post['Content-Type'] = 'application/json'
+		@$http.defaults.headers.put['Content-Type'] = 'application/json'
 
 		if token = $("meta[name='csrf-token']").attr("content")
-			@$xhr.defaults.headers.post['X-CSRF-Token'] = token
-			@$xhr.defaults.headers.put['X-CSRF-Token'] = token
-			@$xhr.defaults.headers['delete']['X-CSRF-Token'] = token
+			@$http.defaults.headers.post['X-CSRF-Token'] = token
+			@$http.defaults.headers.put['X-CSRF-Token'] = token
+			@$http.defaults.headers['delete']['X-CSRF-Token'] = token
 
 	###
 	helper methods
@@ -58,7 +58,7 @@ class @CafeTownsendCtrl
 	getCurrentParams:->
 		@$route.current.params
 
-CafeTownsendCtrl.$inject = ['$route', '$xhr', '$location', 'SessionService', '$log']
+CafeTownsendCtrl.$inject = ['$route', '$http', '$location', 'SessionService', '$log']
 
 
 ###

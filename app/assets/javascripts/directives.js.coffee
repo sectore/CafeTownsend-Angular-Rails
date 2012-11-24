@@ -5,7 +5,11 @@
     It's grabed and modified from directives of the "angular-todo-app"
     @see: https://github.com/cburgdorf/angular-todo-app/blob/master/app/js/directive.js
 ###
-angular.directive 'ng:dblclick', (expression, compiledElement) ->
+
+
+directives = angular.module('directives', [])
+
+directives.directive 'ng:dblclick', (expression, compiledElement) ->
 	compiler = @
 	(linkElement) ->
 		scope = @
