@@ -4,12 +4,11 @@
 [AngularJS](http://http://angularjs.org/) and [Rails](http://rubyonrails.org/) port of the famous Cafe Townsend application originally written in ActionScript.
 
 ##Screen shots
-##Screen shots
-[![Click on screen shot to see live demo on Heroku](https://github.com/sectore/CafeTownsend-Angular-Rails/raw/master/wiki/cafetownsend-angular-rails-login.png "Login")](http://cafetownsend-spine.herokuapp.com)
+[![Click on screen shot to see live demo on Heroku](https://github.com/sectore/CafeTownsend-Angular-Rails/raw/master/wiki/cafetownsend-angular-rails-login.png "Login")](http://cafetownsend-angular-rails.herokuapp.com/)
 
-[![Click on screen shot to see live demo on Heroku](https://github.com/sectore/CafeTownsend-Angular-Rails/raw/master/wiki/cafetownsend-angular-rails-overview.png "Overview")](http://cafetownsend-spine.herokuapp.com)
+[![Click on screen shot to see live demo on Heroku](https://github.com/sectore/CafeTownsend-Angular-Rails/raw/master/wiki/cafetownsend-angular-rails-overview.png "Overview")](http://cafetownsend-angular-rails.herokuapp.com/)
 
-[![Click on screen shot to see live demo on Heroku](https://github.com/sectore/CafeTownsend-Angular-Rails/raw/master/wiki/cafetownsend-angular-rails-edit.png "Edit")](http://cafetownsend-spine.herokuapp.com)
+[![Click on screen shot to see live demo on Heroku](https://github.com/sectore/CafeTownsend-Angular-Rails/raw/master/wiki/cafetownsend-angular-rails-edit.png "Edit")](http://cafetownsend-angular-rails.herokuapp.com/)
 
 
 ##Live example
