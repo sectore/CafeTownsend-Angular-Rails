@@ -1,4 +1,6 @@
+# defining all routes
 angular.module('cafeTownsend').config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+
   $routeProvider
   .when '/login',
     templateUrl: '<%= asset_path("login.html") %>',
@@ -18,5 +20,6 @@ angular.module('cafeTownsend').config ['$routeProvider', '$locationProvider', ($
 
   .otherwise redirectTo: '/login'
 
+  # enabling html5Mode
   $locationProvider.html5Mode true
 ]

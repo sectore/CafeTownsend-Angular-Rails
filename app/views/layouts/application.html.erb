@@ -1,48 +1,41 @@
-<!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org/">
+<!doctype html>
+<html lang="en" ng-app="cafeTownsend">
 <head>
-	<title>CafeTownsend-AngularJS-Rails</title>
-	<%= stylesheet_link_tag "application" %>
-	<%= csrf_meta_tags %>
+  <title>CafeTownsend-AngularJS-Rails</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= csrf_meta_tags %>
 
 </head>
 
-<body ng:controller="CafeTownsendCtrl">
+<body>
 
-<div class="main-view">
-	<header ng:controller="LogoutCtrl">
-		<div
-			ng:show="authorized()"
-			ng:class="authorized() && 'active'">
-			<p class="main-button" ng:click="logout()">Logout</p>
-			<p id="greetings">Hello {{session.user.name}}</p>
-		</div>
-	</header>
+<div class="main-view" ng-controller="MainController">
+  <header ng-controller="HeaderController">
+    <div
+      ng-show="authorized()"
+      ng-class="authorized() && 'active'">
+      <p class="main-button" ng-click="logout()">Logout</p>
+      <p id="greetings">Hello {{user.name}}</p>
+    </div>
+  </header>
 
-	<div class="main-view-content"
-		 ng:class="authorized() && 'main-view-content-loggedIn'">
+  <div class="main-view-content" ng-class="authorized() && 'main-view-content-loggedIn'">
+    <ng-view></ng-view>
+  </div>
 
-		<ng:view></ng:view>
+  <footer>
+    <p>
+      Built with <a href="http://angularjs.org/">AngularJS</a>,
+      <a href="http://coffeescript.org/">CoffeeScript</a>,
+      <a href="http://sass-lang.com/">Sass</a> and <a href="http://rubyonrails.org/">Rails</a>.<br/>
+    </p>
 
-	</div>
-
-	<footer>
-		<p>
-			Built with <a href="http://angularjs.org/">AngularJS</a>,
-			<a href="http://coffeescript.org/">CoffeeScript</a>,
-			<a href="http://sass-lang.com/">Sass</a> and <a href="http://rubyonrails.org/">Rails</a>.<br/>
-		</p>
-
-		<p>
-			<a href="https://github.com/sectore/CafeTownsend-Angular-Rails">Get source code</a> by
-			<a href="http://www.websector.de">Jens Krause</a> @2012
-		</p>
-	</footer>
+    <p>
+      <a href="https://github.com/sectore/CafeTownsend-Angular-Rails">Get source code</a> by
+      <a href="http://www.websector.de">Jens Krause</a> @2012-2013
+    </p>
+  </footer>
 </div>
-
-
-<script src="/javascripts/angular-0.10.5.min.js" ng:autobind></script>
 <%= javascript_include_tag "application" -%>
 </body>
-
 </html>

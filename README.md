@@ -1,4 +1,4 @@
-#AngularJS + Rails port of Cafe Townsend application
+#AngularJS (v.1.0.5) + Rails (v.3.2.13) port of Cafe Townsend application
 
 ##About
 [AngularJS](http://http://angularjs.org/) and [Rails](http://rubyonrails.org/) port of the famous Cafe Townsend application originally written in ActionScript.
@@ -27,7 +27,7 @@
 2) Open [http://localhost:3000](http://localhost:3000/) using [Chrome](https://www.google.com/chrome)
 
 ##License
-Copyright (c) 2012 "sectore" Jens Krause // [WEBSECTOR.DE](http://www.websector.de)
+Copyright (c) 2012-2013 "sectore" Jens Krause // [WEBSECTOR.DE](http://www.websector.de)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -42,10 +42,11 @@ angular.module('cafeTownsend.services').factory 'EmployeesService', ['$log', '$r
 
   emptySelectedEmployee = ->
     employee = new Employees()
-    employee.email = "info@websector.de"
-    employee.first_name = "jens"
-    employee.last_name = "krause"
-    employee.start_date = "2013-03-30"
+    # for debugging only
+#    employee.email = "info@websector.de"
+#    employee.first_name = "jens"
+#    employee.last_name = "krause"
+#    employee.start_date = "2013-03-30"
     selectedEmployee = employee
 
 

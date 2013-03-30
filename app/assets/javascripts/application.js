@@ -20,4 +20,5 @@
 //= require controllers/employeesController
 //= require controllers/editEmployeeController
 //= require controllers/createEmployeeController
+//= require headers
 //= require routes

@@ -1,75 +1,62 @@
-<ul id="sub-nav" ng:hide="isCreateForm">
-	<li><a class="subButton bBack" ng:click="browseToOverview()">Back</a></li>
+<ul id="sub-nav" ng-hide="isCreateForm">
+  <li><a class="subButton bBack" ng-click="browseToOverview()">Back</a></li>
 </ul>
-<ul id="sub-nav" ng:show="isCreateForm">
-	<li><a class="subButton bCancel" ng:click="browseToOverview()">Cancel</a></li>
+<ul id="sub-nav" ng-show="isCreateForm">
+  <li><a class="subButton bCancel" ng-click="browseToOverview()">Cancel</a></li>
 </ul>
-<form name="employeeForm" ng:submit="submit()">
-	<!--ng:submit="submit()"-->
-	<fieldset>
-		<legend ng:hide="isCreateForm">
-			Edit
-		</legend>
-		<legend ng:show="isCreateForm">
-			Add
-		</legend>
-		<label>
-			<span>First name:</span>
-			<input
-					type="text"
-					ng:model="selectedEmployee.first_name"
-					required
-					autofocus
-					/>
-		</label>
-		<label>
-			<span>Last name:</span>
-			<input
-					type="text"
-					ng:model="selectedEmployee.last_name"
-					required
-					ng:required
-					/>
+<form name="employeeForm" ng-submit="submit()">
+  <fieldset>
+    <legend ng-hide="isCreateForm">
+      Edit
+    </legend>
+    <legend ng-show="isCreateForm">
+      Add
+    </legend>
+    <label>
+      <span>First name:</span>
+      <input
+        type="text"
+        ng-model="selectedEmployee.first_name"
+        required
+        autofocus
+        />
+    </label>
+    <label>
+      <span>Last name:</span>
+      <input
+        type="text"
+        ng-model="selectedEmployee.last_name"
+        required
+        ng-required
+        />
 
-		</label>
+    </label>
 
+    <label>
+      <span>Start date:</span>
+      <input
+        type="text"
+        ng-model="selectedEmployee.start_date"
+        title="Please enter a date formatting YYYY-MM-DD"
+        ng-pattern="/(19|20)\d\d[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])/"
+        size="10"
+        required
+        />
+    </label>
 
-		<label>
-			<span>Start date:</span>
-			<input
-					type="text"
-					ng:model="selectedEmployee.start_date"
-					title="Please enter a date formatting YYYY-MM-DD"
-					ng:pattern="datePattern"
-					size="10"
-					required
-					/>
-		</label>
+    <label><span>Email:</span>
+      <input
+        type="email"
+        ng-model="selectedEmployee.email"
+        required
+        />
+    </label>
 
-		<label><span>Email:</span>
-			<input
-					type="email"
-					ng:model="selectedEmployee.email"
-					required
-					/>
-		</label>
+    <div class="formFooter">
+      <button type="submit" class="main-button" ng-hide="isCreateForm" ng-disabled="{{employeeForm.$invalid}}">Update</button>
+      <button type="submit" class="main-button" ng-show="isCreateForm" ng-disabled="{{employeeForm.$invalid}}">Add</button>
+      <p class="main-button" ng-hide="isCreateForm" ng-click="deleteEmployee()">Delete</p>
+    </div>
 
-		<div class="formFooter">
-			<button type="submit" class="main-button" ng:hide="isCreateForm" ng:disabled="{{employeeForm.$invalid}}">Update</button>
-			<button type="submit" class="main-button" ng:show="isCreateForm" ng:disabled="{{employeeForm.$invalid}}">Add</button>
-			<p class="main-button" ng:hide="isCreateForm" ng:click="delete()">Delete</p>
-		</div>
-
-	</fieldset>
+  </fieldset>
 </form>
-
-<div ng:show="debug">
-	Debug View:
-	<pre>employee={{employee}}</pre>
-
-	<ul class="params">
-		<li ng:repeat="param in params">
-			<p>Param: {{param}} Value: {{params}}</p>
-		</li>
-	</ul>
-</div>

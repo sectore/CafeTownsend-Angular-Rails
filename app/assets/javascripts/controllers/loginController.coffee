@@ -1,9 +1,11 @@
-angular.module('cafeTownsend.controllers').controller 'LoginController', ['$log', '$scope', '$location', 'SessionService', ($log, $scope, $location, SessionService) ->
+angular.module('cafeTownsend.controllers').controller 'LoginController'
+, ['$log', '$scope', '$location', 'SessionService'
+, ($log, $scope, $location, SessionService) ->
 
   $scope.user = SessionService.getUser()
   # for debugging only
-  $scope.user.name = "Luke"
-  $scope.user.password = "Skywalker"
+#  $scope.user.name = "Luke"
+#  $scope.user.password = "Skywalker"
 
   # ########################
   # login

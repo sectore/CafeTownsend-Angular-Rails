@@ -6,30 +6,30 @@ angular.module('cafeTownsend.services').factory 'SessionService', ['$log', '$res
     'logout':
       method: 'DELETE'
 
-  _user = {}
+  user = {}
 
   authorized = ->
-    _user.authorized is "true"
+    user.authorized is "true"
 
-  login = (user, resultHandler, errorHandler) ->
-    service.login user
+  login = (newUser, resultHandler, errorHandler) ->
+    service.login newUser
     , (result) ->
-      _user = result.user || {}
-      _user.authorized = result.authorized
+      user = result.user || {}
+      user.authorized = result.authorized
       resultHandler(result) if angular.isFunction resultHandler
     , (error) ->
       errorHandler(error) if angular.isFunction errorHandler
 
   logout = (resultHandler, errorHandler) ->
-    service.logout param: _user.id
+    service.logout param: user.id
     , (result) ->
-      _user = {}
+      user = {}
       resultHandler(result) if angular.isFunction resultHandler
     , (error) ->
       errorHandler(error) if angular.isFunction errorHandler
 
   getUser = ->
-    _user
+    user
 
   {
     login,

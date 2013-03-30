@@ -30,7 +30,7 @@ p {
 }
 
 *:focus {
-	outline: none;
+  outline: none;
 }
 
 
@@ -44,294 +44,299 @@ body {
 }
 
 a {
-
-  text-decoration: underline;
-  color: #888;
-  &:hover{
-    color: #7989D6;
-  }
+  text-decoration: none;
 }
 
+
 ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .main-view{
-	width: $MAIN_CONTENT_WIDTH;
-	margin: $MAIN_CONTENT_MARGIN;
-	padding: 80px 0 0 0;
+  width: $MAIN_CONTENT_WIDTH;
+  margin: $MAIN_CONTENT_MARGIN;
+  padding: 80px 0 0 0;
 }
 
 .main-view-content {
-	position: relative; /* needed to move header content */
-	@include border-box;
-	@include box-shadow( 0, 0, 15px, #888);
-	width: 480px;
-	height: 430px;
-	background: #FFF url(/images/header.png) no-repeat top left;
-	padding-top: 140px;
-	border: 10px solid #7989D6;
+  position: relative; /* needed to move header content */
+  @include border-box;
+  @include box-shadow( 0, 0, 15px, #888);
+  width: 480px;
+  height: 430px;
+  background: #FFF image-url("header.png") no-repeat top left;
+  padding-top: 140px;
+  border: 10px solid #2c2c2c;
 }
 
 .main-view-content-loggedIn {
-	height: 560px !important;
+  height: 560px !important;
 }
 
 .error-message{
-    color: #FF3366;
+  color: #FF3366;
 }
 
 header
 footer
 .content{
-	width: $MAIN_CONTENT_WIDTH;
-	margin: $MAIN_CONTENT_MARGIN;
+  width: $MAIN_CONTENT_WIDTH;
+  margin: $MAIN_CONTENT_MARGIN;
 }
 
 header{
 
-	height: 50px;
+  height: 50px;
 
-	div{
-		position: relative;
-		height: 50px;
-		top: 50px;
+  div{
+    position: relative;
+    height: 50px;
+    top: 50px;
 
-		p#greetings{
-			position: absolute;
-			bottom: 4px;
-			left: 40px;
-		}
+    p#greetings{
+        position: absolute;
+        bottom: 4px;
+        left: 40px;
+    }
 
-		p.main-button{
-			position: absolute;
-			right: 15px;
-			bottom: -5px;
-		}
-	}
+    p.main-button{
+        position: absolute;
+        right: 15px;
+        bottom: -5px;
+    }
+  }
 
-	div.active{
-		top: 0px;
-	}
+  div.active{
+    top: 0px;
+  }
 }
 
 footer{
-	padding-top: 8px;
-	font-size: 15px;
-	line-height: 21px;
-	color: #888;
-	text-align: center;
-	text-shadow: white 1px 1px 1px;
+  padding-top: 8px;
+  font-size: 15px;
+  line-height: 21px;
+  color: #888;
+  text-align: center;
+  text-shadow: white 1px 1px 1px;
+
+  a{
+    text-decoration: underline;
+    color: #888;
+    &:hover{
+      color: #2c2c2c;
+    }
+  }
 }
 
 
 /*
-	@overridden
-	.ng-invalid
-	.ng-valid
-	are CSS classes used by angular
-	http://docs-next.angularjs.org/guide/dev_guide.templates.css-styling
+  @overridden
+  .ng-invalid
+  .ng-valid
+  are CSS classes used by angular
+  http://docs-next.angularjs.org/guide/dev_guide.templates.css-styling
 */
 form{
-	@include vbox;
-	padding: 20px;
+  @include vbox;
+  padding: 20px;
 
-	label{
-		@include hbox;
-		padding: 10px 0;
-	}
+  label{
+    @include hbox;
+    padding: 10px 0;
+  }
 
-	label span{
-		display: block;
-		width: 100px;
-	}
+  label span{
+    display: block;
+    width: 100px;
+  }
 
-	p.error-message{
-     width: 100%;
- 	}
+  p.error-message{
+   width: 100%;
+  }
 
-	input{
-		@include border-box;
-		width: 270px;
-		height: 35px;
-		padding: 5px 10px;
-		padding-right: 20px;
-		border: 1px solid #AAA;
-		@include box-shadow( 0px 0px 3px #ccc );
-		@include border-radius( 0 10px 15px #eee );
-		font-size: $MAIN_FONT_SIZE;
+  input{
+    @include border-box;
+    width: 270px;
+    height: 35px;
+    padding: 5px 10px;
+    padding-right: 20px;
+    border: 1px solid #AAA;
+    @include box-shadow( 0px 0px 3px #ccc );
+    @include border-radius( 0 10px 15px #eee );
+    font-size: $MAIN_FONT_SIZE;
 
-		&:focus{
-			background: #FFF;
-			border: 1px solid #555;
-			@include box-shadow( 0 0 3px #aaa );
+    &:focus{
+      background: #FFF;
+      border: 1px solid #555;
+      @include box-shadow( 0 0 3px #aaa );
+    }
 
-		}
+    &:focus.ng-invalid{
+      background: #FFF image-url("invalid.png") no-repeat 98% center !important;
+      border-color: #FF3366;
+    }
+  }
 
-		&:focus.ng-invalid{
-				background: #FFF url("/images/invalid.png") no-repeat 98% center !important;
-				border-color: #FF3366;
-			}
+  input.ng-valid{
+    background: #FFF image-url("valid.png") no-repeat 98% center;
+  }
 
-	}
+  div.formFooter{
+    @include hbox;
+    margin-top: 10px;
+  }
 
-	input.ng-valid{
-			background: #FFF url("/images/valid.png") no-repeat 98% center;
-		}
+  button[type="submit"].main-button{
+    margin: 10px 20px 0 100px;
+  }
 
-	div.formFooter{
-		@include hbox;
-		margin-top: 10px;
-	}
+  p.main-button{
+      margin: 10px 20px 0 0;
+  }
 
-	button[type="submit"].main-button{
-    	margin: 10px 20px 0 100px;
+  p.bDelete,
+  p.bCancel{
+    color: #888;
+    text-decoration: underline;
 
-
-	}
-
-	p.main-button{
-    	margin: 10px 20px 0 0;
-	}
-
-	p.bDelete,
-	p.bCancel{
-		color: #888;
-		text-decoration: underline;
-
-		&:hover{
-			color: #363636;
-			cursor: pointer;
-		}
-	}
+    &:hover{
+        color: #363636;
+        cursor: pointer;
+    }
+  }
 
 }
 
 
 legend{
-	display: none;
+  display: none;
 }
 
 fieldset{
-	border: none;
+  border: none;
 }
 
 #login-form{
-	margin-top: 10px;
+  margin-top: 10px;
 
-	p.error-message{
-      padding-left: 100px;
-  	}
-	p.info {
-		padding-left: 100px;
-		padding-top: 10px;
-		font-size: 13px;
-		color: #AAA;
-	}
+  p.error-message{
+    padding-left: 100px;
+  }
+  p.info {
+    padding-left: 100px;
+    padding-top: 10px;
+    font-size: 13px;
+    color: #AAA;
+  }
 }
 
 .main-button{
 
-	@include border-box;
-	width: 125px;
+  @include border-box;
+  width: 125px;
 
-	background-color: #7989D6;
-	border: 5px solid #FFF;
+  background-color: #2c2c2c;
+  border: 5px solid #FFF;
 
-	padding: 5px 0;
+  padding: 5px 0;
 
-	font-size: 17px;
+  font-size: 17px;
 
-	text-align: center;
+  text-align: center;
 
-	color: #FFF;
+  color: #FFF;
 
-	@include box-shadow( 0, 0, 8px, #888);
+  @include box-shadow( 0, 0, 8px, #888);
 
-	@include transition( background-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
-	@include transition( color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
-	@include transition( border-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
+  @include transition( background-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
+  @include transition( color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
+  @include transition( border-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
 
-	&:hover{
-		background-color: #FFF;
-		border-color: #7989D6;
-		color: #5D6DB6;
-		cursor: pointer;
+  &:hover{
+    background-color: #FFF;
+    border-color: #2c2c2c;
+    color: #2c2c2c;
+    cursor: pointer;
+  }
+
+  &:disabled{
+    opacity: .5;
+    &:hover{
+        background-color: #7989D6;
+        border-color: #FFF;
+        color: #FFF;
+        cursor: default;
     }
-
-    &:disabled{
-        opacity: .5;
-    	&:hover{
-			background-color: #7989D6;
-			border-color: #FFF;
-			color: #FFF;
-			cursor: default;
-    	}
-    }
-
+  }
 }
 
 .subButton{
-	display:block;
-	@include border-box;
-	width: 100px;
+  display:block;
+  @include border-box;
+  width: 100px;
 
-	padding: 5px 0;
+  padding: 5px 0;
 
-	@include vbg-gradient(#FFF, #F4F4F4);
-	border: 1px solid #363636;
+  @include vbg-gradient(#FFF, #F4F4F4);
+  border: 1px solid #2c2c2c;
 
-	color: #363636;
-	font-size: 15px;
+  color: #2c2c2c;
+  font-size: 15px;
 
-	text-decoration: none;
-	text-align: center;
+  text-decoration: none;
+  text-align: center;
 
-	&:hover{
-		opacity:.85;
-		cursor: pointer;
-		@include vbg-gradient(#F4F4F4, #FFF);
-	}
+  cursor: pointer;
+
+  &:hover{
+    opacity: .85;
+    @include vbg-gradient(#F4F4F4, #FFF);
+  }
+
+  &.disabled,
+  &.disabled:hover{
+    opacity: .5;
+    color: #363636;
+    @include vbg-gradient(#FFF, #F4F4F4);
+    cursor: default;
+  }
 }
 
 #employee-list-container{
-	overflow-y: auto;
-	height: 340px;
+  overflow-y: auto;
+  height: 340px;
 }
 
 #employee-list{
-	width: 100%;
+  width: 100%;
 
-	li{
-		padding: 15px 30px;
-		@include transition( background-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
-        color: #5D6DB6;
+  li{
+    padding: 15px 30px;
+    @include transition( background-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
+    color: #2c2c2c;
 
-		&:hover{
-			background-color: #7989D6;
-			color: #FFF;
-			cursor: pointer;
-		}
+    &:hover{
+      background-color: #2c2c2c;
+      color: #FFF;
+      cursor: pointer;
+    }
 
-		&.active{
-			background-color: #7989D6;
-			color: #FFF;
-		}
-	}
-
+    &.active{
+      background-color: #2c2c2c;
+      color: #FFF;
+    }
+  }
 }
 
 
 #sub-nav{
-	@include hbox;
-	height: 60px;
-	background-color: #DEDEDE;
+  @include hbox;
+  height: 60px;
+  background-color: #DEDEDE;
 
-	li{
-		padding-left: 30px;
-	}
-
-
+  li{
+    padding-left: 30px;
+  }
 }
