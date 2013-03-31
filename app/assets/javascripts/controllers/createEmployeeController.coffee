@@ -1,4 +1,4 @@
-angular.module('cafeTownsend.controllers').controller 'CreateEmployeeController'
+angular.module('cafeTownsend').controller 'CreateEmployeeController'
 , ['$log', '$scope', '$location', '$routeParams', 'SessionService', 'EmployeesService'
 , ($log, $scope, $location, $routeParams, SessionService, EmployeesService) ->
 

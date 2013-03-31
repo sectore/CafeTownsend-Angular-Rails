@@ -1,4 +1,4 @@
-angular.module('cafeTownsend.controllers').controller 'LoginController'
+angular.module('cafeTownsend').controller 'LoginController'
 , ['$log', '$scope', '$location', 'SessionService'
 , ($log, $scope, $location, SessionService) ->
 
