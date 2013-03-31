@@ -19,6 +19,10 @@ gem 'jquery-rails'
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
 
+# inherit all restful actions into controllers
+# https://github.com/josevalim/inherited_resources
+gem 'inherited_resources'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
