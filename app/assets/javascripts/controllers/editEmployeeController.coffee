@@ -1,6 +1,6 @@
 angular.module('cafeTownsend').controller 'EditEmployeeController'
-, ['$log', '$scope', '$location', '$routeParams', 'SessionService', 'EmployeesService', 'SelectedEmployee', 'Test'
-, ($log, $scope, $location, $routeParams, SessionService, EmployeesService, SelectedEmployee, Test) ->
+, ['$log', '$scope', '$location', '$routeParams', 'SessionService', 'EmployeesService', 'SelectedEmployee'
+, ($log, $scope, $location, $routeParams, SessionService, EmployeesService, SelectedEmployee) ->
 
   $scope.isCreateForm = false
 
