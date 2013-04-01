@@ -30,6 +30,8 @@ angular.module('cafeTownsend').controller 'CreateEmployeeController'
   # ########################
 
   $scope.browseToOverview = ->
+    # clear reference to selected employee
+    SelectedEmployee.instance = undefined
     $location.path '/employees'
 
   # ########################
