@@ -19,7 +19,9 @@ angular.module('cafeTownsend').controller 'EmployeesController'
   # ########################
     
   getEmployees = ->
-    $scope.employees = EmployeesService.query()
+    EmployeesService.query().then (employees) ->
+
+      $scope.employees = employees
 
   # ########################
   # edit
@@ -39,24 +41,20 @@ angular.module('cafeTownsend').controller 'EmployeesController'
   # delete
   # ########################
 
+
   $scope.deleteEmployee = ->
-    employee = $scope.selectedEmployee
-    if confirm("Are you sure you want to delete #{employee.first_name} #{employee.last_name}?")
-      employee.$delete
-        param:employee.id
-        deleteResultHandler
-        deleteErrorHandler
-
-  deleteResultHandler = ->
-    # clear reference to selected employee
-    SelectedEmployee.instance =
-    $scope.selectedEmployee =
-    undefined
-    # get employees again
-    getEmployees()
-
-  deleteErrorHandler = (error) ->
-    alert "Error trying to delete an employee (error: #{error})"
+    employee = SelectedEmployee.instance
+    if confirm("Are you sure you want to delete #{employee.firstName} #{employee.lastName}?")
+      employee.delete(employee_id: employee.id)
+        .then ->
+          # clear reference to selected employee
+          SelectedEmployee.instance =
+          $scope.selectedEmployee =
+          undefined
+          # get employees again
+          getEmployees()
+        , (error) ->
+          alert "Error trying to delete an employee (error: #{error})"
 
   # ########################
   # init

@@ -49,3 +49,4 @@ end
 
 # AngularJS related stuff
 gem 'ng-rails-csrf', :git => "git://github.com/xrd/ng-rails-csrf.git"
+gem 'angularjs-rails-resource'

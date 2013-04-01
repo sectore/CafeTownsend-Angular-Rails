@@ -9,16 +9,12 @@ angular.module('cafeTownsend').controller 'EditEmployeeController'
   # ########################
 
   update = ->
-    SelectedEmployee.instance.$update
-      param: SelectedEmployee.instance.id
-      updateResultHandler
-      updateErrorHandler
+    SelectedEmployee.instance.update(employee_id: SelectedEmployee.instance.id)
+      .then ->
+          $scope.browseToOverview()
+        , (error) ->
+          alert "Error trying to update an employee (error: #{error})"
 
-  updateResultHandler = (result) ->
-    $scope.browseToOverview()
-
-  updateErrorHandler = (error) ->
-    alert "Error trying to update an employee (error: #{error})"
 
   # ########################
   # delete
@@ -26,20 +22,15 @@ angular.module('cafeTownsend').controller 'EditEmployeeController'
 
   $scope.deleteEmployee = ->
     employee = SelectedEmployee.instance
-    if confirm("Are you sure you want to delete #{employee.first_name} #{employee.last_name}?")
-      employee.$delete
-        param:employee.id
-        deleteResultHandler
-        deleteErrorHandler
-
-  deleteResultHandler = ->
-    # clear reference to selected employee
-    SelectedEmployee.instance = undefined
-    # back to overview
-    $scope.browseToOverview()
-
-  deleteErrorHandler = (error) ->
-    alert "Error trying to delete an employee (error: #{error})"
+    if confirm("Are you sure you want to delete #{employee.firstName} #{employee.lastName}?")
+      employee.delete(employee_id: employee.id)
+        .then ->
+          # clear reference to selected employee
+          SelectedEmployee.instance = undefined
+          # back to overview
+          $scope.browseToOverview()
+        , (error) ->
+          alert "Error trying to delete an employee (error: #{error})"
 
   # ########################
   # form

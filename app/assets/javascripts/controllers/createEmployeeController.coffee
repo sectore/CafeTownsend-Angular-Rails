@@ -10,13 +10,11 @@ angular.module('cafeTownsend').controller 'CreateEmployeeController'
 
   create = ->
     employee = $scope.selectedEmployee
-    employee.$save employee:employee, createResultHandler, saveErrorHandler
-
-  createResultHandler = ->
-    $scope.browseToOverview()
-
-  saveErrorHandler = (error)->
-    alert "Error trying to save a new employee (error: " + error + ")"
+    employee.create()
+      .then ->
+        $scope.browseToOverview()
+      , (error) ->
+        alert "Error trying to save a new employee (error: " + error + ")"
 
   # ########################
   # form
@@ -43,9 +41,9 @@ angular.module('cafeTownsend').controller 'CreateEmployeeController'
       employee = new EmployeesService()
       # for debugging only
 #      employee.email = "info@websector.de"
-#      employee.first_name = "jens"
-#      employee.last_name = "krause"
-#      employee.start_date = "2013-03-30"
+#      employee.firstName = "jens"
+#      employee.lastName = "krause"
+#      employee.startDate = "2013-03-30"
 
       # store new created instance
       # set reference to scope

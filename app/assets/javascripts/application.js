@@ -10,6 +10,7 @@
 //= require angular-1.0.5
 //= require angular-resource-1.0.5
 //= require ng-rails-csrf
+//= require angularjs/rails/resource
 //
 // app related stuff
 //= require modules

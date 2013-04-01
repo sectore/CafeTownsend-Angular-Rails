@@ -1,13 +1,10 @@
 ###
   RESTful service to handle data of employees
+  using angularjs-rails-resource
+  @see: http://ngmodules.org/modules/angularjs-rails-resource
 ###
 angular.module('cafeTownsend.services').factory 'EmployeesService'
-, ['$log', '$resource'
-, ($log, $resource) ->
-
-  Employees = $resource '/employees/:param', {},
-    'update':
-      method: 'PUT'
-
-  Employees
+, ['$log', 'railsResourceFactory'
+, ($log, railsResourceFactory) ->
+  resource = railsResourceFactory({url: '/employees', name: 'employee'});
 ]
