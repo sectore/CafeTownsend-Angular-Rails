@@ -1,37 +1,32 @@
 angular.module('cafeTownsend').controller 'EmployeesController'
-, ['$log', '$scope', '$location', 'SessionService', 'EmployeesService'
-, ($log, $scope, $location, SessionService, EmployeesService) ->
+, ['$log', '$scope', '$location', 'SessionService', 'EmployeesService', 'SelectedEmployee'
+, ($log, $scope, $location, SessionService, EmployeesService, SelectedEmployee) ->
+
 
   # ########################
-  # select
+  # selected employee
   # ########################
-
-  $scope.selectedEmployee = ->
-    EmployeesService.getSelectedEmployee()
 
   $scope.selectEmployee = (employee)->
-    EmployeesService.setSelectedEmployee(employee)
+    # storing selected employee (domain model)
+    # and set a reference to scope
+    SelectedEmployee.instance =
+    $scope.selectedEmployee =
+    employee
 
   # ########################
-  # get all
+  # get
   # ########################
     
-  $scope.getEmployees = ->
-    EmployeesService.getEmployees getEmployeesResultHandler, getEmployeesErrorHandler
-
-  getEmployeesResultHandler = (result)->
-    $scope.employees = result
-    $scope.selectedEmployee()
-
-  getEmployeesErrorHandler = (error) ->
-    alert "Error: #{error}"
+  getEmployees = ->
+    $scope.employees = EmployeesService.query()
 
   # ########################
   # edit
   # ########################
 
   $scope.editEmployee = ->
-    $location.path "/employees/#{EmployeesService.getSelectedEmployee().id}/edit"
+    $location.path "/employees/#{$scope.selectedEmployee.id}/edit"
 
   # ########################
   # create
@@ -45,11 +40,20 @@ angular.module('cafeTownsend').controller 'EmployeesController'
   # ########################
 
   $scope.deleteEmployee = ->
-    EmployeesService.deleteSelectedEmployee deleteResultHandler, deleteErrorHandler
+    employee = $scope.selectedEmployee
+    if confirm("Are you sure you want to delete #{employee.first_name} #{employee.last_name}?")
+      employee.$delete
+        param:employee.id
+        deleteResultHandler
+        deleteErrorHandler
 
   deleteResultHandler = ->
-    EmployeesService.resetSelectedEmployee()
-    $scope.getEmployees()
+    # clear reference to selected employee
+    SelectedEmployee.instance =
+    $scope.selectedEmployee =
+    undefined
+    # get employees again
+    getEmployees()
 
   deleteErrorHandler = (error) ->
     alert "Error trying to delete an employee (error: #{error})"
@@ -60,7 +64,8 @@ angular.module('cafeTownsend').controller 'EmployeesController'
 
   init = ->
     if !!SessionService.authorized()
-      $scope.getEmployees()
+      $scope.selectedEmployee = SelectedEmployee.instance
+      getEmployees()
     else
       $location.path '/login'
 

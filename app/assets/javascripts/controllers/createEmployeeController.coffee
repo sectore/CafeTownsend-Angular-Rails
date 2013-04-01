@@ -1,6 +1,6 @@
 angular.module('cafeTownsend').controller 'CreateEmployeeController'
-, ['$log', '$scope', '$location', '$routeParams', 'SessionService', 'EmployeesService'
-, ($log, $scope, $location, $routeParams, SessionService, EmployeesService) ->
+, ['$log', '$scope', '$location', 'SessionService', 'EmployeesService', 'SelectedEmployee'
+, ($log, $scope, $location, SessionService, EmployeesService, SelectedEmployee) ->
 
   $scope.isCreateForm = true
 
@@ -38,7 +38,18 @@ angular.module('cafeTownsend').controller 'CreateEmployeeController'
 
   init = ->
     if !!SessionService.authorized()
-      $scope.selectedEmployee = EmployeesService.emptySelectedEmployee()
+      employee = new EmployeesService()
+      # for debugging only
+#      employee.email = "info@websector.de"
+#      employee.first_name = "jens"
+#      employee.last_name = "krause"
+#      employee.start_date = "2013-03-30"
+
+      # store new created instance
+      # set reference to scope
+      SelectedEmployee.instance =
+      $scope.selectedEmployee =
+      employee
     else
       $location.path '/login'
 

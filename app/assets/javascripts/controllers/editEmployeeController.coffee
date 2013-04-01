@@ -1,31 +1,20 @@
 angular.module('cafeTownsend').controller 'EditEmployeeController'
-, ['$log', '$scope', '$location', '$routeParams', 'SessionService', 'EmployeesService'
-, ($log, $scope, $location, $routeParams, SessionService, EmployeesService) ->
+, ['$log', '$scope', '$location', '$routeParams', 'SessionService', 'EmployeesService', 'SelectedEmployee', 'Test'
+, ($log, $scope, $location, $routeParams, SessionService, EmployeesService, SelectedEmployee, Test) ->
 
   $scope.isCreateForm = false
-
-  # ########################
-  # get
-  # ########################
-
-  getEmployee = ->
-    EmployeesService.getEmployeeById $routeParams.id, getEmployeeResultHandler, getEmployeeErrorHandler
-
-  getEmployeeResultHandler = (employee) ->
-    $scope.selectedEmployee = employee
-
-  getEmployeeErrorHandler = (error) ->
-    alert "Error to get data of an employee (error: #{error})"
 
   # ########################
   # update
   # ########################
 
   update = ->
-    employee = $scope.selectedEmployee
-    employee.$update param:employee.id, updateResultHandler, updateErrorHandler
+    SelectedEmployee.instance.$update
+      param: SelectedEmployee.instance.id
+      updateResultHandler
+      updateErrorHandler
 
-  updateResultHandler = ->
+  updateResultHandler = (result) ->
     $scope.browseToOverview()
 
   updateErrorHandler = (error) ->
@@ -36,9 +25,17 @@ angular.module('cafeTownsend').controller 'EditEmployeeController'
   # ########################
 
   $scope.deleteEmployee = ->
-    EmployeesService.deleteSelectedEmployee deleteResultHandler, deleteErrorHandler
+    employee = SelectedEmployee.instance
+    if confirm("Are you sure you want to delete #{employee.first_name} #{employee.last_name}?")
+      employee.$delete
+        param:employee.id
+        deleteResultHandler
+        deleteErrorHandler
 
   deleteResultHandler = ->
+    # clear reference to selected employee
+    SelectedEmployee.instance = undefined
+    # back to overview
     $scope.browseToOverview()
 
   deleteErrorHandler = (error) ->
@@ -63,10 +60,10 @@ angular.module('cafeTownsend').controller 'EditEmployeeController'
   # ########################
 
   init = ->
-    if !!SessionService.authorized()
-      getEmployee()
-    else
+    unless SessionService.authorized()
       $location.path '/login'
+    else
+      $scope.selectedEmployee = SelectedEmployee.instance
 
   init()
 ]

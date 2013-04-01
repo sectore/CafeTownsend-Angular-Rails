@@ -14,6 +14,8 @@
 //= require modules
 //= require services/sessionService
 //= require services/employeesService
+//= require services/selectedEmployee
+//= require services/test
 //= require controllers/mainController
 //= require controllers/headerController
 //= require controllers/loginController
