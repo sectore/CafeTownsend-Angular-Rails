@@ -47,3 +47,5 @@ group :production do
   gem 'thin'
 end
 
+# AngularJS related stuff
+gem 'ng-rails-csrf', :git => "git://github.com/xrd/ng-rails-csrf.git"

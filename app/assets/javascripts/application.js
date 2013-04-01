@@ -9,6 +9,7 @@
 //= require jquery_ujs
 //= require angular-1.0.5
 //= require angular-resource-1.0.5
+//= require ng-rails-csrf
 //
 // app related stuff
 //= require modules
@@ -21,5 +22,4 @@
 //= require controllers/employeesController
 //= require controllers/editEmployeeController
 //= require controllers/createEmployeeController
-//= require headers
 //= require routes

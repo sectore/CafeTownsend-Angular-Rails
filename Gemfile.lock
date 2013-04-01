@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/xrd/ng-rails-csrf.git
+  revision: 171e853b3cf793d96659f4157a50602ab57e85f8
+  specs:
+    ng-rails-csrf (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -124,6 +130,7 @@ DEPENDENCIES
   coffee-rails
   inherited_resources
   jquery-rails
+  ng-rails-csrf!
   pg
   rails (= 3.2.13)
   sass-rails
