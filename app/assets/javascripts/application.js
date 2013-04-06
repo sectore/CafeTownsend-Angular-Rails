@@ -7,13 +7,16 @@
 // libraries
 //= require jquery
 //= require jquery_ujs
-//= require angular-1.0.5
-//= require angular-resource-1.0.5
+//= require angular-1.1.4
+//= require angular-resource-1.1.4
+// require angular-1.0.5
+// require angular-resource-1.0.5
 //= require ng-rails-csrf
 //= require angularjs/rails/resource
 //
 // app related stuff
 //= require modules
+//= require config
 //= require services/sessionService
 //= require services/employeesService
 //= require services/selectedEmployee
