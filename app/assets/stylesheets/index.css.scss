@@ -1,15 +1,9 @@
-// Place all the styles related to the employees controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+//
+// constants
+//
 
-//
-//  Mixins
-//
-@import "mixin";
+@import 'bourbon';
 
-//
-//	constants
-//
 $MAIN_CONTENT_WIDTH: 480px;
 $MAIN_CONTENT_MARGIN: 0 auto;
 
@@ -20,8 +14,12 @@ $TRANSITION_DURATION: .5s;
 $TRANSITION_EASE_FUNC: linear;
 
 //
-//	global tags
+// global tags
 //
+*{
+  @include box-sizing(border-box);
+}
+
 body,
 html,
 p {
@@ -62,13 +60,12 @@ ul {
 
 .main-view-content {
   position: relative; /* needed to move header content */
-  @include border-box;
-  @include box-shadow( 0, 0, 15px, #888);
-  width: 480px;
-  height: 430px;
+  box-shadow: 0 0 15px #888;
+  @include size(480px 430px);
   background: #FFF image-url("header.png") no-repeat top left;
   padding-top: 140px;
   border: 10px solid #2c2c2c;
+
 }
 
 .main-view-content-loggedIn {
@@ -94,22 +91,18 @@ header{
     position: relative;
     height: 50px;
     top: 50px;
-
-    p#greetings{
-        position: absolute;
-        bottom: 4px;
-        left: 40px;
-    }
-
-    p.main-button{
-        position: absolute;
-        right: 15px;
-        bottom: -5px;
-    }
   }
 
   div.active{
     top: 0px;
+  }
+
+  p#greetings{
+    @include position(absolute, 0 0 4px 40px);
+  }
+
+  p.main-button{
+    @include position(absolute, 0 15px -5px 0);
   }
 }
 
@@ -139,11 +132,12 @@ footer{
   http://docs-next.angularjs.org/guide/dev_guide.templates.css-styling
 */
 form{
-  @include vbox;
+  @include box-align(stretch);
+  @include box-orient(vertical);
   padding: 20px;
 
   label{
-    @include hbox;
+    @include box(horizontal, start, center);
     padding: 10px 0;
   }
 
@@ -157,20 +151,23 @@ form{
   }
 
   input{
-    @include border-box;
-    width: 270px;
-    height: 35px;
+    @include box-sizing(border-box);
+    @include size(270px 35px);
+
     padding: 5px 10px;
     padding-right: 20px;
+
+    box-shadow: 0px 0px 3px #ccc;
+
     border: 1px solid #AAA;
-    @include box-shadow( 0px 0px 3px #ccc );
-    @include border-radius( 0 10px 15px #eee );
+    border-radius: 0 10px 15px #eee;
+
     font-size: $MAIN_FONT_SIZE;
 
     &:focus{
       background: #FFF;
       border: 1px solid #555;
-      @include box-shadow( 0 0 3px #aaa );
+      box-shadow: 0 0 3px #aaa;
     }
 
     &:focus.ng-invalid{
@@ -184,7 +181,7 @@ form{
   }
 
   div.formFooter{
-    @include hbox;
+    @include box(horizontal, start, center);
     margin-top: 10px;
   }
 
@@ -193,7 +190,7 @@ form{
   }
 
   p.main-button{
-      margin: 10px 20px 0 0;
+    margin: 10px 20px 0 0;
   }
 
   p.bDelete,
@@ -234,25 +231,20 @@ fieldset{
 
 .main-button{
 
-  @include border-box;
   width: 125px;
+  padding: 5px 0;
 
   background-color: #2c2c2c;
   border: 5px solid #FFF;
-
-  padding: 5px 0;
+  box-shadow: 0 0 8px #888;
 
   font-size: 17px;
-
   text-align: center;
-
   color: #FFF;
 
-  @include box-shadow( 0, 0, 8px, #888);
-
-  @include transition( background-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
-  @include transition( color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
-  @include transition( border-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
+  @include transition(background-color $TRANSITION_DURATION $TRANSITION_EASE_FUNC);
+  @include transition(color $TRANSITION_DURATION $TRANSITION_EASE_FUNC);
+  @include transition(border-color $TRANSITION_DURATION $TRANSITION_EASE_FUNC);
 
   &:hover{
     background-color: #FFF;
@@ -274,12 +266,11 @@ fieldset{
 
 .subButton{
   display:block;
-  @include border-box;
-  width: 100px;
 
+  width: 100px;
   padding: 5px 0;
 
-  @include vbg-gradient(#FFF, #F4F4F4);
+  @include linear-gradient(#FFF, #F4F4F4);
   border: 1px solid #2c2c2c;
 
   color: #2c2c2c;
@@ -292,14 +283,14 @@ fieldset{
 
   &:hover{
     opacity: .85;
-    @include vbg-gradient(#F4F4F4, #FFF);
+    @include linear-gradient(#F4F4F4, #FFF);
   }
 
   &.disabled,
   &.disabled:hover{
     opacity: .5;
     color: #363636;
-    @include vbg-gradient(#FFF, #F4F4F4);
+    @include linear-gradient(#FFF, #F4F4F4);
     cursor: default;
   }
 }
@@ -314,7 +305,8 @@ fieldset{
 
   li{
     padding: 15px 30px;
-    @include transition( background-color, $TRANSITION_DURATION, $TRANSITION_EASE_FUNC );
+    @include transition(background-color $TRANSITION_DURATION $TRANSITION_EASE_FUNC);
+
     color: #2c2c2c;
 
     &:hover{
@@ -332,7 +324,7 @@ fieldset{
 
 
 #sub-nav{
-  @include hbox;
+  @include box(horizontal, start, center);
   height: 60px;
   background-color: #DEDEDE;
 

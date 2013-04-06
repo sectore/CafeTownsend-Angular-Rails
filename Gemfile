@@ -23,6 +23,9 @@ gem 'bcrypt-ruby'
 # https://github.com/josevalim/inherited_resources
 gem 'inherited_resources'
 
+# Sass mixin library Bourbon
+gem 'bourbon'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
