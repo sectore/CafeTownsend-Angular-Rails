@@ -1,6 +1,6 @@
 angular.module('cafeTownsend.services').factory 'SessionService', ['$log', '$resource', ($log, $resource) ->
 
-  service = $resource 'sessions/:param', {},
+  service = $resource '/sessions/:param', {},
     'login':
       method: 'POST'
     'logout':
