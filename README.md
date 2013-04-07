@@ -13,15 +13,10 @@ The application covers the following topics:
 *  Mixins by [Bourbon](http://bourbon.io)
 
 
-##Screen shots
-[![Click on screen shot to see live demo on Heroku](https://github.com/sectore/CafeTownsend-Angular-Rails/raw/master/wiki/cafetownsend-angular-rails-login.png "Login")](http://cafetownsend-angular-rails.herokuapp.com/)
+##Demo (YouTube)
+[![Click on screen shot to see live demo on YouTube](https://github.com/sectore/CafeTownsend-Angular-Rails/raw/master/wiki/cafetownsend-angular-rails-youtube.png "Login")](https://www.youtube.com/watch?v=PCFUKOiThJA)
 
-[![Click on screen shot to see live demo on Heroku](https://github.com/sectore/CafeTownsend-Angular-Rails/raw/master/wiki/cafetownsend-angular-rails-overview.png "Overview")](http://cafetownsend-angular-rails.herokuapp.com/)
-
-[![Click on screen shot to see live demo on Heroku](https://github.com/sectore/CafeTownsend-Angular-Rails/raw/master/wiki/cafetownsend-angular-rails-edit.png "Edit")](http://cafetownsend-angular-rails.herokuapp.com/)
-
-
-##Live example
+##Demo (Heroku)
 [http://cafetownsend-angular-rails.herokuapp.com](http://cafetownsend-angular-rails.herokuapp.com/)
 
 ##Local installation
