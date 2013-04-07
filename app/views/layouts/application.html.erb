@@ -9,25 +9,39 @@
 
 <body>
 
-<div class="main-view" ng-controller="MainController">
+<div class="main-view"
+   ng-controller="MainController"
+   ng-class="{login:'main-view-loggedIn',
+    employees:'main-view-employees',
+    edit:'main-view-edit',
+    create:'main-view-create'}[viewState.current]">
   <header ng-controller="HeaderController">
     <div
       ng-show="authorized()"
-      ng-class="authorized() && 'active'">
+      class="header-show-setup"
+      ng-animate="{show: 'header-show', hide: 'header-hide'}"
+    >
       <p class="main-button" ng-click="logout()">Logout</p>
       <p id="greetings">Hello {{user.name}}</p>
     </div>
   </header>
 
-  <div class="main-view-content" ng-class="authorized() && 'main-view-content-loggedIn'">
-    <ng-view></ng-view>
+  <div class="main-view-content"
+     ng-class="{login:'main-view-content-loggedIn',
+      employees:'main-view-content-employees',
+      edit:'main-view-content-edit',
+      create:'main-view-content-create'}[viewState.current]">
+    <ng-view
+      class="main-view-content-enter-setup"
+      ng-animate="{enter: 'main-view-content-enter'}"
+      ></ng-view>
   </div>
 
   <footer>
     <p>
       Built with <a href="http://angularjs.org/">AngularJS</a>,
       <a href="http://coffeescript.org/">CoffeeScript</a>,
-      <a href="http://sass-lang.com/">Sass</a> and <a href="http://rubyonrails.org/">Rails</a>.<br/>
+      <a href="http://bourbon.io/">Bourbon</a> and <a href="http://rubyonrails.org/">Rails</a>.<br/>
     </p>
 
     <p>

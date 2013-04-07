@@ -1,8 +1,10 @@
 angular.module('cafeTownsend').controller 'EditEmployeeController'
-, ['$log', '$scope', '$location', '$routeParams', 'SessionService', 'EmployeesService', 'SelectedEmployee'
-, ($log, $scope, $location, $routeParams, SessionService, EmployeesService, SelectedEmployee) ->
+, ['$log', '$scope', '$location', '$routeParams', 'SessionService', 'EmployeesService', 'SelectedEmployee', 'ViewState'
+, ($log, $scope, $location, $routeParams, SessionService, EmployeesService, SelectedEmployee, ViewState) ->
 
   $scope.isCreateForm = false
+
+  ViewState.current = 'edit'
 
   # ########################
   # update

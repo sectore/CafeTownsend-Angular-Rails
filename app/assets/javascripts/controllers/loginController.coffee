@@ -1,11 +1,13 @@
 angular.module('cafeTownsend').controller 'LoginController'
-, ['$log', '$scope', '$location', 'SessionService'
-, ($log, $scope, $location, SessionService) ->
+, ['$log', '$scope', '$location', 'SessionService', 'ViewState'
+, ($log, $scope, $location, SessionService, ViewState) ->
 
   $scope.user = SessionService.getUser()
   # for debugging only
-#  $scope.user.name = "Luke"
-#  $scope.user.password = "Skywalker"
+  $scope.user.name = "Luke"
+  $scope.user.password = "Skywalker"
+
+  ViewState.current = 'login'
 
   # ########################
   # login
@@ -15,6 +17,7 @@ angular.module('cafeTownsend').controller 'LoginController'
     SessionService.login $scope.user, loginResultHandler, loginErrorHandler
 
   loginResultHandler = (result) ->
+    r = result
     if !!SessionService.authorized()
       $location.path '/employees'
     else

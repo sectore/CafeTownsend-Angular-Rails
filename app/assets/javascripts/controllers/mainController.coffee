@@ -1,6 +1,8 @@
 angular.module('cafeTownsend').controller 'MainController'
-, ['$log', '$scope', 'SessionService'
-, ($log, $scope, SessionService) ->
+, ['$log', '$scope', 'SessionService', 'ViewState'
+, ($log, $scope, SessionService, ViewState) ->
+
+  $scope.viewState = ViewState
 
   # ########################
   # login status
@@ -8,5 +10,6 @@ angular.module('cafeTownsend').controller 'MainController'
 
   $scope.authorized = ->
     SessionService.authorized()
+
 
 ]

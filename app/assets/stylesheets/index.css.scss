@@ -11,7 +11,12 @@ $MAIN_FONT: "Arial", "Helvetica", "sans-serif";
 $MAIN_FONT_SIZE: 17px;
 
 $TRANSITION_DURATION: .5s;
-$TRANSITION_EASE_FUNC: linear;
+$TRANSITION_EASE_LINEAR: linear;
+// custom ease funtion
+// @see: http://matthewlein.com/ceaser/
+$TRANSITION_EASE_IN_OUT: cubic-bezier(0.420, 0.000, 0.580, 1.000);
+$TRANSITION_EASE_OUT_SINE: cubic-bezier(0.390, 0.575, 0.565, 1.000);
+$TRANSITION_EASE_OUT_BACK: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 
 //
 // global tags
@@ -55,7 +60,25 @@ ul {
 .main-view{
   width: $MAIN_CONTENT_WIDTH;
   margin: $MAIN_CONTENT_MARGIN;
-  padding: 80px 0 0 0;
+  @include transition(padding-top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+  padding-top: 160px;
+}
+
+.main-view-login{
+  padding-top: 160px;
+  @include transition(padding-top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-employees{
+  padding-top: 100px;
+  @include transition(padding-top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-edit,
+.main-view-create,
+{
+  padding-top: 60px;
+  @include transition(padding-top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
 }
 
 .main-view-content {
@@ -66,10 +89,34 @@ ul {
   padding-top: 140px;
   border: 10px solid #2c2c2c;
 
+  @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
 }
 
-.main-view-content-loggedIn {
-  height: 560px !important;
+.main-view-content-login {
+  height: 450px;
+  @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-content-employees {
+  height: 465px;
+  @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-content-edit,
+.main-view-content-create{
+  height: 560px;
+  @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-content-enter-setup{
+  @include transition(opacity .3s .1s $TRANSITION_EASE_LINEAR);
+}
+
+.main-view-content-enter-setup{
+  opacity:0;
+}
+.main-view-content-enter-setup.main-view-content-enter-start{
+  opacity:1;
 }
 
 .error-message{
@@ -83,6 +130,10 @@ footer
   margin: $MAIN_CONTENT_MARGIN;
 }
 
+/**********************************
+  header
+**********************************/
+
 header{
 
   height: 50px;
@@ -90,11 +141,6 @@ header{
   div{
     position: relative;
     height: 50px;
-    top: 50px;
-  }
-
-  div.active{
-    top: 0px;
   }
 
   p#greetings{
@@ -105,6 +151,30 @@ header{
     @include position(absolute, 0 15px -5px 0);
   }
 }
+
+
+.header-show-setup,
+.header-hide-setup {
+  @include transition(top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.header-hide-setup {
+  top:0;
+}
+.header-hide-setup.header-hide-start {
+  top:50px;
+}
+
+.header-show-setup {
+  top:50px;
+}
+.header-show-setup.header-show-start {
+  top:0;
+}
+
+/**********************************
+  footer
+**********************************/
 
 footer{
   padding-top: 8px;
@@ -242,9 +312,9 @@ fieldset{
   text-align: center;
   color: #FFF;
 
-  @include transition(background-color $TRANSITION_DURATION $TRANSITION_EASE_FUNC);
-  @include transition(color $TRANSITION_DURATION $TRANSITION_EASE_FUNC);
-  @include transition(border-color $TRANSITION_DURATION $TRANSITION_EASE_FUNC);
+  @include transition(background-color $TRANSITION_DURATION $TRANSITION_EASE_LINEAR);
+  @include transition(color $TRANSITION_DURATION $TRANSITION_EASE_LINEAR);
+  @include transition(border-color $TRANSITION_DURATION $TRANSITION_EASE_LINEAR);
 
   &:hover{
     background-color: #FFF;
@@ -305,7 +375,7 @@ fieldset{
 
   li{
     padding: 15px 30px;
-    @include transition(background-color $TRANSITION_DURATION $TRANSITION_EASE_FUNC);
+    @include transition(background-color $TRANSITION_DURATION $TRANSITION_EASE_LINEAR);
 
     color: #2c2c2c;
 

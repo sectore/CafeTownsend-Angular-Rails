@@ -1,7 +1,9 @@
 angular.module('cafeTownsend').controller 'EmployeesController'
-, ['$log', '$scope', '$location', 'SessionService', 'EmployeesService', 'SelectedEmployee'
-, ($log, $scope, $location, SessionService, EmployeesService, SelectedEmployee) ->
+, ['$log', '$scope', '$location', 'SessionService', 'EmployeesService', 'SelectedEmployee', 'ViewState'
+, ($log, $scope, $location, SessionService, EmployeesService, SelectedEmployee, ViewState) ->
 
+
+  ViewState.current = 'employees'
 
   # ########################
   # selected employee
