@@ -42,10 +42,10 @@ angular.module('cafeTownsend').controller 'CreateEmployeeController'
     if !!SessionService.authorized()
       employee = new EmployeesService()
       # for debugging only
-      employee.email = "info@websector.de"
-      employee.firstName = "jens"
-      employee.lastName = "krause"
-      employee.startDate = "2013-03-30"
+#      employee.email = "info@websector.de"
+#      employee.firstName = "jens"
+#      employee.lastName = "krause"
+#      employee.startDate = "2013-03-30"
 
       # store new created instance
       # set reference to scope

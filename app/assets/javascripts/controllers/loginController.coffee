@@ -4,8 +4,8 @@ angular.module('cafeTownsend').controller 'LoginController'
 
   $scope.user = SessionService.getUser()
   # for debugging only
-  $scope.user.name = "Luke"
-  $scope.user.password = "Skywalker"
+#  $scope.user.name = "Luke"
+#  $scope.user.password = "Skywalker"
 
   ViewState.current = 'login'
 
