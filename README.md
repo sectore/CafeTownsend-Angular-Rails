@@ -8,8 +8,8 @@ The application covers the following topics:
 *  Angular and Rails
 *  Angulars [Modules](http://docs.angularjs.org/guide/module)
 *  Angulars [Services](http://docs.angularjs.org/guide/dev_guide.services)
-*  Sharing data beetween controllers using Services, which are acting as Domain Models
-*  Angulars new Animation directive [ngAnimage](http://code.angularjs.org/1.1.4/docs/api/ng.directive:ngAnimate)
+*  Sharing data beetween controllers using services, which are acting as Domain Models
+*  Angulars new animation directive [ngAnimate](http://code.angularjs.org/1.1.4/docs/api/ng.directive:ngAnimate)
 *  Mixins by [Bourbon](http://bourbon.io)
 
 
