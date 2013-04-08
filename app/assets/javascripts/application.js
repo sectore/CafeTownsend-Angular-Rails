@@ -16,7 +16,6 @@
 //
 // app related stuff
 //= require modules
-//= require config
 //= require services/sessionService
 //= require services/employeesService
 //= require services/selectedEmployee
