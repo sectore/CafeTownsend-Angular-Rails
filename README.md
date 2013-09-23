@@ -32,7 +32,7 @@ The application covers the following topics:
 2) Open [http://localhost:3000](http://localhost:3000/) using [Chrome](https://www.google.com/chrome)
 
 ##Version history
-Check the [CHANGELOG file](https://raw.github.com/sectore/CafeTownsend-Angular-Rails/master/CHANGELOG.md) for details, please.
+Check the [CHANGELOG file](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/CHANGELOG.md) for details, please.
 
 ##License
-`CafeTownsend-Angular-Rails` is licensed for use under the terms of the MIT License. Check the [LICENSE file](https://raw.github.com/sectore/CafeTownsend-Angular-Rails/master/LICENSE.md) for details, please.
+`CafeTownsend-Angular-Rails` is licensed for use under the terms of the MIT License. Check the [LICENSE file](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/LICENSE.md) for details, please.
