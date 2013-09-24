@@ -1,0 +1,25 @@
+# defining all routes
+angular.module('cafeTownsend').config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+
+  $routeProvider
+  .when '/login',
+    templateUrl: '<%= asset_path("login.html") %>',
+    controller: 'LoginController'
+
+  .when '/employees',
+    templateUrl: '<%= asset_path("employees.html") %>'
+    controller: 'EmployeesController'
+
+  .when '/employees/new',
+    templateUrl: '<%= asset_path("employee.html") %>'
+    controller: 'CreateEmployeeController'
+
+  .when '/employees/:id/edit',
+    templateUrl: '<%= asset_path("employee.html") %>'
+    controller: 'EditEmployeeController'
+
+  .otherwise redirectTo: '/login'
+
+  # enabling html5Mode
+  $locationProvider.html5Mode true
+]

@@ -26,8 +26,10 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     angularjs-rails (1.0.8)
+    angularjs-rails-resource (0.2.2)
     arel (4.0.0)
     atomic (1.1.14)
+    bcrypt-ruby (3.0.1)
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
@@ -40,6 +42,9 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     daemons (1.1.9)
+    debase (0.0.7)
+      debugger-ruby_core_source
+    debugger-ruby_core_source (1.2.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.1)
@@ -58,6 +63,7 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.0)
+    ng-rails-csrf (0.1.0)
     pg (0.17.0)
     polyglot (0.3.3)
     rack (1.5.2)
@@ -79,6 +85,8 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    ruby-debug-ide (0.4.18)
+      rake (>= 0.8.1)
     sass (3.2.10)
     sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -120,12 +128,17 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
+  angularjs-rails-resource (~> 0.2.0)
+  bcrypt-ruby (~> 3.0.0)
   bourbon
   coffee-rails (~> 4.0.0)
+  debase (~> 0.0.7)
   jbuilder (~> 1.2)
   jquery-rails
+  ng-rails-csrf
   pg
   rails (= 4.0.0)
+  ruby-debug-ide (~> 0.4.18)
   sass-rails (~> 4.0.0)
   sdoc
   sqlite3

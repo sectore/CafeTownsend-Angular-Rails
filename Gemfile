@@ -30,6 +30,9 @@ gem 'angularjs-rails'
 # Sass mixin library Bourbon
 gem 'bourbon'
 
+# For using ActiveModel's 'has_secure_password'
+gem 'bcrypt-ruby', '~> 3.0.0'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -57,3 +60,13 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+# Debugging
+gem "debase", "~> 0.0.7"
+gem 'ruby-debug-ide', "~> 0.4.18 "
+
+# TODO: Check if this sources are deprecated with Angular 1.2.0
+gem 'ng-rails-csrf'
+gem 'angularjs-rails-resource', '~> 0.2.0'
+

@@ -5,3 +5,34 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# user name:string password:string
+User.create!(name: 'Luke', password: 'Skywalker')
+
+# employee first_name:string last_name:string email:string start_date:date
+Employee.create!([
+  {
+    :first_name   => 'Sue',
+    :last_name    => 'Hove',
+    :email        => 'shove@cafetownsend.com',
+    :start_date   => DateTime.new(2006,1,7)
+  },
+  {
+    :first_name   => 'Matt',
+    :last_name    => 'Boles',
+    :email        => 'mboles@cafetownsend.com',
+    :start_date   => DateTime.new(2006,2,17)
+  },
+  {
+    :first_name   => 'Mike',
+    :last_name    => 'Kollen',
+    :email        => 'mkollen@cafetownsend.com',
+    :start_date   => DateTime.new(2006,3,1)
+  },
+  {
+    :first_name   => 'Jennifer',
+    :last_name    => 'Jaegel',
+    :email        => 'jjaegel@cafetownsend.com',
+    :start_date   => DateTime.new(2006,4,1)
+  }
+])

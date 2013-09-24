@@ -53,4 +53,12 @@ CafeTownsendAngularRails::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root to: 'sessions#create'
+
+  #get 'logout', to: 'sessions#destroy', as: :logout
+  get 'login', to: 'sessions#create', as: :login
+
+  resources :sessions
+  resources :employees
 end

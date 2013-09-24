@@ -12,7 +12,30 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
 
-//= require unstable/angular
+// require turbolinks
+
+// require unstable/angular
+
+
+//
+// libraries
+//= require angular-1.1.4
+//= require angular-resource-1.1.4
+//= require ng-rails-csrf
+//= require angularjs/rails/resource
+
+//
+// app related stuff
+//= require modules
+//= require services/sessionService
+//= require services/employeesService
+//= require services/selectedEmployee
+//= require services/viewState
+//= require controllers/mainController
+//= require controllers/headerController
+//= require controllers/loginController
+//= require controllers/employeesController
+//= require controllers/editEmployeeController
+//= require controllers/createEmployeeController
+//= require routes

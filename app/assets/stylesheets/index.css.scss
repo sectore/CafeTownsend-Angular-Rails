@@ -1,0 +1,404 @@
+//
+// constants
+//
+
+@import 'bourbon';
+
+$MAIN_CONTENT_WIDTH: 480px;
+$MAIN_CONTENT_MARGIN: 0 auto;
+
+$MAIN_FONT: "Arial", "Helvetica", "sans-serif";
+$MAIN_FONT_SIZE: 17px;
+
+$TRANSITION_DURATION: .5s;
+$TRANSITION_EASE_LINEAR: linear;
+// custom ease funtion
+// @see: http://matthewlein.com/ceaser/
+$TRANSITION_EASE_IN_OUT: cubic-bezier(0.420, 0.000, 0.580, 1.000);
+$TRANSITION_EASE_OUT_SINE: cubic-bezier(0.390, 0.575, 0.565, 1.000);
+$TRANSITION_EASE_OUT_BACK: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+//
+// global tags
+//
+*{
+  @include box-sizing(border-box);
+}
+
+body,
+html,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+*:focus {
+  outline: none;
+}
+
+
+body {
+  line-height: 19px;
+  font-size: $MAIN_FONT_SIZE;
+  font-family: $MAIN_FONT;
+  color: #363636;
+  font-weight: normal;
+  background-color: #FFF;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-view{
+  width: $MAIN_CONTENT_WIDTH;
+  margin: $MAIN_CONTENT_MARGIN;
+  @include transition(padding-top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+  padding-top: 160px;
+}
+
+.main-view-login{
+  padding-top: 160px;
+  @include transition(padding-top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-employees{
+  padding-top: 100px;
+  @include transition(padding-top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-edit,
+.main-view-create,
+{
+  padding-top: 60px;
+  @include transition(padding-top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-content {
+  position: relative; /* needed to move header content */
+  box-shadow: 0 0 15px #888;
+  @include size(480px 430px);
+  background: #FFF image-url("header.png") no-repeat top left;
+  padding-top: 140px;
+  border: 10px solid #2c2c2c;
+
+  @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-content-login {
+  height: 450px;
+  @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-content-employees {
+  height: 465px;
+  @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-content-edit,
+.main-view-content-create{
+  height: 560px;
+  @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.main-view-content-enter-setup{
+  @include transition(opacity .3s .1s $TRANSITION_EASE_LINEAR);
+}
+
+.main-view-content-enter-setup{
+  opacity:0;
+}
+.main-view-content-enter-setup.main-view-content-enter-start{
+  opacity:1;
+}
+
+.error-message{
+  color: #FF3366;
+}
+
+header
+footer
+.content{
+  width: $MAIN_CONTENT_WIDTH;
+  margin: $MAIN_CONTENT_MARGIN;
+}
+
+/**********************************
+  header
+**********************************/
+
+header{
+
+  height: 50px;
+
+  div{
+    position: relative;
+    height: 50px;
+  }
+
+  p#greetings{
+    @include position(absolute, 0 0 4px 40px);
+  }
+
+  p.main-button{
+    @include position(absolute, 0 15px -5px 0);
+  }
+}
+
+
+.header-show-setup,
+.header-hide-setup {
+  @include transition(top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+}
+
+.header-hide-setup {
+  top:0;
+}
+.header-hide-setup.header-hide-start {
+  top:50px;
+}
+
+.header-show-setup {
+  top:50px;
+}
+.header-show-setup.header-show-start {
+  top:0;
+}
+
+/**********************************
+  footer
+**********************************/
+
+footer{
+  padding-top: 8px;
+  font-size: 15px;
+  line-height: 21px;
+  color: #888;
+  text-align: center;
+  text-shadow: white 1px 1px 1px;
+
+  a{
+    text-decoration: underline;
+    color: #888;
+    &:hover{
+      color: #2c2c2c;
+    }
+  }
+}
+
+
+/*
+  @overridden
+  .ng-invalid
+  .ng-valid
+  are CSS classes used by angular
+  http://docs-next.angularjs.org/guide/dev_guide.templates.css-styling
+*/
+form{
+  @include box-align(stretch);
+  @include box-orient(vertical);
+  padding: 20px;
+
+  label{
+    @include box(horizontal, start, center);
+    padding: 10px 0;
+  }
+
+  label span{
+    display: block;
+    width: 100px;
+  }
+
+  p.error-message{
+   width: 100%;
+  }
+
+  input{
+    @include box-sizing(border-box);
+    @include size(270px 35px);
+
+    padding: 5px 10px;
+    padding-right: 20px;
+
+    box-shadow: 0px 0px 3px #ccc;
+
+    border: 1px solid #AAA;
+    border-radius: 0 10px 15px #eee;
+
+    font-size: $MAIN_FONT_SIZE;
+
+    &:focus{
+      background: #FFF;
+      border: 1px solid #555;
+      box-shadow: 0 0 3px #aaa;
+    }
+
+    &:focus.ng-invalid{
+      background: #FFF image-url("invalid.png") no-repeat 98% center !important;
+      border-color: #FF3366;
+    }
+  }
+
+  input.ng-valid{
+    background: #FFF image-url("valid.png") no-repeat 98% center;
+  }
+
+  div.formFooter{
+    @include box(horizontal, start, center);
+    margin-top: 10px;
+  }
+
+  button[type="submit"].main-button{
+    margin: 10px 20px 0 100px;
+  }
+
+  p.main-button{
+    margin: 10px 20px 0 0;
+  }
+
+  p.bDelete,
+  p.bCancel{
+    color: #888;
+    text-decoration: underline;
+
+    &:hover{
+        color: #363636;
+        cursor: pointer;
+    }
+  }
+
+}
+
+
+legend{
+  display: none;
+}
+
+fieldset{
+  border: none;
+}
+
+#login-form{
+  margin-top: 10px;
+
+  p.error-message{
+    padding-left: 100px;
+  }
+  p.info {
+    padding-left: 100px;
+    padding-top: 10px;
+    font-size: 13px;
+    color: #AAA;
+  }
+}
+
+.main-button{
+
+  width: 125px;
+  padding: 5px 0;
+
+  background-color: #2c2c2c;
+  border: 5px solid #FFF;
+  box-shadow: 0 0 8px #888;
+
+  font-size: 17px;
+  text-align: center;
+  color: #FFF;
+
+  @include transition(background-color $TRANSITION_DURATION $TRANSITION_EASE_LINEAR);
+  @include transition(color $TRANSITION_DURATION $TRANSITION_EASE_LINEAR);
+  @include transition(border-color $TRANSITION_DURATION $TRANSITION_EASE_LINEAR);
+
+  &:hover{
+    background-color: #FFF;
+    border-color: #2c2c2c;
+    color: #2c2c2c;
+    cursor: pointer;
+  }
+
+  &:disabled{
+    opacity: .5;
+    &:hover{
+        background-color: #7989D6;
+        border-color: #FFF;
+        color: #FFF;
+        cursor: default;
+    }
+  }
+}
+
+.subButton{
+  display:block;
+
+  width: 100px;
+  padding: 5px 0;
+
+  @include linear-gradient(#FFF, #F4F4F4);
+  border: 1px solid #2c2c2c;
+
+  color: #2c2c2c;
+  font-size: 15px;
+
+  text-decoration: none;
+  text-align: center;
+
+  cursor: pointer;
+
+  &:hover{
+    opacity: .85;
+    @include linear-gradient(#F4F4F4, #FFF);
+  }
+
+  &.disabled,
+  &.disabled:hover{
+    opacity: .5;
+    color: #363636;
+    @include linear-gradient(#FFF, #F4F4F4);
+    cursor: default;
+  }
+}
+
+#employee-list-container{
+  overflow-y: auto;
+  height: 245px;
+}
+
+#employee-list{
+  width: 100%;
+
+  li{
+    padding: 15px 30px;
+    @include transition(background-color $TRANSITION_DURATION $TRANSITION_EASE_LINEAR);
+
+    color: #2c2c2c;
+
+    &:hover{
+      background-color: #2c2c2c;
+      color: #FFF;
+      cursor: pointer;
+    }
+
+    &.active{
+      background-color: #2c2c2c;
+      color: #FFF;
+    }
+  }
+}
+
+
+#sub-nav{
+  @include box(horizontal, start, center);
+  height: 60px;
+  background-color: #DEDEDE;
+
+  li{
+    padding-left: 30px;
+  }
+}
