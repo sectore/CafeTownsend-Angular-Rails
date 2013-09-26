@@ -3,15 +3,10 @@
 ## Still in progress...
 
 
-### Preparing tests (RSpec)
-
-
-
 ### Running tests
 
-Before running test install RSpec and configure database
+Before running tests match the development schema to the test database (only once)
 
-    bundle exec rails generate rspec:install
     rake db:test:clone
 
 Run tests
