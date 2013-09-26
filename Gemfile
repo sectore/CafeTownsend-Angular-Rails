@@ -27,11 +27,14 @@ gem 'jbuilder', '~> 1.2'
 # Angular
 gem 'angularjs-rails'
 
+# helper for handling of CSRF token
+gem 'ng-rails-csrf'
+
 # Sass mixin library Bourbon
 gem 'bourbon'
 
 # For using ActiveModel's 'has_secure_password'
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -44,13 +47,11 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
+
 group :production do
   gem 'pg'
   gem 'thin'
 end
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -61,12 +62,9 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-
 # Debugging
-gem "debase", "~> 0.0.7"
-gem 'ruby-debug-ide', "~> 0.4.18 "
+gem 'debase', '~> 0.0.7'
+gem 'ruby-debug-ide', '~> 0.4.18'
 
 # TODO: Check if this sources are deprecated with Angular 1.2.0
-gem 'ng-rails-csrf'
 gem 'angularjs-rails-resource', '~> 0.2.0'
-

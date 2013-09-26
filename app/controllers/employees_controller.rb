@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
 
-  #before_filter :ensure_authenticated
+  before_filter :ensure_authenticated
   before_filter :find_employees, :only => [:index]
   before_filter :find_employee, :except => [:index, :create]
 
@@ -12,11 +12,19 @@ class EmployeesController < ApplicationController
     respond_with @employees
   end
 
+  def new
+
+  end
+
   # GET /employees/1
   def show
     respond_with @employee
   end
 
+
+  def edit
+
+  end
 
   # POST /employees
   def create

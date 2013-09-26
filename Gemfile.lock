@@ -42,7 +42,7 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     daemons (1.1.9)
-    debase (0.0.7)
+    debase (0.0.8)
       debugger-ruby_core_source
     debugger-ruby_core_source (1.2.3)
     erubis (2.7.0)

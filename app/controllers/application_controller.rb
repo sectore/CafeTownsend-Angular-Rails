@@ -1,9 +1,6 @@
 class ApplicationController < ActionController::Base
-
   protect_from_forgery
-
   layout nil
-
   before_filter :intercept_html_requests
 
   private

@@ -17,7 +17,6 @@ angular.module('cafeTownsend').controller 'LoginController'
     SessionService.login $scope.user, loginResultHandler, loginErrorHandler
 
   loginResultHandler = (result) ->
-    r = result
     if !!SessionService.authorized()
       $location.path '/employees'
     else
