@@ -45,21 +45,12 @@ RSpec.configure do |config|
 end
 
 
-# new Faker::Date class for generating random dates
-# Grabbed from https://github.com/MehdiDana/ruby-on-rails-example/blob/master/db/seeds.rb
+# Faker does not support random dates
+# https://github.com/stympy/faker/pull/73
+# So lets extends Faker
+# https://gist.github.com/rjackson/4694263
 class Faker::Date
-  def self.date(params={})
-    years_back = params[:year_range] || 5
-    year = (rand * (years_back)).ceil + (Time.now.year - years_back)
-    month = (rand * 12).ceil
-    day = (rand * 31).ceil
-    series = [date = Time.local(year, month, day)]
-    if params[:series]
-      params[:series].each do |some_time_after|
-        series << series.last + (rand * some_time_after).ceil
-      end
-      return series
-    end
-    date
+  def self.random
+    Date.today-rand(10_000)
   end
 end
