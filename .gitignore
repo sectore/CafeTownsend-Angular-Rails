@@ -8,3 +8,4 @@ public/assets/
 .idea/*
 *.iml
 .DS_Store
+.zeus.sock
