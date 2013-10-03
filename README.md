@@ -9,8 +9,14 @@ Before running tests match the development schema to the test database (only onc
 
     rake db:test:clone
 
-Run tests
+RSpec only:
 
-    bundle exec rspec
+    rspec
+
+Running with [Guard](https://github.com/guard/guard) and [Spork](https://github.com/sporkrb/spork)
+
+    guard
+
+
 
 
