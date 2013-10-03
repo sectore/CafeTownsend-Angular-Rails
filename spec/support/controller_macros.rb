@@ -1,6 +1,5 @@
 module ControllerMacros
-  def login_as_user
-    user = create(:user)
+  def login_user(user)
     session[:user_id] = user.id
   end
 end
