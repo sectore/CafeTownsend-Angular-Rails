@@ -20,4 +20,8 @@ describe 'Employee' do
   it "should invalid without a start date" do
     expect(build(:employee, start_date: nil)).to_not be_valid
   end
+
+  it "should store into db", :focus do
+    expect(create(:employee)).to_not be_nil
+  end
 end

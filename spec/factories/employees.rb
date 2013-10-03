@@ -5,6 +5,6 @@ FactoryGirl.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     email { Faker::Internet.email }
-    start_date { Faker::Date.random }
+    start_date { Date.today-rand(10_000) }
   end
 end
