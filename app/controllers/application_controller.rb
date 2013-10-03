@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
-  layout nil
-  before_filter :intercept_html_requests
+  protect_from_forgery with: :exception
+  before_filter :render_single_page
 
   private
 
@@ -11,7 +10,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def intercept_html_requests
+  def render_single_page
     render 'layouts/application' if request.format == Mime::HTML
   end
 
