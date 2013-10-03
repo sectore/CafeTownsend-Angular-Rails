@@ -1,15 +1,19 @@
 require'spec_helper'
 
 describe 'User' do
-  it 'should be valid' do
-    expect(build(:user)).to be_valid
+  context "valid params" do
+    it 'build an user' do
+      expect(build(:user)).to be_valid
+    end
   end
 
-  it "should invalid without a password" do
-    expect(build(:user, password: '')).to_not be_valid
-  end
+  context "invalid params" do
+    it "without a password" do
+      expect(build(:user, password: '')).to have(2).errors_on(:password)
+    end
 
-  it "should be invalid without a password confirmation" do
-    expect(build(:user, password_confirmation: '')).to_not be_valid
+    it "without a password confirmation" do
+      expect(build(:user, password_confirmation: '')).to have(2).errors_on(:password_confirmation)
+    end
   end
 end
