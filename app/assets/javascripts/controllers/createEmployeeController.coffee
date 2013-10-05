@@ -16,7 +16,7 @@ angular.module('cafeTownsend').controller 'CreateEmployeeController'
       .then ->
         $scope.browseToOverview()
       , (error) ->
-        message = "Error trying to create a new employee: #{JSON.stringify(error.data.errors)})"
+        message = "Error trying to create a new employee: #{JSON.stringify(error.data)})"
         alert message
 
   # ########################
