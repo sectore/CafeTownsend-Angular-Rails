@@ -17,24 +17,22 @@
     create:'main-view-create'}[viewState.current]">
   <header ng-controller="HeaderController">
     <div
-      ng-show="authorized()"
-      class="header-show-setup"
-      ng-animate="{show: 'header-show', hide: 'header-hide'}"
+      ng-class="{'hide-header':!authorized()}"
+      class="header-container"
     >
       <p class="main-button" ng-click="logout()">Logout</p>
       <p id="greetings">Hello {{user.name}}</p>
     </div>
   </header>
 
-  <div class="main-view-content"
-     ng-class="{login:'main-view-content-loggedIn',
-      employees:'main-view-content-employees',
-      edit:'main-view-content-edit',
-      create:'main-view-content-create'}[viewState.current]">
-    <ng-view
-      class="main-view-content-enter-setup"
-      ng-animate="{enter: 'main-view-content-enter'}"
-      ></ng-view>
+  <div class="main-view-wrapper"
+     ng-class="{login:'main-view-wrapper-loggedIn',
+      employees:'main-view-wrapper-employees',
+      edit:'main-view-wrapper-edit',
+      create:'main-view-wrapper-create'}[viewState.current]">
+    <div ng-view
+      class="main-view-container"
+      ></div>
   </div>
 
   <footer>

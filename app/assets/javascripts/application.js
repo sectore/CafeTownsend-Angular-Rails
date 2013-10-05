@@ -20,8 +20,10 @@
 
 //
 // libraries
-//= require angular-1.1.4
-//= require angular-resource-1.1.4
+//= require angular-1.2.0-rc2/angular
+//= require angular-1.2.0-rc2/angular-route
+//= require angular-1.2.0-rc2/angular-animate
+//= require angular-1.2.0-rc2/angular-resource
 //= require ng-rails-csrf
 //= require angularjs/rails/resource
 
