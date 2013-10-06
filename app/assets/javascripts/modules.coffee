@@ -5,6 +5,7 @@ angular.module('cafeTownsend.services', [
   'ngResource'
   'rails'
   'ng-rails-csrf'
+  'cafeTownsend.employee'
 ])
 
 angular.module('cafeTownsend', [

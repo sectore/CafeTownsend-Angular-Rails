@@ -15,9 +15,6 @@
 
 // require turbolinks
 
-// require unstable/angular
-
-
 //
 // libraries
 //= require angular-1.2.0-rc2/angular
