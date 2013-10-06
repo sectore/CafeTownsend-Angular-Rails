@@ -48,6 +48,9 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'spork-rails'
+  gem 'teaspoon'
+  gem 'guard-teaspoon'
+  gem 'rb-fsevent'
 end
 
 group:test do
@@ -77,5 +80,4 @@ gem 'debase', '~> 0.0.7'
 gem 'ruby-debug-ide', '~> 0.4.18'
 #gem 'coffee-script-redux-debugger', :git => 'git://github.com/JetBrains/coffee-script-redux-debugger.git'
 
-# TODO: Check if this sources are deprecated with Angular 1.2.0
 gem 'angularjs-rails-resource', '~> 0.2.0'
