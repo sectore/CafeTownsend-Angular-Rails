@@ -38,6 +38,7 @@ Running all tests with [Guard](https://github.com/guard/guard) and [Spork](https
 For testing purposes:
 
 * [expect.js](https://github.com/LearnBoost/expect.js)
+* [factory_girl](https://github.com/thoughtbot/factory_girl)
 * [Guard](https://github.com/guard/guard)
 * [mocha](http://visionmedia.github.io/mocha/)
 * [PhantomJS](http://phantomjs.org/)
