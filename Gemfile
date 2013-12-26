@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.1'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 2.4.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -31,7 +31,7 @@ gem 'ng-rails-csrf'
 gem 'bourbon'
 
 # For using ActiveModel's 'has_secure_password'
-gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
+gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -55,7 +55,7 @@ end
 
 group:test do
   gem 'faker', '~> 1.1.2'
-  gem 'capybara', '~> 2.1.0'
+  gem 'capybara', '~> 2.2.0'
   gem 'database_cleaner', '~> 1.0.1'
   gem 'launchy', '~> 2.3.0'
   gem 'selenium-webdriver', '~> 2.35.1'
@@ -76,8 +76,8 @@ end
 # gem 'debugger', group: [:development, :test]
 
 # Debugging
-gem 'debase', '~> 0.0.7'
-gem 'ruby-debug-ide', '~> 0.4.18'
+gem 'debase', '~> 0.0.9'
+gem 'ruby-debug-ide', '~> 0.4.22'
 #gem 'coffee-script-redux-debugger', :git => 'git://github.com/JetBrains/coffee-script-redux-debugger.git'
 
-gem 'angularjs-rails-resource', '~> 0.2.0'
+gem 'angularjs-rails-resource', '~> 0.2.5'

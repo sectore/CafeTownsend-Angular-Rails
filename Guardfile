@@ -15,7 +15,6 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' },
 end
 
 guard :rspec ,
-  cli: "--drb",
   all_on_start: true,
   all_after_pass: false do
   watch(%r{^spec/.+_spec\.rb$})
