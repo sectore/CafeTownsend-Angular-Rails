@@ -2,6 +2,8 @@
 <html lang="en" ng-app="cafeTownsend">
 <head>
   <title>CafeTownsend-AngularJS-Rails</title>
+  <%= include_jquery(defer: true) %>
+  <%= javascript_include_tag('application', defer: true) -%>
   <%= stylesheet_link_tag "application" %>
   <%= csrf_meta_tags %>
 
@@ -44,10 +46,9 @@
 
     <p>
       <a href="https://github.com/sectore/CafeTownsend-Angular-Rails">Get source code</a> by
-      <a href="http://www.websector.de">Jens Krause</a> @2012-2013
+      <a href="http://www.websector.de">Jens Krause</a> @2012-2014
     </p>
   </footer>
 </div>
-<%= javascript_include_tag "application" -%>
 </body>
 </html>
