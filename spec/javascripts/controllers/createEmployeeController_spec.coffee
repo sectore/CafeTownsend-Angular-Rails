@@ -4,12 +4,13 @@ describe 'module cafeTownsend', ->
 
   describe '- CreateEmployeeController', ->
 
-    beforeEach inject ($rootScope, $controller, $location, SessionService) ->
+    beforeEach inject ($rootScope, $controller, $location) ->
       # routes
       @location = $location
       @location.path '/employees/new'
       # scope
       @scope = $rootScope.$new()
+
       # controller factory
       @createController = ->
         controller = $controller "CreateEmployeeController",
@@ -67,7 +68,7 @@ describe 'module cafeTownsend', ->
 
       it 'submit() creates an employee',inject((SessionService, SelectedEmployee) ->
         stub = sinon.stub(SessionService, 'authorized').returns true
-        controller = @createController()
+        @createController()
         spy = sinon.spy(SelectedEmployee.instance, 'create')
         @scope.submit()
         expect(spy.calledOnce).to.be.ok()
