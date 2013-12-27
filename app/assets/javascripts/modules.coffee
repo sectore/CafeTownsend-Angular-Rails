@@ -5,9 +5,14 @@ angular.module('cafeTownsend.services', [
   'ngResource'
   'rails'
   'ng-rails-csrf'
-  'cafeTownsend.employee'
+])
+
+angular.module('cafeTownsend.employee', [
+  'ngRoute'
+  'cafeTownsend.services'
 ])
 
 angular.module('cafeTownsend', [
+  'cafeTownsend.employee'
   'cafeTownsend.services'
 ])
