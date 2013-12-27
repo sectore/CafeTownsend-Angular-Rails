@@ -5,14 +5,13 @@
 
 # jquery
 #= require jquery
-#= require jquery_ujs
 
 # angular
-#= require angular-1.2.0-rc2/angular
-#= require angular-1.2.0-rc2/angular-route
-#= require angular-1.2.0-rc2/angular-animate
-#= require angular-1.2.0-rc2/angular-resource
-#= require angular-1.2.0-rc2/angular-mocks
+#= require angular/angular
+#= require angular-route/angular-route
+#= require angular-animate/angular-animate
+#= require angular-resource/angular-resource
+#= require angular-mocks/angular-mocks
 #= require ng-rails-csrf
 #= require angularjs/rails/resource
 
