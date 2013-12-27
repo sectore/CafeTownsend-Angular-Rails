@@ -27,6 +27,7 @@
 //
 // app related stuff
 //= require modules
+//= require services/modalDialog
 //= require services/sessionService
 //= require services/employeesService
 //= require services/selectedEmployee
