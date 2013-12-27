@@ -1,8 +1,4 @@
-angular.module('cafeTownsend.employee', [
-  'ngRoute'
-  'cafeTownsend.services'
-])
-
+angular.module('cafeTownsend.employee')
 
 .config([
   '$routeProvider',
