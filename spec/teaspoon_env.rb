@@ -24,7 +24,7 @@ Teaspoon.setup do |config|
 
   # Output
   config.formatters          = "dot" # available: dot, tap, tap_y, swayze_or_oprah
-  config.suppress_log        = false # suppress logs coming from console[log/error/debug]
+  config.suppress_log        = true # suppress logs coming from console[log/error/debug]
   config.color               = true
 
   # Coverage (requires istanbul -- https://github.com/gotwarlost/istanbul)

@@ -47,14 +47,23 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'guard-rspec'
+  gem 'guard-teaspoon'
   gem 'guard-spork'
   gem 'spork-rails'
   gem 'teaspoon'
-  gem 'guard-teaspoon'
   gem 'rb-fsevent'
+  gem 'rb-inotify', :require => false
+  gem 'awesome_print'
 end
 
-group:test do
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'guard-livereload'
+  gem 'rack-livereload'
+end
+
+group :test do
   gem 'faker', '~> 1.1.2'
   gem 'capybara', '~> 2.2.0'
   gem 'database_cleaner', '~> 1.0.1'
