@@ -1,7 +1,7 @@
-<form id="login-form" ng-submit="login()" name="loginForm">
+<form id="login-form" ng-submit="submit()" name="loginForm">
   <fieldset>
     <legend>Login</legend>
-    <p class="error-message" ng-show="showMessage(message)">{{message}}</p>
+    <p class="error-message" ng-show="showMessage()">{{message}}</p>
     <label>
       <span>Username*</span>
       <input
