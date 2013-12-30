@@ -8,12 +8,10 @@ describe 'LoginController', ->
     # scope
     @scope = $rootScope.$new()
     # mocking service
-    @deferred = $q.defer();
+    @deferred = $q.defer()
     @promise = @deferred.promise
     @mockSessionService =
       login: =>
-        @promise
-      logout: =>
         @promise
       getCurrentUser: ->
         {}
@@ -63,7 +61,7 @@ describe 'LoginController', ->
       @createController()
       @deferred.resolve()
       @scope.submit()
-      $rootScope.$apply();
+      $rootScope.$apply()
       expect(@location.path()).to.equal('/employees')
     )
 
@@ -72,7 +70,7 @@ describe 'LoginController', ->
       @createController()
       @deferred.resolve()
       @scope.submit()
-      $rootScope.$apply();
+      $rootScope.$apply()
       expect(@scope.message).to.be('Invalid username or password!')
       stub.restore()
     )
@@ -81,7 +79,7 @@ describe 'LoginController', ->
       @createController()
       @deferred.reject()
       @scope.submit()
-      $rootScope.$apply();
+      $rootScope.$apply()
       expect(@scope.message).to.be.ok()
     )
 
