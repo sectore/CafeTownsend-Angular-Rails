@@ -1,10 +1,18 @@
 angular.module('cafeTownsend').controller 'HeaderController'
-, ['$log', '$scope', '$location', 'SessionService'
-, ($log, $scope, $location, SessionService) ->
+, [ '$log',
+    '$window',
+    '$scope',
+    '$location',
+    'SessionService'
+, ($log, $window, $scope, $location, SessionService) ->
 
-  $scope.user = SessionService.getCurrentUser()
+  # init
+  # ------------------------------------------------------------
 
-  # login status
+  init = ->
+    $scope.user = SessionService.getCurrentUser()
+
+  # user status
   # ------------------------------------------------------------
 
   $scope.authorized = ->
@@ -12,17 +20,29 @@ angular.module('cafeTownsend').controller 'HeaderController'
 
   # logout
   # ------------------------------------------------------------
-
   $scope.logout = ->
-    if !!SessionService.authorized()
       SessionService.logout()
-        .then(
-          # a successful log out results in {"authorized":"false"} sent from server side
-          if !SessionService.authorized()
-            $location.path '/login'
-        ,
-        (error)->
-          alert "Error trying to log out (error: #{error})"
-      )
+      .then(
+        logoutResultHandler()
+      , (error)->
+          logoutErrorHandler(error)
+        )
 
+  $scope.logoutW = ->
+    $scope.logoutRH()
+
+  $scope.logoutRH = ->
+
+  logoutResultHandler = ->
+    # a successful log out
+    # results in {"authorized":"false"}
+    # sent from server side
+    if !SessionService.authorized()
+      $location.path '/login'
+
+  logoutErrorHandler = (error) ->
+    $window.alert "Error trying to log out (error: #{error})"
+
+
+  init()
 ]
