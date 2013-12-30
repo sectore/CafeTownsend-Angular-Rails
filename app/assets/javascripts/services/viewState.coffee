@@ -14,7 +14,7 @@ angular.module('cafeTownsend.services').factory 'ViewState'
 , ['$log'
 , ($log) ->
 
-    current = ''
+    current = 'login'
 
     {
       current
