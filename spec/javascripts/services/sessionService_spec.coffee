@@ -2,9 +2,9 @@ describe 'SessionService', ->
 
   beforeEach module('cafeTownsend.services')
 
-  beforeEach inject ($injector, _$httpBackend_) ->
+  beforeEach inject ($injector, $httpBackend) ->
     @service = $injector.get 'SessionService'
-    @$httpBackend = _$httpBackend_
+    @$httpBackend = $httpBackend
     @user =
       id: 10
       name: 'luke'
@@ -12,8 +12,8 @@ describe 'SessionService', ->
 
   afterEach ->
     @service = undefined
-    @$httpBackend.verifyNoOutstandingExpectation();
-    @$httpBackend.verifyNoOutstandingRequest();
+    @$httpBackend.verifyNoOutstandingExpectation()
+    @$httpBackend.verifyNoOutstandingRequest()
 
   it 'is injectable', ->
     expect(@service).to.be.ok()
