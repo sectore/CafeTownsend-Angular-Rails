@@ -15,6 +15,9 @@
 #= require ng-rails-csrf
 #= require angularjs/rails/resource
 
+# test helper
+# =require support/mockFactory
+
 # app
 #= require modules
 #= require services/sessionService

@@ -1,35 +1,32 @@
 describe 'LoginController', ->
 
   beforeEach module('cafeTownsend')
+  beforeEach module('test')
 
-  beforeEach inject ($q, $rootScope, $controller, $location, ViewState) ->
+  beforeEach inject ($rootScope, $controller, MockFactory) ->
+
+    @mockFactory = MockFactory
+    @deferred = @mockFactory.deferred
     # routes
-    @location = $location
+    @location = @mockFactory.location()
     # scope
     @scope = $rootScope.$new()
     # mocking service
-    @deferred = $q.defer()
-    @promise = @deferred.promise
-    @mockSessionService =
-      login: =>
-        @promise
-      getCurrentUser: ->
-        {}
-      authorized: ->
-        true
+    @sessionService = @mockFactory.sessionService()
+    @viewState = @mockFactory.viewState()
 
     # controller factory
     @createController = ->
       controller = $controller "LoginController",
         $scope: @scope
         $location: @location
-        SessionService: @mockSessionService
-        ViewState: ViewState
+        SessionService: @sessionService
+        ViewState: @viewState
 
 
 
   afterEach ->
-    @scope = undefined
+
 
   it 'is injectable', ->
     controller = @createController()
@@ -51,28 +48,26 @@ describe 'LoginController', ->
       @scope.user =
         name: 'joe'
         password: 'secret'
-      spy = sinon.spy(@mockSessionService, 'login')
       @createController()
       @scope.submit()
-      expect(spy.calledWithExactly(@scope.user)).to.be.ok()
-      spy.restore()
+      expect(@sessionService.login.calledWithExactly(@scope.user)).to.be.ok()
 
     it 'updates location.path if the login was successfully', inject(($rootScope)->
+      @sessionService.authorized.returns true
       @createController()
       @deferred.resolve()
       @scope.submit()
       $rootScope.$apply()
-      expect(@location.path()).to.equal('/employees')
+      expect(@location.path.calledWith('/employees')).to.be.ok()
     )
 
     it 'shows an error message if the login was NOT successfully', inject(($rootScope)->
-      stub = sinon.stub(@mockSessionService, 'authorized').returns false
+      @sessionService.authorized.returns false
       @createController()
       @deferred.resolve()
       @scope.submit()
       $rootScope.$apply()
       expect(@scope.message).to.be('Invalid username or password!')
-      stub.restore()
     )
 
     it 'shows an error message if the login throws an error', inject(($rootScope)->
