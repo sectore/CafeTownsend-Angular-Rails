@@ -1,5 +1,12 @@
 # CafeTownsend-Angular-Rails Changelog
 
+## Version 0.7.0 // 2014-01-01
+
+* Updating to AngularJS v.1.2.6
+* Updating to Rails v.4.0.2
+* Specs for Rails + Angular sources
+* Build processes updated
+
 ## Version 0.6.0 // 2013-07-04
 
 * Updating to AngularJS v.1.1.4
