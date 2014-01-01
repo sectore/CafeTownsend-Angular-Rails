@@ -3,7 +3,11 @@ db/*.sqlite3
 log/*.log
 tmp/
 .sass-cache/
+public/assets/
+
+vendor/assets/javascripts/
 
 .idea/*
 *.iml
 .DS_Store
+.zeus.sock

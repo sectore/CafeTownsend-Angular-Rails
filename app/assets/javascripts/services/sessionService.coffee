@@ -1,40 +1,54 @@
-angular.module('cafeTownsend.services').factory 'SessionService', ['$log', '$resource', ($log, $resource) ->
+angular.module('cafeTownsend.services').factory('SessionService', [
+  '$log'
+  '$resource'
+  ($log, $resource)->
 
-  service = $resource '/sessions/:param', {},
-    'login':
-      method: 'POST'
-    'logout':
-      method: 'DELETE'
+    service = $resource '/sessions/:param', {},
+      'login':
+        method: 'POST'
+      'logout':
+        method: 'DELETE'
 
-  user = {}
+    # login
+    # ------------------------------------------------------------
 
-  authorized = ->
-    user.authorized is "true"
+    authorized = ->
+#      $log.info getCurrentUser()
+      getCurrentUser().authorized is 'true'
 
-  login = (newUser, resultHandler, errorHandler) ->
-    service.login newUser
-    , (result) ->
-      user = result.user || {}
-      user.authorized = result.authorized
-      resultHandler(result) if angular.isFunction resultHandler
-    , (error) ->
-      errorHandler(error) if angular.isFunction errorHandler
+    login = (newUser)->
+      promise = service.login(newUser).$promise
+      promise.then((result)->
+        updateCurrentUser(result.user, result.authorized)
+      )
+      promise
 
-  logout = (resultHandler, errorHandler) ->
-    service.logout param: user.id
-    , (result) ->
-      user = {}
-      resultHandler(result) if angular.isFunction resultHandler
-    , (error) ->
-      errorHandler(error) if angular.isFunction errorHandler
+    # logout
+    # ------------------------------------------------------------
 
-  getUser = ->
-    user
+    logout = ->
+      promise = service.logout(param: currentUser.id).$promise
+      updateCurrentUser {}, false
+      promise
 
-  {
-    login,
-    logout,
-    authorized,
-    getUser
-  }
-]
+    # user
+    # ------------------------------------------------------------
+
+    currentUser = {}
+
+    getCurrentUser = ->
+      currentUser
+
+    # helper method to update currentUser
+    updateCurrentUser = (user, authorized)->
+      currentUser.id = user.id
+      currentUser.name= user.name
+      currentUser.authorized = authorized
+
+    {
+      login
+      logout
+      authorized
+      getCurrentUser
+    }
+])

@@ -1,12 +1,6 @@
 CafeTownsendAngularRails::Application.routes.draw do
-
-
-  #match "logout" => "sessions#destroy", :as => "logout"
-  match "login" => "sessions#create", :as => "login"
-
-  root :to => "sessions#create"
-
+  get 'login', to: 'sessions#create', as: :login
   resources :sessions
   resources :employees
-
+  root to: 'sessions#create'
 end

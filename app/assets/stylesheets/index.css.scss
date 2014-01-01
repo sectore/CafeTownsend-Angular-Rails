@@ -10,7 +10,7 @@ $MAIN_CONTENT_MARGIN: 0 auto;
 $MAIN_FONT: "Arial", "Helvetica", "sans-serif";
 $MAIN_FONT_SIZE: 17px;
 
-$TRANSITION_DURATION: .5s;
+$TRANSITION_DURATION: .4s;
 $TRANSITION_EASE_LINEAR: linear;
 // custom ease funtion
 // @see: http://matthewlein.com/ceaser/
@@ -81,7 +81,7 @@ ul {
   @include transition(padding-top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
 }
 
-.main-view-content {
+.main-view-wrapper {
   position: relative; /* needed to move header content */
   box-shadow: 0 0 15px #888;
   @include size(480px 430px);
@@ -92,32 +92,32 @@ ul {
   @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
 }
 
-.main-view-content-login {
+.main-view-wrapper-login {
   height: 450px;
-  @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
 }
 
-.main-view-content-employees {
+.main-view-wrapper-employees {
   height: 465px;
-  @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
 }
 
-.main-view-content-edit,
-.main-view-content-create{
+.main-view-wrapper-edit,
+.main-view-wrapper-create{
   height: 560px;
-  @include transition(height $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
 }
 
-.main-view-content-enter-setup{
-  @include transition(opacity .3s .1s $TRANSITION_EASE_LINEAR);
+
+.main-view-container.ng-enter{
+  @include transition(opacity $TRANSITION_DURATION $TRANSITION_EASE_LINEAR 0.15s);
 }
 
-.main-view-content-enter-setup{
+.main-view-container.ng-enter{
   opacity:0;
 }
-.main-view-content-enter-setup.main-view-content-enter-start{
+
+.main-view-container.ng-enter.ng-enter-active{
   opacity:1;
 }
+
 
 .error-message{
   color: #FF3366;
@@ -152,24 +152,22 @@ header{
   }
 }
 
-
-.header-show-setup,
-.header-hide-setup {
-  @include transition(top $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
+.header-container.hide-header-add,
+.header-container.hide-header-remove{
+  @include transition(all $TRANSITION_DURATION $TRANSITION_EASE_OUT_SINE);
 }
 
-.header-hide-setup {
-  top:0;
-}
-.header-hide-setup.header-hide-start {
+// hide
+.header-container.hide-header,
+.header-container.hide-header-remove,
+.header-container.hide-header-add.hide-header-add-active{
   top:50px;
 }
-
-.header-show-setup {
-  top:50px;
-}
-.header-show-setup.header-show-start {
-  top:0;
+// show
+.header-container,
+.header-container.hide-header-add,
+.header-container.hide-header-remove.hide-header-remove-active,{
+  top:0px;
 }
 
 /**********************************

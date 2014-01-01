@@ -4,12 +4,12 @@
   For more information about RailsResource check http://ngmodules.org/modules/angularjs-rails-resource
 ###
 angular.module('cafeTownsend.services').factory 'SelectedEmployee'
-, ['$log', '$resource'
-, ($log, $resource) ->
+  , ['$log'
+  , ($log) ->
 
-  # @return An instance of selected employee,
-  # which is behind the scenes an instance of RailsResource.
-  # It is undefined by default.
-  instance: undefined
+    # @return An instance of selected employee,
+    # which is behind the scenes an instance of RailsResource.
+    # It is undefined by default.
+    instance: undefined
 
-]
+  ]

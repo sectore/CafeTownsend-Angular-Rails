@@ -1,60 +1,66 @@
-angular.module('cafeTownsend').controller 'CreateEmployeeController'
-, ['$log', '$scope', '$location', 'SessionService', 'EmployeesService', 'SelectedEmployee', 'ViewState'
-, ($log, $scope, $location, SessionService, EmployeesService, SelectedEmployee, ViewState) ->
+angular.module('cafeTownsend.employee')
 
-  $scope.isCreateForm = true
+.config([
+  '$routeProvider',
+  ($routeProvider) ->
+    $routeProvider
+    .when '/employees/new',
+        templateUrl: '/assets/employee.html'
+        controller: 'CreateEmployeeController'
+])
 
-  ViewState.current = 'create'
+.controller 'CreateEmployeeController', [
+  '$log'
+  '$scope'
+  '$location'
+  'SessionService'
+  'EmployeesService'
+  'SelectedEmployee'
+  'ViewState'
+  ($log, $scope, $location, SessionService, EmployeesService, SelectedEmployee, ViewState) ->
 
-  # ########################
-  # create
-  # ########################
+    # init
+    # ------------------------------------------------------------
 
-  create = ->
-    employee = $scope.selectedEmployee
-    employee.create()
+    init = ->
+      $scope.isCreateForm = true
+      ViewState.current = 'create'
+
+      if !!SessionService.authorized()
+        employee = new EmployeesService()
+        # for debugging only
+  #      employee.email = "jk@websector.de"
+  #      employee.firstName = "j"
+  #      employee.lastName = "k"
+  #      employee.startDate = "2013-10-06"
+
+        # store new created instance
+        # set reference to scope
+        SelectedEmployee.instance =
+        $scope.selectedEmployee =
+        employee
+      else
+        $location.path '/login'
+
+    # scope
+    # ------------------------------------------------------------
+
+    $scope.submit = ->
+      #      employee = $scope.selectedEmployee
+      SelectedEmployee.instance.create()
       .then ->
-        $scope.browseToOverview()
-      , (error) ->
-        alert "Error trying to save a new employee (error: " + error + ")"
+          $scope.browseToOverview()
+        , (error) ->
+          message = "Error trying to create a new employee: #{JSON.stringify(error.data)})"
+          alert message
 
-  # ########################
-  # form
-  # ########################
+    $scope.browseToOverview = ->
+      # clear selected employee
+      SelectedEmployee.instance = undefined
+      $location.path '/employees'
 
-  $scope.submit = ->
-    create()
-
-  # ########################
-  # navigation
-  # ########################
-
-  $scope.browseToOverview = ->
-    # clear reference to selected employee
-    SelectedEmployee.instance = undefined
-    $location.path '/employees'
-
-  # ########################
-  # init
-  # ########################
-
-  init = ->
-    if !!SessionService.authorized()
-      employee = new EmployeesService()
-      # for debugging only
-#      employee.email = "info@websector.de"
-#      employee.firstName = "jens"
-#      employee.lastName = "krause"
-#      employee.startDate = "2013-03-30"
-
-      # store new created instance
-      # set reference to scope
-      SelectedEmployee.instance =
-      $scope.selectedEmployee =
-      employee
-    else
-      $location.path '/login'
-
-  init()
+    # call init()
+    # ------------------------------------------------------------
+    init()
 
 ]

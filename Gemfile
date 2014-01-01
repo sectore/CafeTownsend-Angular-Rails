@@ -1,55 +1,93 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.0.2'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.1'
 
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 2.4.0'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'closure-compiler'
-end
+# Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.0.1'
 
-gem 'jquery-rails'
+# Use jquery as the JavaScript library
+#gem 'jquery-rails'
+gem 'jquery-cdn', '2.0.3'
 
-# To use ActiveModel has_secure_password
-gem 'bcrypt-ruby'
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', platforms: :ruby
 
-# inherit all restful actions into controllers
-# https://github.com/josevalim/inherited_resources
-gem 'inherited_resources'
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# gem 'turbolinks'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 1.2'
+
+# helper for handling of CSRF token
+gem 'ng-rails-csrf'
 
 # Sass mixin library Bourbon
 gem 'bourbon'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+# For using ActiveModel's 'has_secure_password'
+gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
-group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
 end
 
 # Switch from SQLite to PostgreSQL for deployment to Heroku
-# http://railsapps.github.com/rails-heroku-tutorial.html
+# Based on http://railsapps.github.com/rails-heroku-tutorial.html
 group :development, :test do
+  # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'rspec-rails', '~> 2.14.0'
+  gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'guard-rspec'
+  gem 'guard-teaspoon'
+  gem 'guard-spork'
+  gem 'spork-rails'
+  gem 'teaspoon'
+  gem 'rb-fsevent'
+  gem 'rb-inotify', :require => false
+  gem 'awesome_print'
 end
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'guard-livereload'
+  gem 'rack-livereload'
+end
+
+group :test do
+  gem 'faker', '~> 1.1.2'
+  gem 'capybara', '~> 2.2.0'
+  gem 'database_cleaner', '~> 1.0.1'
+  gem 'launchy', '~> 2.3.0'
+  gem 'selenium-webdriver', '~> 2.35.1'
+end
+
 group :production do
   gem 'pg'
   gem 'thin'
 end
 
-# AngularJS related stuff
-gem 'ng-rails-csrf', :git => "git://github.com/xrd/ng-rails-csrf.git"
-gem 'angularjs-rails-resource'
+# Use unicorn as the app server
+# gem 'unicorn'
+
+# Use Capistrano for deployment
+# gem 'capistrano', group: :development
+
+# Use debugger
+# gem 'debugger', group: [:development, :test]
+
+# Debugging
+gem 'debase', '~> 0.0.9'
+gem 'ruby-debug-ide', '~> 0.4.22'
+#gem 'coffee-script-redux-debugger', :git => 'git://github.com/JetBrains/coffee-script-redux-debugger.git'
+
+gem 'angularjs-rails-resource', '~> 0.2.5'
