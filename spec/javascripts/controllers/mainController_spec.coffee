@@ -1,39 +1,37 @@
 describe 'MainController', ->
 
   beforeEach module('cafeTownsend')
+  beforeEach module('test')
 
-  beforeEach inject ($rootScope, $controller, ViewState) ->
-    # scope
+  beforeEach inject ($rootScope, $controller, MockFactory) ->
+
+    @mockFactory = MockFactory
     @scope = $rootScope.$new()
+    @viewState = @mockFactory.viewState()
+    @sessionService = @mockFactory.sessionService()
 
     # controller factory
     @createController = ->
       $controller "MainController",
         $scope: @scope
-        ViewState: ViewState
+        SessionService: @sessionService
+        ViewState: @viewState
 
   afterEach ->
-    @scope =
-    undefined
 
   it 'is injectable', ->
     controller = @createController()
     expect(controller).not.to.be(undefined)
 
   describe 'init()', ->
-    it 'stores instance of ViewState to scope', inject((ViewState)->
+    it 'stores instance of ViewState to scope', ->
       @createController()
-      expect(@scope.viewState).to.be(ViewState)
-    )
+      expect(@scope.viewState).to.be(@viewState)
 
   describe 'user status', ->
-    it 'stores status into a scope object', inject((SessionService)->
-      stub = sinon.stub(SessionService, 'authorized')
-      stub.returns true
+    it 'stores status into a scope object', ->
+      @sessionService.authorized.returns true
       @createController()
       expect(@scope.authorized()).to.be.ok()
-      stub.restore()
-      stub.returns false
+      @sessionService.authorized.returns false
       expect(@scope.authorized()).not.to.be.ok()
-      stub.restore()
-    )
