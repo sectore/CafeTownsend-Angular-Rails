@@ -1,37 +1,28 @@
 describe 'HeaderController', ->
 
   beforeEach module('cafeTownsend')
+  beforeEach module('test')
 
-  beforeEach inject ($q, $rootScope, $controller, $location) ->
+  beforeEach inject ($rootScope, $controller, MockFactory) ->
+
+    @mockFactory = MockFactory
+    @deferred = @mockFactory.deferred
     # routes
-    @location = $location
+    @location = @mockFactory.location()
     # scope
     @scope = $rootScope.$new()
     # mocking service
-    @deferred = $q.defer();
-    @promise = @deferred.promise
-    @mockSessionService =
-      login: =>
-        @promise
-      logout: =>
-        @promise
-      getCurrentUser: ->
-        {}
-      authorized: ->
-        true
+    @deferred = @mockFactory.deferred;
+    @sessionService = @mockFactory.sessionService()
 
     # controller factory
     @createController = ->
-      controller = $controller "HeaderController",
+      $controller "HeaderController",
         $scope: @scope
         $location: @location
-        SessionService: @mockSessionService
+        SessionService: @sessionService
 
   afterEach ->
-    @location =
-    @mockSessionService =
-    @scope =
-    undefined
 
   it 'is injectable', ->
     controller = @createController()
@@ -45,19 +36,16 @@ describe 'HeaderController', ->
   describe 'logout()', ->
 
     it 'calls service to logout an user', ->
-      spy = sinon.spy(@mockSessionService, 'logout')
       @createController()
       @scope.logout()
-      expect(spy.calledOnce).to.be.ok()
-      spy.restore()
+      expect(@sessionService.logout.calledOnce).to.be.ok()
 
     it 'updates location.path if the user was logged out successfully', inject(($rootScope)->
-      stub = sinon.stub(@mockSessionService, 'authorized').returns false
+      @sessionService.authorized.returns false
       @createController()
       @scope.logout()
       @deferred.resolve()
-      expect(@location.path()).to.be('/login')
-      stub.restore()
+      expect(@location.path.calledWith('/login')).to.be.ok()
     )
 
     it 'alert an error message if the logout process throws an error', inject(($rootScope, $window)->

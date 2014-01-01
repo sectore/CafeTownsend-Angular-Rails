@@ -21,6 +21,7 @@ testModule.factory 'MockFactory'
 
     sessionService: ->
       login: sinon.stub().returns @deferred.promise
+      logout: sinon.stub().returns @deferred.promise
       getCurrentUser: sinon.stub().returns @employeeResource()
       authorized: sinon.stub()
 

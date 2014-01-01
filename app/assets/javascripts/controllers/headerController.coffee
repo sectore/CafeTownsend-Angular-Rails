@@ -28,11 +28,6 @@ angular.module('cafeTownsend').controller 'HeaderController'
           logoutErrorHandler(error)
         )
 
-  $scope.logoutW = ->
-    $scope.logoutRH()
-
-  $scope.logoutRH = ->
-
   logoutResultHandler = ->
     # a successful log out
     # results in {"authorized":"false"}
