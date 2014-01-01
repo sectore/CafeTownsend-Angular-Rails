@@ -1,77 +1,76 @@
-describe 'module cafeTownsend', ->
+describe 'CreateEmployeeController', ->
 
   beforeEach module('cafeTownsend')
+  beforeEach module('test')
 
-  describe '- CreateEmployeeController', ->
+  beforeEach inject ($rootScope, $controller, MockFactory) ->
 
-    beforeEach inject ($rootScope, $controller, $location) ->
-      # routes
-      @location = $location
-      @location.path '/employees/new'
-      # scope
-      @scope = $rootScope.$new()
+    @mockFactory = MockFactory
+    @deferred = @mockFactory.deferred
 
-      # controller factory
-      @createController = ->
-        controller = $controller "CreateEmployeeController",
-          $scope: @scope
+    @location = @mockFactory.location()
+    @sessionService = @mockFactory.sessionService()
+    @selectedEmployee = @mockFactory.selectedEmployee()
+    @viewState = @mockFactory.viewState()
 
-    afterEach ->
-      @scope = undefined
+    @scope = $rootScope.$new()
 
-    it 'is injectable', ->
-      controller = @createController()
-      expect(controller).not.to.be(undefined)
+    # controller factory
+    @createController = ->
+      $controller "CreateEmployeeController",
+        $scope: @scope
+        $location: @location
+        SessionService: @sessionService
+        SelectedEmployee: @selectedEmployee
+        ViewState: @viewState
 
-    describe 'initialize()', ->
-      it 'updates the view state', inject((ViewState) ->
-        @createController()
-        expect(ViewState.current).to.be('create')
-      )
+  afterEach ->
 
-      it 'set isCreateForm to true', ->
-        @createController()
-        expect(@scope.isCreateForm).to.be.ok()
 
-      it 'routes back to login page if an user is not authorized', inject((SessionService) ->
-        stub = sinon.stub(SessionService, 'authorized').returns false
-        @createController()
-        expect(@location.path()).to.equal('/login')
-        stub.restore()
-      )
+  it 'is injectable', ->
+    controller = @createController()
+    expect(controller).not.to.be(undefined)
 
-      it 'creates a selected employee if an user is authorized', inject((SelectedEmployee, SessionService) ->
-        stub = sinon.stub(SessionService, 'authorized').returns true
-        @createController()
-        expect(SelectedEmployee.instance).not.to.be(undefined)
-        stub.restore()
-      )
+  describe 'initialize()', ->
+    it 'updates the view state', ->
+      @createController()
+      expect(@viewState.current).to.be('create')
 
-      it 'adds the selected employee to scope if an user is authorized', inject((SelectedEmployee, SessionService) ->
-        stub = sinon.stub(SessionService, 'authorized').returns true
-        @createController()
-        expect(@scope.selectedEmployee).not.to.be(undefined)
-        stub.restore()
-      )
+    it 'set isCreateForm to true', ->
+      @createController()
+      expect(@scope.isCreateForm).to.be.ok()
 
-    describe 'scope', ->
-      it 'browseToOverview() updates the url', ->
-        @createController()
-        @scope.browseToOverview()
-        expect(@location.path()).to.be('/employees')
+    it 'routes back to login page if an user is not authorized', ->
+      @sessionService.authorized.returns false
+      @createController()
+      expect(@location.path.calledWith('/login')).to.be.ok()
 
-      it 'browseToOverview() disposes the selected employee', inject((SelectedEmployee) ->
-        @createController()
-        @scope.browseToOverview()
-        expect(SelectedEmployee.instance).to.be(undefined)
-      )
+    it 'creates a selected employee if an user is authorized', ->
+      @sessionService.authorized.returns true
+      @createController()
+      expect(@selectedEmployee.instance).not.to.be(undefined)
 
-      it 'submit() creates an employee',inject((SessionService, SelectedEmployee) ->
-        stub = sinon.stub(SessionService, 'authorized').returns true
-        @createController()
-        spy = sinon.spy(SelectedEmployee.instance, 'create')
-        @scope.submit()
-        expect(spy.calledOnce).to.be.ok()
-        stub.restore()
-        spy.restore()
-      )
+    it 'adds the selected employee to scope if an user is authorized', ->
+      @sessionService.authorized.returns true
+      @createController()
+      expect(@scope.selectedEmployee).not.to.be(undefined)
+
+  describe 'scope', ->
+    it 'browseToOverview() updates the url', ->
+      @createController()
+      @scope.browseToOverview()
+      expect(@location.path.calledWith('/employees')).to.be.ok()
+
+    it 'browseToOverview() disposes the selected employee', inject((SelectedEmployee) ->
+      @createController()
+      @scope.browseToOverview()
+      expect(SelectedEmployee.instance).to.be(undefined)
+    )
+
+    it 'submit() creates an employee', ->
+      @sessionService.authorized.returns true
+      @createController()
+      spy = sinon.spy(@selectedEmployee.instance, 'create')
+      @scope.submit()
+      expect(spy.calledOnce).to.be.ok()
+      spy.restore()
