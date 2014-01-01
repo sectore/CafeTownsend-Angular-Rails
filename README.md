@@ -81,6 +81,9 @@ Check the [CHANGELOG file](https://github.com/sectore/CafeTownsend-Angular-Rails
 ##License
 `CafeTownsend-Angular-Rails` is licensed for use under the terms of the MIT License. Check the [LICENSE file](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/LICENSE.md) for details, please.
 
+##Author
+Jens Krause // [WEBSECTOR.DE](http://www.websector.de)
+
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sectore/cafetownsend-angular-rails/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 
