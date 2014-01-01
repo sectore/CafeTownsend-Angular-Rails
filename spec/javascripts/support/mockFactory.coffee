@@ -15,6 +15,7 @@ testModule.factory 'MockFactory'
     employeeResource:(id='123') ->
       id: id
       delete: sinon.stub().returns @deferred.promise
+      update: sinon.stub().returns @deferred.promise
 
     employeesService: ->
       query: sinon.stub().returns @deferred.promise
