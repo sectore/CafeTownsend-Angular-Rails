@@ -61,11 +61,10 @@ describe 'CreateEmployeeController', ->
       @scope.browseToOverview()
       expect(@location.path.calledWith('/employees')).to.be.ok()
 
-    it 'browseToOverview() disposes the selected employee', inject((SelectedEmployee) ->
+    it 'browseToOverview() disposes the selected employee', ->
       @createController()
       @scope.browseToOverview()
-      expect(SelectedEmployee.instance).to.be(undefined)
-    )
+      expect(@selectedEmployee.instance).to.be(undefined)
 
     it 'submit() creates an employee', ->
       @sessionService.authorized.returns true
