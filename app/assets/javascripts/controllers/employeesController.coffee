@@ -1,14 +1,37 @@
 angular.module('cafeTownsend').controller 'EmployeesController'
-, ['$log', '$scope', '$location', 'SessionService', 'EmployeesService', 'SelectedEmployee', 'ViewState'
-, ($log, $scope, $location, SessionService, EmployeesService, SelectedEmployee, ViewState) ->
+, [ '$log',
+    '$window'
+    '$scope',
+    '$location',
+    'SessionService',
+    'EmployeesService',
+    'SelectedEmployee',
+    'ViewState'
+    'ModalDialog'
+, ( $log,
+    $window,
+    $scope,
+    $location,
+    SessionService,
+    EmployeesService,
+    SelectedEmployee,
+    ViewState,
+    ModalDialog) ->
 
+  # init
+  # ------------------------------------------------------------
 
-  ViewState.current = 'employees'
+  init = ->
+    ViewState.current = 'employees'
 
-  # ########################
+    if !!SessionService.authorized()
+      $scope.selectedEmployee = SelectedEmployee.instance
+      getEmployees()
+    else
+      $location.path '/login'
+
   # selected employee
-  # ########################
-
+  # ------------------------------------------------------------
   $scope.selectEmployee = (employee)->
     # storing selected employee (domain model)
     # and set a reference to scope
@@ -16,37 +39,30 @@ angular.module('cafeTownsend').controller 'EmployeesController'
     $scope.selectedEmployee =
     employee
 
-  # ########################
   # get
-  # ########################
-    
+  # ------------------------------------------------------------
   getEmployees = ->
-    EmployeesService.query().then (employees) ->
-
+    EmployeesService.query().then((employees) ->
       $scope.employees = employees
+    , (error) ->
+      $window.alert "Error trying to get employees (error: #{error})"
+    )
 
-  # ########################
   # edit
-  # ########################
-
+  # ------------------------------------------------------------
   $scope.editEmployee = ->
     $location.path "/employees/#{$scope.selectedEmployee.id}/edit"
 
-  # ########################
   # create
-  # ########################
-
+  # ------------------------------------------------------------
   $scope.createEmployee = ->
     $location.path "/employees/new"
 
-  # ########################
   # delete
-  # ########################
-
-
+  # ------------------------------------------------------------
   $scope.deleteEmployee = ->
     employee = SelectedEmployee.instance
-    if confirm("Are you sure you want to delete #{employee.firstName} #{employee.lastName}?")
+    if ModalDialog.confirm("Are you sure you want to delete #{employee.firstName} #{employee.lastName}?")
       employee.delete(employee_id: employee.id)
         .then ->
           # clear reference to selected employee
@@ -56,18 +72,7 @@ angular.module('cafeTownsend').controller 'EmployeesController'
           # get employees again
           getEmployees()
         , (error) ->
-          alert "Error trying to delete an employee (error: #{error})"
-
-  # ########################
-  # init
-  # ########################
-
-  init = ->
-    if !!SessionService.authorized()
-      $scope.selectedEmployee = SelectedEmployee.instance
-      getEmployees()
-    else
-      $location.path '/login'
+          $window.alert "Error trying to delete an employee (error: #{error})"
 
   init()
 
