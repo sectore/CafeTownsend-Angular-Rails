@@ -1,4 +1,4 @@
-#AngularJS (v.1.2.6) + Rails (v.4.0.2) port of Cafe Townsend application
+#AngularJS (v.1.2.7) + Rails (v.4.0.2) port of Cafe Townsend application
 
 
 ##About
