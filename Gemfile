@@ -74,6 +74,7 @@ end
 group :production do
   gem 'pg'
   gem 'thin'
+  gem 'rails_12factor'
 end
 
 # Use unicorn as the app server
@@ -91,3 +92,5 @@ gem 'ruby-debug-ide', '~> 0.4.22'
 #gem 'coffee-script-redux-debugger', :git => 'git://github.com/JetBrains/coffee-script-redux-debugger.git'
 
 gem 'angularjs-rails-resource', '~> 0.2.5'
+
+ruby '2.0.0'
