@@ -30,5 +30,23 @@ module CafeTownsendAngularRails
         request_specs: false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
+
+    # include Bower components in compiled assets
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'components', 'javascripts')
+
+    # via https://gist.github.com/afeld/5704079
+
+    # We don't want the default of everything that isn't js or css, because it pulls too many things in
+    config.assets.precompile.shift
+
+    # Explicitly register the extensions we are interested in compiling
+    config.assets.precompile.push(Proc.new do |path|
+      File.extname(path).in? [
+       '.html', '.erb', '.haml',
+       '.png',  '.gif', '.jpg', '.jpeg', '.svg',
+       '.eot',  '.otf', '.svc', '.woff', '.ttf',
+      ]
+    end)
+
   end
 end
