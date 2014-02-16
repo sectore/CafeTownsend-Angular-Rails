@@ -1,0 +1,15 @@
+language: ruby
+bundler_args: --without development
+rvm:
+  - '2.0.0p247'
+before_script:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+script:
+  - "RAILS_ENV=test bundle exec rake db:drop"
+  - "RAILS_ENV=test bundle exec rake db:create"
+  - "RAILS_ENV=test bundle exec rake db:migrate"
+  - "bundle exec rake db:test:clone"
+  - 'bundle exec db:test:clone'
+  - 'bundle exec rspec'
+  - 'bundle exec teaspoon'
