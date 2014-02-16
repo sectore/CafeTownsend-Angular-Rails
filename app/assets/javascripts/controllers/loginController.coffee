@@ -13,8 +13,8 @@ angular.module('cafeTownsend')
     $scope.user = SessionService.getCurrentUser()
     ViewState.current = 'login'
     # mock user data - for debugging only
-    $scope.user.name = "Luke"
-    $scope.user.password = "Skywalker"
+#    $scope.user.name = "Luke"
+#    $scope.user.password = "Skywalker"
 
 
   # login
