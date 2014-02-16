@@ -13,5 +13,5 @@ script:
   - 'RAILS_ENV=test bundle exec rake db:create'
   - 'RAILS_ENV=test bundle exec rake db:migrate'
   - 'bundle exec rake db:test:clone'
-  - 'bundle exec rake rspec'
+  - 'bundle exec rspec'
   - 'bundle exec rake teaspoon'
