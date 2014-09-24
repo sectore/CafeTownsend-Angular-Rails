@@ -1,13 +1,16 @@
 {
   "name": "CafeTownsend-Angular-Rails",
   "dependencies": {
-    "angular": "1.2.13",
-    "angular-resource": "1.2.13",
-    "angular-route": "1.2.13",
-    "angular-animate": "1.2.13",
-    "angular-touch": "1.2.13"
+    "angular": "1.3.0-rc.3",
+    "angular-resource": "1.3.0-rc.3",
+    "angular-route": "1.3.0-rc.3",
+    "angular-animate": "1.3.0-rc.3",
+    "angular-touch": "1.3.0-rc.3"
   },
   "devDependencies": {
-    "angular-mocks": "1.2.13"
+    "angular-mocks": "1.3.0-rc.3"
+  },
+  "ignore":{
+
   }
 }
