@@ -1,20 +1,20 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.5'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.1'
+gem 'sass-rails', '~> 4.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 2.4.0'
+gem 'uglifier', '>= 2.5.3'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.1'
 
 # Use jquery as the JavaScript library
 #gem 'jquery-rails'
-gem 'jquery-cdn', '2.0.3'
+gem 'jquery-cdn', '~> 2.1.1'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -23,16 +23,16 @@ gem 'jquery-cdn', '2.0.3'
 # gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 2.1.3'
 
 # helper for handling of CSRF token
-gem 'ng-rails-csrf'
+gem 'ng-rails-csrf', '~> 0.1.0'
 
 # Sass mixin library Bourbon
-gem 'bourbon'
+gem 'bourbon', '~> 3.2.3'
 
 # For using ActiveModel's 'has_secure_password'
-gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
+gem 'bcrypt-ruby', '~> 3.1.5', require: 'bcrypt'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -44,8 +44,8 @@ end
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
-  gem 'rspec-rails', '~> 2.14.0'
-  gem 'factory_girl_rails', '~> 4.2.1'
+  gem 'rspec-rails', '~> 3.1.0'
+  gem 'factory_girl_rails', '~> 4.4.1'
   gem 'guard-rspec'
   gem 'guard-teaspoon'
   gem 'guard-spork'
@@ -64,11 +64,11 @@ group :development do
 end
 
 group :test do
-  gem 'faker', '~> 1.1.2'
-  gem 'capybara', '~> 2.2.0'
-  gem 'database_cleaner', '~> 1.0.1'
-  gem 'launchy', '~> 2.3.0'
-  gem 'selenium-webdriver', '~> 2.35.1'
+  gem 'faker', '~> 1.4.3'
+  gem 'capybara', '~> 2.4.3'
+  gem 'database_cleaner', '~> 1.3.0'
+  gem 'launchy', '~> 2.4.2'
+  gem 'selenium-webdriver', '~> 2.43.0'
 end
 
 group :production do
@@ -91,6 +91,6 @@ gem 'debase', '~> 0.0.9'
 gem 'ruby-debug-ide', '~> 0.4.22'
 #gem 'coffee-script-redux-debugger', :git => 'git://github.com/JetBrains/coffee-script-redux-debugger.git'
 
-gem 'angularjs-rails-resource', '~> 0.2.5'
+gem 'angularjs-rails-resource', '~> 1.2.0'
 
-ruby '2.0.0'
+ruby '2.1.0'
