@@ -1,4 +1,4 @@
-require'spec_helper'
+require'rails_helper'
 
 describe 'Employee' do
   it 'should be valid' do

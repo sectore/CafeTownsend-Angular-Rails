@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe SessionsController do
+describe SessionsController, :type => :controller do
 
   let!(:user_created) { create(:user) } # saved in db
 

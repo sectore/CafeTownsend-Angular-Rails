@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe EmployeesController do
+describe EmployeesController, :type => :controller do
 
   let!(:employee_built) { build(:employee) } # saved in memory only
   let!(:employee_created) { create(:employee) } # saved in db
@@ -35,8 +35,8 @@ describe EmployeesController do
 
       it "assigns a newly created employee as @employee" do
         post :create, {:employee => valid_attributes}
-        assigns(:employee).should be_a(Employee)
-        assigns(:employee).should be_persisted
+        expect(assigns(:employee)).to be_a(Employee)
+        expect(assigns(:employee)).to be_persisted
       end
     end
     context "with invalid params" do
@@ -63,7 +63,7 @@ describe EmployeesController do
         # stub save to avoid saving any updates
         Employee.any_instance.stub(:save).and_return(false)
         patch :update, id: employee_created.to_param, employee: invalid_attributes
-        assigns(:employee).should eq(employee_created)
+        expect(assigns(:employee)).to eq(employee_created)
       end
     end
   end

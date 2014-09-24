@@ -9,17 +9,18 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' },
   watch(%r{^config/initializers/.+\.rb$})
   watch('Gemfile')
   watch('Gemfile.lock')
-  watch('spec/spec_helper.rb') { :rspec }
+  watch('spec/rails_helper.rb') { :rspec }
   watch('test/test_helper.rb') { :test_unit }
   watch(%r{features/support/}) { :cucumber }
 end
 
 guard :rspec ,
+  cmd: 'bundle exec rspec',
   all_on_start: true,
   all_after_pass: false do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
-  watch('spec/spec_helper.rb')  { "spec" }
+  watch('spec/rails_helper.rb')  { "spec" }
 
   # Rails example
   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
