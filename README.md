@@ -85,5 +85,5 @@ Check the [CHANGELOG file](https://github.com/sectore/CafeTownsend-Angular-Rails
 ##Author
 Jens Krause // [WEBSECTOR.DE](http://www.websector.de)
 
-[![Build Status](https://travis-ci.org/sectore/CafeTownsend-Angular-Rails.png?branch=master)](https://travis-ci.org/sectore/CafeTownsend-Angular-Rails/) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sectore/cafetownsend-angular-rails/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Build Status](https://travis-ci.org/sectore/CafeTownsend-Angular-Rails.png?branch=master)](https://travis-ci.org/sectore/CafeTownsend-Angular-Rails/)
 
