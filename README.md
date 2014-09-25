@@ -69,24 +69,13 @@ Running Rails specs only:
 
     rspec
 
----
-
-TODO: Use karma instead of teaspoon, which does support Angular anymore. See [commit "removes angular support."](https://github.com/modeset/teaspoon/commit/3c3dfcbe1fd9293f436e77637d1b5a0f21a08a7b)
-
----
 
 Running JavaScript specs only:
 
     teaspoon
-     
 
----
 
-_Important note_: Spork does  not support RSpec 3.x. See [rspec-rails 3.0 support?](https://github.com/sporkrb/spork/issues/257)
- 
----
-
-Running all tests with [Guard](https://github.com/guard/guard) and [Spork](https://github.com/sporkrb/spork)
+Running all tests with [Guard](https://github.com/guard/guard) and [Spring](https://github.com/rails/spring)
 
     guard
 
