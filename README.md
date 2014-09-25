@@ -65,14 +65,14 @@ Before running tests match the development schema to the test database (only onc
 
     rake db:test:clone
 
-Running Rails specs only:
+Running Rails specs using [Spring](https://github.com/rails/spring):
 
-    rspec
+    spring rspec
 
 
-Running JavaScript specs only:
+Running JavaScript specs using [Spring](https://github.com/rails/spring):
 
-    teaspoon
+    spring teaspoon
 
 
 Running all tests with [Guard](https://github.com/guard/guard) and [Spring](https://github.com/rails/spring)
