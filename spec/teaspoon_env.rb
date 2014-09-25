@@ -50,7 +50,7 @@ Teaspoon.configure do |config|
 
     # This suites spec helper, which can require additional support files. This file is loaded before any of your test
     # files are loaded.
-    suite.helper = "rails_helper"
+    suite.helper = "spec_helper"
 
     # The core Teaspoon javascripts. It's recommended to include only the base files here, as you can require support
     # libraries from your spec helper.
