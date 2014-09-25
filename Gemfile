@@ -46,14 +46,15 @@ group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 3.1.0'
   gem 'factory_girl_rails', '~> 4.4.1'
-  gem 'guard-rspec'
-  gem 'guard-teaspoon'
-  gem 'guard-spork'
-  gem 'spork-rails'
   gem 'teaspoon'
   gem 'rb-fsevent'
   gem 'rb-inotify', :require => false
   gem 'awesome_print'
+  gem 'guard-rspec'
+  gem 'guard-teaspoon'
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'spring-commands-teaspoon'
 end
 
 group :development do
