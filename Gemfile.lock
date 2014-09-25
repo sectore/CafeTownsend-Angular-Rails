@@ -275,7 +275,6 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sdoc
   selenium-webdriver (~> 2.43.0)
-  spring
   spring-commands-rspec
   spring-commands-teaspoon
   sqlite3

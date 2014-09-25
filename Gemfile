@@ -52,7 +52,6 @@ group :development, :test do
   gem 'awesome_print'
   gem 'guard-rspec'
   gem 'guard-teaspoon'
-  gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-commands-teaspoon'
 end
