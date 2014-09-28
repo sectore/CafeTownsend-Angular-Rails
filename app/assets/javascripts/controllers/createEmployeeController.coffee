@@ -1,14 +1,5 @@
 angular.module('cafeTownsend.employee')
 
-.config([
-  '$routeProvider',
-  ($routeProvider) ->
-    $routeProvider
-    .when '/employees/new',
-        templateUrl: '/assets/employee.html'
-        controller: 'CreateEmployeeController'
-])
-
 .controller 'CreateEmployeeController', [
   '$log'
   '$scope'
@@ -18,6 +9,8 @@ angular.module('cafeTownsend.employee')
   'SelectedEmployee'
   'ViewState'
   ($log, $scope, $location, SessionService, EmployeesService, SelectedEmployee, ViewState) ->
+
+    self = this
 
     # init
     # ------------------------------------------------------------
@@ -29,10 +22,10 @@ angular.module('cafeTownsend.employee')
       if !!SessionService.authorized()
         employee = new EmployeesService()
         # for debugging only
-  #      employee.email = "jk@websector.de"
-  #      employee.firstName = "j"
-  #      employee.lastName = "k"
-  #      employee.startDate = "2013-10-06"
+#        employee.email = "jk@websector.de"
+#        employee.firstName = "j"
+#        employee.lastName = "k"
+#        employee.startDate = "2013-10-06"
 
         # store new created instance
         # set reference to scope

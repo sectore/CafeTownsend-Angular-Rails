@@ -12,6 +12,10 @@ angular.module('cafeTownsend').config [
       templateUrl: '/assets/employees.html'
       controller: 'EmployeesController'
 
+    .when '/employees/new',
+      templateUrl: '/assets/employee.html'
+      controller: 'CreateEmployeeController'
+
     .when '/employees/:id/edit',
       templateUrl: '/assets/employee.html'
       controller: 'EditEmployeeController'
