@@ -3,6 +3,7 @@ angular.module('cafeTownsend.services', [
   'ngRoute'
   'ngAnimate'
   'ngResource'
+  'ngMessages'
   'rails'
   'ng-rails-csrf'
 ])
