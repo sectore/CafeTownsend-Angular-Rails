@@ -1,6 +1,3 @@
-#STILL IN PROGRESS...
-
-
 #AngularJS (v.1.3.0-rc.3) + Rails (v.4.1.5) port of Cafe Townsend application
 
 
@@ -14,14 +11,19 @@ The application covers the following topics:
 *  Angulars [Services](http://docs.angularjs.org/guide/dev_guide.services)
 *  Sharing data beetween controllers using services, which are acting as Domain Models
 *  Angulars animation directive [ngAnimate](http://code.angularjs.org/1.1.4/docs/api/ng.directive:ngAnimate)
-*  Testing an Angular application using [PhantomJS](http://phantomjs.org/), [Mocha](http://visionmedia.github.io/mocha/), [SinonJS](http://sinonjs.org/) etc.
-*  Mixins by [Bourbon](http://bourbon.io)
+*  Angular and [form validation](http://docs.angularjs.org/guide/module)
+*  Testing an Angular application using [PhantomJS](http://phantomjs.org/), [Mocha](http://visionmedia.github.io/mocha/) and [SinonJS](http://sinonjs.org/)
+*  Testing a Rails application using [RSpec](http://rspec.info/) and [factory_girl](https://github.com/thoughtbot/factory_girl)
+*  Styling (CSS) by using mixins of [Bourbon](http://bourbon.io)
+
 
 ##Demo (YouTube)
 [![Click on screen shot to see live demo on YouTube](https://github.com/sectore/CafeTownsend-Angular-Rails/raw/master/wiki/cafetownsend-angular-rails-youtube.png "Login")](https://www.youtube.com/watch?v=PCFUKOiThJA)
 
+
 ##Demo (Heroku)
 [http://cafetownsend-angular-rails.herokuapp.com](http://cafetownsend-angular-rails.herokuapp.com/)
+
 
 ##Tools and Libraries (in alphabetical order)
 
@@ -44,6 +46,7 @@ For testing purposes:
 * [SinonJS](http://sinonjs.org/)
 * [Teaspoon](https://github.com/modeset/teaspoon)
 
+
 ##Local installation
 1) Open Terminal
 
@@ -53,9 +56,10 @@ For testing purposes:
 	bower install
 	rake db:migrate
 	rake db:seed
-	rails server
+	spring rails s
 
 2) Open [http://localhost:3000](http://localhost:3000/) using [Chrome](https://www.google.com/chrome)
+
 
 ##Tests
 
