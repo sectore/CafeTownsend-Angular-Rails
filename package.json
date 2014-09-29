@@ -5,8 +5,5 @@
   "engine": {
     "node": "0.10.x",
     "npm": "1.4.x"
-  },
-  "scripts": {
-    "postinstall": "bower install"
   }
 }
