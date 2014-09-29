@@ -11,7 +11,7 @@ The application covers the following topics:
 *  Angulars [Services](http://docs.angularjs.org/guide/dev_guide.services)
 *  Sharing data beetween controllers using services, which are acting as Domain Models
 *  Angulars animation directive [ngAnimate](http://code.angularjs.org/1.1.4/docs/api/ng.directive:ngAnimate)
-*  Angular and [form validation](http://docs.angularjs.org/guide/module)
+*  Angular and [form validation](http://www.yearofmoo.com/2014/09/taming-forms-in-angularjs-1-3.html)
 *  Testing an Angular application using [PhantomJS](http://phantomjs.org/), [Mocha](http://visionmedia.github.io/mocha/) and [SinonJS](http://sinonjs.org/)
 *  Testing a Rails application using [RSpec](http://rspec.info/) and [factory_girl](https://github.com/thoughtbot/factory_girl)
 *  Styling (CSS) by using mixins of [Bourbon](http://bourbon.io)
