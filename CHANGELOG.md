@@ -1,5 +1,13 @@
 # CafeTownsend-Angular-Rails Changelog
 
+## Version 0.8.0 // 2014-09-29
+
+* Updating to AngularJS v.1.3.0-rc.3
+* Updating to Rails v.4.1.5
+* Form handling refactored for using latest Angular feature of form validation 
+* Removing $scope dependencies from all controllers
+* Improving build processes by using [Spring](https://github.com/rails/spring)
+
 ## Version 0.7.0 // 2014-01-01
 
 * Updating to AngularJS v.1.2.6
