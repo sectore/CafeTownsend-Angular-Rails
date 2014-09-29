@@ -1,31 +1,54 @@
-<form id="login-form" ng-submit="submit()" name="loginForm">
+<form
+    id="login-form"
+    ng-controller="LoginController as ctrl"
+    ng-submit="ctrl.submit(loginForm.$valid)"
+    name="loginForm">
   <fieldset>
     <legend>Login</legend>
-    <p class="error-message" ng-show="showMessage()" ng-cloak>{{message}}</p>
+    <div class="error-message"
+        >
+      <div ng-if="!!ctrl.hasLoginError()">{{ctrl.loginError}}</div>
+      <div ng-if="loginForm.$submitted || loginForm.name.$touched"
+           ng-messages="loginForm.name.$error">
+        <div ng-message="required">You did not enter your username!</div>
+      </div>
+      <div ng-if="loginForm.$submitted || loginForm.password.$touched"
+           ng-messages="loginForm.password.$error">
+        <div ng-message="required">You did not enter a password!</div>
+      </div>
+    </div>
     <label>
-      <span>Username*</span>
+      <span
+          ng-class="{'error': loginForm.name.$touched && loginForm.name.$invalid}">
+        Username
+      </span>
       <input
-        type="text"
-        ng-model="user.name"
-        required
-        autofocus
-        />
-      <span class="error" ng-show="myForm.list.$error.REQUIRED">Required!</span>
+          type="text"
+          name="name"
+          ng-model="ctrl.user.name"
+          required
+          autofocus
+          />
     </label>
     <label>
-      <span>Password*</span>
+      <span
+          ng-class="{'error': loginForm.name.$touched && loginForm.name.$invalid}">
+        Password
+      </span>
       <input
-        type="password"
-        ng-model="user.password"
-        required
-        />
+          type="password"
+          name="password"
+          ng-model="ctrl.user.password"
+          required
+          />
     </label>
 
     <button
-      type="submit"
-      class="main-button"
-      ng-disabled="{{loginForm.$invalid}}"
-      >Login</button>
+        type="submit"
+        class="main-button"
+        >Login
+    </button>
+
     <p class="info">Username: "Luke" Password: "Skywalker"</p>
 
   </fieldset>

@@ -13,7 +13,6 @@ angular.module('cafeTownsend.services').factory('SessionService', [
     # ------------------------------------------------------------
 
     authorized = ->
-#      $log.info getCurrentUser()
       getCurrentUser().authorized is 'true'
 
     login = (newUser)->
@@ -41,8 +40,10 @@ angular.module('cafeTownsend.services').factory('SessionService', [
 
     # helper method to update currentUser
     updateCurrentUser = (user, authorized)->
-      currentUser.id = user.id
-      currentUser.name= user.name
+      if user
+        currentUser.id = user.id
+        currentUser.name = user.name
+
       currentUser.authorized = authorized
 
     {

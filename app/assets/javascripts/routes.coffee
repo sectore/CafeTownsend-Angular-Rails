@@ -13,11 +13,11 @@ angular.module('cafeTownsend').config [
       controller: 'EmployeesController'
 
     .when '/employees/new',
-      templateUrl: '/assets/employee.html'
+      templateUrl: '/assets/employee-create.html'
       controller: 'CreateEmployeeController'
 
     .when '/employees/:id/edit',
-      templateUrl: '/assets/employee.html'
+      templateUrl: '/assets/employee-edit.html'
       controller: 'EditEmployeeController'
 
     .otherwise

@@ -13,18 +13,19 @@
 <body>
 
 <div class="main-view"
-   ng-controller="MainController"
+   ng-controller="MainController as mainCtrl"
    ng-class="{login:'main-view-loggedIn',
     employees:'main-view-employees',
     edit:'main-view-edit',
-    create:'main-view-create'}[viewState.current]">
-  <header ng-controller="HeaderController">
+    create:'main-view-create'}[mainCtrl.viewState.current]">
+
+  <header ng-controller="HeaderController as headerCtrl">
     <div
-      ng-class="{'hide-header':!authorized()}"
+      ng-class="{'hide-header':!headerCtrl.authorized()}"
       class="header-container"
     >
-      <p class="main-button" ng-click="logout()">Logout</p>
-      <p id="greetings">Hello {{user.name}}</p>
+      <p class="main-button" ng-click="headerCtrl.logout()">Logout</p>
+      <p id="greetings">Hello {{headerCtrl.user.name}}</p>
     </div>
   </header>
 
@@ -32,7 +33,7 @@
      ng-class="{login:'main-view-wrapper-loggedIn',
       employees:'main-view-wrapper-employees',
       edit:'main-view-wrapper-edit',
-      create:'main-view-wrapper-create'}[viewState.current]">
+      create:'main-view-wrapper-create'}[mainCtrl.viewState.current]">
     <div ng-view
       class="main-view-container"
       ></div>

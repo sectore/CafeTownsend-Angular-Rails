@@ -1,26 +1,27 @@
 angular.module('cafeTownsend').controller 'HeaderController'
 , [ '$log',
     '$window',
-    '$scope',
     '$location',
     'SessionService'
-, ($log, $window, $scope, $location, SessionService) ->
+, ($log, $window, $location, SessionService) ->
 
   # init
   # ------------------------------------------------------------
 
+  self = @
+
   init = ->
-    $scope.user = SessionService.getCurrentUser()
+    self.user = SessionService.getCurrentUser()
 
   # user status
   # ------------------------------------------------------------
 
-  $scope.authorized = ->
+  @authorized = ->
     SessionService.authorized()
 
   # logout
   # ------------------------------------------------------------
-  $scope.logout = ->
+  @logout = ->
       SessionService.logout()
       .then(
         logoutResultHandler()
@@ -40,4 +41,6 @@ angular.module('cafeTownsend').controller 'HeaderController'
 
 
   init()
+
+  self
 ]

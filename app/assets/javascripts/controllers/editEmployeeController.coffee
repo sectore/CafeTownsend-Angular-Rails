@@ -12,7 +12,6 @@ angular.module('cafeTownsend.employee')
 .controller 'EditEmployeeController', [
   '$log'
   '$window'
-  '$scope'
   '$location'
   '$routeParams'
   'SessionService'
@@ -20,16 +19,18 @@ angular.module('cafeTownsend.employee')
   'SelectedEmployee'
   'ViewState'
   'ModalDialog'
-  ($log, $window, $scope, $location, $routeParams, SessionService,
+  ($log, $window, $location, $routeParams, SessionService,
    EmployeesService, SelectedEmployee, ViewState, ModalDialog) ->
+
+    self = @
+
     # init
     # ------------------------------------------------------------
     init = ->
-      $scope.isCreateForm = false
       ViewState.current = 'edit'
 
       if !!SessionService.authorized()
-        $scope.selectedEmployee = SelectedEmployee.instance
+        self.selectedEmployee = SelectedEmployee.instance
       else
         $location.path '/login'
 
@@ -38,13 +39,13 @@ angular.module('cafeTownsend.employee')
     update = ->
       SelectedEmployee.instance.update(employee_id: SelectedEmployee.instance.id)
         .then ->
-            $scope.browseToOverview()
+            self.browseToOverview()
           , (error) ->
             alert "Error trying to update an employee (error: #{error})"
 
     # delete
     # ------------------------------------------------------------
-    $scope.deleteEmployee = ->
+    @deleteEmployee = ->
       employee = SelectedEmployee.instance
       if ModalDialog.confirm("Are you sure you want to delete #{employee.firstName} #{employee.lastName}?")
         employee.delete(employee_id: employee.id)
@@ -52,21 +53,26 @@ angular.module('cafeTownsend.employee')
             # clear reference to selected employee
             SelectedEmployee.instance = undefined
             # back to overview
-            $scope.browseToOverview()
+            self.browseToOverview()
           , (error) ->
             alert "Error trying to delete an employee (error: #{error})"
 
     # form
     # ------------------------------------------------------------
-    $scope.submit = ->
-      update()
+    @submit = (validData)->
+      if !!validData
+        update()
 
     # navigation
     # ------------------------------------------------------------
-    $scope.browseToOverview = ->
+    @browseToOverview = ->
       $location.path '/employees'
 
     # call init()
     # ------------------------------------------------------------
     init()
+
+    # return a reference to controller itself
+    # to avoid returning init(), which causes issues
+    self
 ]

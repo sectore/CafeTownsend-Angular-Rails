@@ -28,6 +28,7 @@
 //
 // app related stuff
 //= require modules
+//= require directives
 //= require services/modalDialog
 //= require services/sessionService
 //= require services/employeesService

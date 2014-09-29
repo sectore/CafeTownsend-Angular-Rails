@@ -102,7 +102,7 @@ ul {
 
 .main-view-wrapper-edit,
 .main-view-wrapper-create{
-  height: 560px;
+  height: 580px;
 }
 
 
@@ -119,6 +119,7 @@ ul {
 }
 
 
+.error,
 .error-message{
   color: #FF3366;
 }
@@ -238,15 +239,16 @@ form{
       box-shadow: 0 0 3px #aaa;
     }
 
-    &:focus.ng-invalid{
+    &.ng-touched.ng-invalid{
       background: #FFF image-url("invalid.png") no-repeat 98% center !important;
       border-color: #FF3366;
     }
+
+    &.ng-valid{
+      background: #FFF image-url("valid.png") no-repeat 98% center;
+    }
   }
 
-  input.ng-valid{
-    background: #FFF image-url("valid.png") no-repeat 98% center;
-  }
 
   div.formFooter{
     @include box(horizontal, start, center);

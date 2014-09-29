@@ -1,17 +1,46 @@
-<ul id="sub-nav">
-  <li><a id="bAdd" class="subButton" ng-click="createEmployee()">Create</a></li>
-  <li><a id="bEdit" class="subButton" ng-class="!selectedEmployee && 'disabled'" ng-click="editEmployee()">Edit</a></li>
-  <li><a id="bDelete" class="subButton" ng-class="!selectedEmployee && 'disabled'" ng-click="deleteEmployee()">Delete</a></li>
-</ul>
+<div ng-controller="EmployeesController as ctrl">
 
-<div id="employee-list-container">
-  <ul id="employee-list">
-    <li ng-repeat="employee in employees"
-      ng-click="selectEmployee(employee)"
-      ng-dblclick="editEmployee()"
-      ng-class="employee.id == selectedEmployee.id && 'active'">
-      {{employee.firstName}} {{employee.lastName}}
+  <ul id="sub-nav">
+    <li>
+      <a
+          id="bAdd"
+          class="subButton"
+          ng-click="ctrl.createEmployee()"
+          >
+        Create
+      </a>
+    </li>
+    <li>
+      <a
+          id="bEdit"
+          class="subButton"
+          ng-class="!ctrl.selectedEmployee && 'disabled'"
+          ng-click="editEmployee()"
+          >
+        Edit
+      </a>
+    </li>
+    <li>
+      <a
+          id="bDelete"
+          class="subButton"
+          ng-class="!ctrl.selectedEmployee && 'disabled'"
+          ng-click="ctrl.deleteEmployee()"
+          >
+        Delete
+      </a>
     </li>
   </ul>
+
+  <div id="employee-list-container">
+    <ul id="employee-list">
+      <li ng-repeat="employee in ctrl.employees"
+          ng-click="ctrl.selectEmployee(employee)"
+          ng-dblclick="ctrl.editEmployee()"
+          ng-class="employee.id == ctrl.selectedEmployee.id && 'active'">
+        {{employee.firstName}} {{employee.lastName}}
+      </li>
+    </ul>
+  </div>
 </div>
 

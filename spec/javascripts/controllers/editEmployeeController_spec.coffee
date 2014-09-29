@@ -12,15 +12,12 @@ describe 'EditEmployeeController', ->
     @viewState = @mockFactory.viewState()
     @sessionService = @mockFactory.sessionService()
     @employeeResource = @mockFactory.employeeResource()
-    # scope
-    @scope = $rootScope.$new()
     # services
     @selectedEmployee = @mockFactory.selectedEmployee
     @modalDialog = @mockFactory.modalDialog()
     # controller factory
     @createController = ->
       $controller "EditEmployeeController",
-        $scope: @scope
         $location: @location
         SessionService: @sessionService
         SelectedEmployee: @selectedEmployee
@@ -38,20 +35,16 @@ describe 'EditEmployeeController', ->
       @createController()
       expect(@viewState.current).to.be('edit')
 
-    it 'set isCreateForm to false', ->
-      @createController()
-      expect(@scope.isCreateForm).to.not.be.ok()
-
-    it 'add selected employee to scope if an user is authorized', ->
-      @selectedEmployee.instance = @employeeResource
+    it 'has a selected employee if an user is authorized', ->
+      @selectedEmployee.instance = @mockFactory.employeeResource()
       @sessionService.authorized.returns true
-      @createController()
-      expect(@scope.selectedEmployee).not.to.be(undefined)
+      controller = @createController()
+      expect(controller.selectedEmployee).not.to.be(undefined)
 
     it 'have not an selected employee if an user is not authorized', ->
       @sessionService.authorized.returns false
-      @createController()
-      expect(@scope.selectedEmployee).to.be(undefined)
+      controller = @createController()
+      expect(controller.selectedEmployee).to.be(undefined)
 
     it 'routes back to login page if an user is not authorized', ->
       @sessionService.authorized.returns false
@@ -60,20 +53,20 @@ describe 'EditEmployeeController', ->
 
   describe 'navigation', ->
     it 'updates the url calling browseToOverview() ', ->
-      @createController()
-      @scope.browseToOverview()
+      controller = @createController()
+      controller.browseToOverview()
       expect(@location.path.calledWith('/employees')).to.be.ok()
 
   describe 'selectedEmployee', ->
     it 'is deleted', ->
       @modalDialog.confirm.returns true
       @selectedEmployee.instance = @employeeResource
-      @createController()
-      @scope.deleteEmployee()
+      controller = @createController()
+      controller.deleteEmployee()
       expect(@selectedEmployee.instance.delete.calledOnce).to.be.ok()
 
     it 'is updated submitting the form', ->
       @selectedEmployee.instance = @employeeResource
-      @createController()
-      @scope.submit()
+      controller = @createController()
+      controller.submit(true)
       expect(@selectedEmployee.instance.update.calledOnce).to.be.ok()

@@ -9,16 +9,13 @@ describe 'LoginController', ->
     @deferred = @mockFactory.deferred
     # routes
     @location = @mockFactory.location()
-    # scope
-    @scope = $rootScope.$new()
     # mocking service
     @sessionService = @mockFactory.sessionService()
     @viewState = @mockFactory.viewState()
 
     # controller factory
     @createController = ->
-      controller = $controller "LoginController",
-        $scope: @scope
+      $controller "LoginController",
         $location: @location
         SessionService: @sessionService
         ViewState: @viewState
@@ -38,53 +35,55 @@ describe 'LoginController', ->
       expect(ViewState.current).to.be('login')
     )
 
-    it 'stores currentUser to scope', ->
-      @createController()
-      expect(@scope.user).not.to.be(undefined)
+    it 'stores currentUser', ->
+      controller = @createController()
+      expect(controller.user).not.to.be(undefined)
 
   describe 'submit()', ->
 
     it 'calls service with user data to login', ->
-      @scope.user =
+      controller = @createController()
+      controller.user =
         name: 'joe'
         password: 'secret'
-      @createController()
-      @scope.submit()
-      expect(@sessionService.login.calledWithExactly(@scope.user)).to.be.ok()
 
-    it 'updates location.path if the login was successfully', inject(($rootScope)->
+      controller.submit(true)
+      expect(@sessionService.login.calledWithExactly(controller.user)).to.be.ok()
+
+    it 'updates location.path if the login was successfully',  inject(($rootScope)->
       @sessionService.authorized.returns true
-      @createController()
+      controller = @createController()
       @deferred.resolve()
-      @scope.submit()
+      controller.submit(true)
+      # Propagate promise resolution to 'then' functions using $apply().
+      # @see: https://docs.angularjs.org/api/ng/service/$q
       $rootScope.$apply()
       expect(@location.path.calledWith('/employees')).to.be.ok()
     )
 
     it 'shows an error message if the login was NOT successfully', inject(($rootScope)->
       @sessionService.authorized.returns false
-      @createController()
+      controller = @createController()
       @deferred.resolve()
-      @scope.submit()
+      controller.submit(true)
       $rootScope.$apply()
-      expect(@scope.message).to.be('Invalid username or password!')
+      expect(controller.loginError).to.be('Invalid username or password!')
     )
 
     it 'shows an error message if the login throws an error', inject(($rootScope)->
-      @createController()
+      controller = @createController()
       @deferred.reject()
-      @scope.submit()
+      controller.submit(true)
       $rootScope.$apply()
-      expect(@scope.message).to.be.ok()
+      expect(controller.loginError).to.be.ok()
     )
 
-
-  describe 'showMessage()', ->
+  describe 'hasLoginError()', ->
     it 'hides the message by default', ->
-      @createController()
-      expect(@scope.showMessage()).not.to.be.ok()
+      controller = @createController()
+      expect(controller.hasLoginError()).not.to.be.ok()
 
     it 'shows the message if the message is available', ->
-      @scope.message = 'hello world'
-      @createController()
-      expect(@scope.showMessage()).to.be.ok()
+      controller = @createController()
+      controller.loginError = 'hello world'
+      expect(controller.hasLoginError()).to.be.ok()

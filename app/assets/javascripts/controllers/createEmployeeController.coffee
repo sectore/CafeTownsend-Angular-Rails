@@ -2,13 +2,12 @@ angular.module('cafeTownsend.employee')
 
 .controller 'CreateEmployeeController', [
   '$log'
-  '$scope'
   '$location'
   'SessionService'
   'EmployeesService'
   'SelectedEmployee'
   'ViewState'
-  ($log, $scope, $location, SessionService, EmployeesService, SelectedEmployee, ViewState) ->
+  ($log, $location, SessionService, EmployeesService, SelectedEmployee, ViewState) ->
 
     self = this
 
@@ -16,7 +15,6 @@ angular.module('cafeTownsend.employee')
     # ------------------------------------------------------------
 
     init = ->
-      $scope.isCreateForm = true
       ViewState.current = 'create'
 
       if !!SessionService.authorized()
@@ -28,26 +26,23 @@ angular.module('cafeTownsend.employee')
 #        employee.startDate = "2013-10-06"
 
         # store new created instance
-        # set reference to scope
+        # set reference to selectedEmployee
         SelectedEmployee.instance =
-        $scope.selectedEmployee =
+        self.selectedEmployee =
         employee
       else
         $location.path '/login'
 
-    # scope
-    # ------------------------------------------------------------
+    @submit = (validData)->
+      if !!validData
+        SelectedEmployee.instance.create()
+#        .then ->
+#            self.browseToOverview()
+#          , (error) ->
+#            message = "Error trying to create a new employee: #{JSON.stringify(error.data)})"
+#            alert message
 
-    $scope.submit = ->
-      #      employee = $scope.selectedEmployee
-      SelectedEmployee.instance.create()
-      .then ->
-          $scope.browseToOverview()
-        , (error) ->
-          message = "Error trying to create a new employee: #{JSON.stringify(error.data)})"
-          alert message
-
-    $scope.browseToOverview = ->
+    @browseToOverview = ->
       # clear selected employee
       SelectedEmployee.instance = undefined
       $location.path '/employees'
@@ -55,5 +50,9 @@ angular.module('cafeTownsend.employee')
     # call init()
     # ------------------------------------------------------------
     init()
+
+    # return a reference to controller itself
+    # to avoid returning init(), which causes issues
+    self
 
 ]

@@ -6,14 +6,12 @@ describe 'MainController', ->
   beforeEach inject ($rootScope, $controller, MockFactory) ->
 
     @mockFactory = MockFactory
-    @scope = $rootScope.$new()
     @viewState = @mockFactory.viewState()
     @sessionService = @mockFactory.sessionService()
 
     # controller factory
     @createController = ->
       $controller "MainController",
-        $scope: @scope
         SessionService: @sessionService
         ViewState: @viewState
 
@@ -24,14 +22,14 @@ describe 'MainController', ->
     expect(controller).not.to.be(undefined)
 
   describe 'init()', ->
-    it 'stores instance of ViewState to scope', ->
-      @createController()
-      expect(@scope.viewState).to.be(@viewState)
+    it 'stores an instance of ViewState', ->
+      controller = @createController()
+      expect(controller.viewState).to.be(@viewState)
 
   describe 'user status', ->
-    it 'stores status into a scope object', ->
+    it 'is stored', ->
       @sessionService.authorized.returns true
-      @createController()
-      expect(@scope.authorized()).to.be.ok()
+      controller = @createController()
+      expect(controller.authorized()).to.be.ok()
       @sessionService.authorized.returns false
-      expect(@scope.authorized()).not.to.be.ok()
+      expect(controller.authorized()).not.to.be.ok()

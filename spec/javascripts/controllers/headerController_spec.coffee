@@ -9,8 +9,6 @@ describe 'HeaderController', ->
     @deferred = @mockFactory.deferred
     # routes
     @location = @mockFactory.location()
-    # scope
-    @scope = $rootScope.$new()
     # mocking service
     @deferred = @mockFactory.deferred;
     @sessionService = @mockFactory.sessionService()
@@ -18,7 +16,6 @@ describe 'HeaderController', ->
     # controller factory
     @createController = ->
       $controller "HeaderController",
-        $scope: @scope
         $location: @location
         SessionService: @sessionService
 
@@ -30,29 +27,30 @@ describe 'HeaderController', ->
 
   describe 'initialize()', ->
     it 'stores currentUser to scope', ->
-      @createController()
-      expect(@scope.user).not.to.be(undefined)
+      controller = @createController()
+      expect(controller.user).not.to.be(undefined)
 
   describe 'logout()', ->
 
     it 'calls service to logout an user', ->
-      @createController()
-      @scope.logout()
+      controller = @createController()
+      controller.logout()
       expect(@sessionService.logout.calledOnce).to.be.ok()
 
     it 'updates location.path if the user was logged out successfully', inject(($rootScope)->
       @sessionService.authorized.returns false
-      @createController()
-      @scope.logout()
+      controller = @createController()
       @deferred.resolve()
+      controller.logout()
+      $rootScope.$apply()
       expect(@location.path.calledWith('/login')).to.be.ok()
     )
 
     it 'alert an error message if the logout process throws an error', inject(($rootScope, $window)->
-      @createController()
+      controller = @createController()
       spy = sinon.spy($window, 'alert')
       @deferred.reject()
-      @scope.logout()
+      controller.logout()
       $rootScope.$apply()
       expect(spy.calledOnce).to.be.ok()
       spy.restore()

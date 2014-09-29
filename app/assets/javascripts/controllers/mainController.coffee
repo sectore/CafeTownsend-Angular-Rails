@@ -1,19 +1,22 @@
 angular.module('cafeTownsend').controller 'MainController'
 , [ '$log',
-    '$scope',
     'SessionService',
     'ViewState'
-, ($log, $scope, SessionService, ViewState) ->
+, ($log, SessionService, ViewState) ->
+
+  self = @
 
   # init
   # ------------------------------------------------------------
   init = ->
-    $scope.viewState = ViewState
+    self.viewState = ViewState
 
   # user status
   # ------------------------------------------------------------
-  $scope.authorized = ->
+  @authorized = ->
     SessionService.authorized()
 
   init()
+
+  self
 ]

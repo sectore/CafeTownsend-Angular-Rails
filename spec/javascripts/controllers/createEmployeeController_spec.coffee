@@ -18,7 +18,6 @@ describe 'CreateEmployeeController', ->
     # controller factory
     @createController = ->
       $controller "CreateEmployeeController",
-        $scope: @scope
         $location: @location
         SessionService: @sessionService
         SelectedEmployee: @selectedEmployee
@@ -36,10 +35,6 @@ describe 'CreateEmployeeController', ->
       @createController()
       expect(@viewState.current).to.be('create')
 
-    it 'set isCreateForm to true', ->
-      @createController()
-      expect(@scope.isCreateForm).to.be.ok()
-
     it 'routes back to login page if an user is not authorized', ->
       @sessionService.authorized.returns false
       @createController()
@@ -50,26 +45,21 @@ describe 'CreateEmployeeController', ->
       @createController()
       expect(@selectedEmployee.instance).not.to.be(undefined)
 
-    it 'adds the selected employee to scope if an user is authorized', ->
-      @sessionService.authorized.returns true
-      @createController()
-      expect(@scope.selectedEmployee).not.to.be(undefined)
-
-  describe 'scope', ->
+  describe 'public methods: ', ->
     it 'browseToOverview() updates the url', ->
-      @createController()
-      @scope.browseToOverview()
+      controller = @createController()
+      controller.browseToOverview()
       expect(@location.path.calledWith('/employees')).to.be.ok()
 
     it 'browseToOverview() disposes the selected employee', ->
-      @createController()
-      @scope.browseToOverview()
+      controller = @createController()
+      controller.browseToOverview()
       expect(@selectedEmployee.instance).to.be(undefined)
 
     it 'submit() creates an employee', ->
       @sessionService.authorized.returns true
-      @createController()
+      controller = @createController()
       spy = sinon.spy(@selectedEmployee.instance, 'create')
-      @scope.submit()
+      controller.submit(true)
       expect(spy.calledOnce).to.be.ok()
       spy.restore()

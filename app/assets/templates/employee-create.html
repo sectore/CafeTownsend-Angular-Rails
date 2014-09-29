@@ -1,0 +1,100 @@
+<div
+    ng-controller="CreateEmployeeController as ctrl">
+  <ul
+      id="sub-nav"
+      >
+    <li><a
+        class="subButton bCancel"
+        ng-click="ctrl.browseToOverview()">Cancel</a>
+    </li>
+  </ul>
+  <form
+      name="employeeForm"
+      ng-submit="ctrl.submit(employeeForm.$valid)"
+      >
+    <fieldset>
+      <legend>
+        Add
+      </legend>
+      <label>
+        <span
+            ng-class="{'error': employeeForm.firstName.$touched && employeeForm.firstName.$invalid}">
+          First name
+        </span>
+        <input
+            type="text"
+            name="firstName"
+            ng-model="ctrl.selectedEmployee.firstName"
+            required
+            autofocus
+            />
+      </label>
+      <label>
+        <span
+            ng-class="{'error': employeeForm.lastName.$touched && employeeForm.lastName.$invalid}">
+          Last name
+        </span>
+        <input
+            type="text"
+            name="lastName"
+            ng-model="ctrl.selectedEmployee.lastName"
+            required
+            />
+
+      </label>
+
+      <div class="error-message"
+          >
+        <div ng-if="employeeForm.$submitted || employeeForm.date.$touched"
+             ng-messages="employeeForm.date.$error">
+          <div ng-message="dateFormat">Please enter a date formatting YYYY-MM-DD!</div>
+        </div>
+      </div>
+
+      <label>
+        <span
+            ng-class="{'error': employeeForm.date.$touched && employeeForm.date.$invalid}">
+          Start date
+        </span>
+        <input
+            type="text"
+            name="date"
+            ng-model="ctrl.selectedEmployee.startDate"
+            date-format-validator
+            required
+            />
+      </label>
+
+      <div class="error-message">
+        <div ng-if="employeeForm.$submitted || employeeForm.email.$touched"
+             ng-messages="employeeForm.email.$error">
+          <div ng-message="emailFormat">Please enter a valid email address!</div>
+        </div>
+      </div>
+
+      <label>
+        <span
+            ng-class="{'error': employeeForm.email.$touched && employeeForm.email.$invalid}">
+          Email
+        </span>
+        <input
+            type="email"
+            name="email"
+            email-format-validator
+            ng-model="ctrl.selectedEmployee.email"
+            required
+            />
+      </label>
+
+      <div class="formFooter">
+        <button
+            type="submit"
+            class="main-button"
+            >
+          Update
+        </button>
+      </div>
+
+    </fieldset>
+  </form>
+</div>

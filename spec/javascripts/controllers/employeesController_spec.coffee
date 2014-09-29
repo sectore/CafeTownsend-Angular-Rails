@@ -10,8 +10,6 @@ describe 'EmployeesController', ->
 
     # routes
     @location = @mockFactory.location()
-    # scope
-    @scope = $rootScope.$new()
     # services
     @employeesService = @mockFactory.employeesService()
     @selectedEmployee = @mockFactory.selectedEmployee()
@@ -23,7 +21,6 @@ describe 'EmployeesController', ->
     # controller factory
     @createController = ->
       $controller "EmployeesController",
-        $scope: @scope
         $location: @location
         SelectedEmployee: @selectedEmployee
         ModalDialog: @modalDialog
@@ -45,8 +42,8 @@ describe 'EmployeesController', ->
     it 'adds an instance of SelectedEmployee to scope if an user is authorized', ->
       @selectedEmployee.instance = @employeeResource
       @sessionService.authorized.returns true
-      @createController()
-      expect(@scope.selectedEmployee).to.be(@selectedEmployee.instance)
+      controller = @createController()
+      expect(controller.selectedEmployee).to.be(@selectedEmployee.instance)
 
     it 'calls service to gets all employess if an user is authorized', ->
       @sessionService.authorized.returns true
@@ -63,31 +60,31 @@ describe 'EmployeesController', ->
 
   describe 'selected employee', ->
     it 'is stored into SelectedEmployee', ->
-      @createController()
+      controller = @createController()
       employee = @employeeResource
-      @scope.selectEmployee employee
+      controller.selectEmployee employee
       expect(@selectedEmployee.instance).to.be(employee)
 
-    it 'is stored into scope object', ->
-      @createController()
+    it 'is stored at controller', ->
+      controller = @createController()
       employee = {}
-      @scope.selectEmployee employee
-      expect(@scope.selectedEmployee).to.be(employee)
+      controller.selectEmployee employee
+      expect(controller.selectedEmployee).to.be(employee)
 
     describe 'editing an employee', ->
       it 'updates location path', ->
+        controller = @createController()
         employeeID = 1010
-        @scope.selectedEmployee = {
+        controller.selectedEmployee = {
           id: employeeID
         }
-        @createController()
-        @scope.editEmployee()
+        controller.editEmployee()
         expect(@location.path.calledWith("/employees/#{employeeID}/edit")).to.be.ok()
 
     describe 'creating an employee', ->
       it 'updates location path', ->
-        @createController()
-        @scope.createEmployee()
+        controller = @createController()
+        controller.createEmployee()
         expect(@location.path.calledWith('/employees/new')).to.be.ok()
 
     describe 'deleting an employee', ->
@@ -96,16 +93,17 @@ describe 'EmployeesController', ->
 
       it 'delete() of service is called', ->
         @selectedEmployee.instance = @employeeResource
-        @createController()
-        @scope.deleteEmployee()
+        controller = @createController()
+        controller.deleteEmployee()
         expect(@employeeResource.delete.calledOnce).to.be.ok()
 
       it 'removes stored instance of selected employee', inject(($rootScope, $q) ->
         @selectedEmployee.instance = @employeeResource
-        @createController()
+        controller = @createController()
         @deferred.resolve()
-        @scope.deleteEmployee()
-#        # apply deferred result to scope
+        controller.deleteEmployee()
+        # Propagate promise resolution to 'then' functions using $apply().
+        # @see: https://docs.angularjs.org/api/ng/service/$q
         $rootScope.$apply()
         expect(@selectedEmployee.instance).not.to.be.ok()
       )
