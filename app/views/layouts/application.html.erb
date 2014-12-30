@@ -23,6 +23,7 @@
     <div
       ng-class="{'hide-header':!headerCtrl.authorized()}"
       class="header-container"
+      ng-cloak
     >
       <p class="main-button" ng-click="headerCtrl.logout()">Logout</p>
       <p id="greetings">Hello {{headerCtrl.user.name}}</p>
@@ -48,7 +49,7 @@
 
     <p>
       <a href="https://github.com/sectore/CafeTownsend-Angular-Rails">Get source code</a> by
-      <a href="http://www.websector.de">Jens Krause</a> @2012-2014
+      <a href="http://www.websector.de">Jens Krause</a> @2012-2015
     </p>
   </footer>
 </div>
