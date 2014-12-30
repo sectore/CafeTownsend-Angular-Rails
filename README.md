@@ -1,4 +1,4 @@
-#AngularJS (v.1.3.0-rc.3) + Rails (v.4.1.5) port of Cafe Townsend application
+#AngularJS (v.1.3.8) + Rails (v.4.2.0) port of Cafe Townsend application
 
 
 ##About
@@ -85,10 +85,10 @@ Running all tests with [Guard](https://github.com/guard/guard) and [Spring](http
 
 
 ##Version history
-Check the [CHANGELOG file](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/CHANGELOG.md) for details, please.
+[CHANGELOG file](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/CHANGELOG.md)
 
 ##License
-`CafeTownsend-Angular-Rails` is licensed for use under the terms of the MIT License. Check the [LICENSE file](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/LICENSE.md) for details, please.
+`CafeTownsend-Angular-Rails` is licensed for use under the terms of the [MIT License](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/LICENSE.md).
 
 ##Author
 Jens Krause // [WEBSECTOR.DE](http://www.websector.de)
