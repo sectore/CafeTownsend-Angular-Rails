@@ -150,10 +150,9 @@ header{
   }
 }
 
-.header-container,{
+.header-container {
   position: relative;
   height: $HEADER_HEIGHT;
-  top:0px;
 }
 
 .header-container.hide-header-add,
@@ -168,6 +167,7 @@ header{
   top:$HEADER_HEIGHT;
 }
 // show
+.header-container,
 .header-container.hide-header-add,
 .header-container.hide-header-remove.hide-header-remove-active,{
   top:0px;
