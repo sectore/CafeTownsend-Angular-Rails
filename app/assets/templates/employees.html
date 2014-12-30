@@ -36,7 +36,6 @@
     <ul id="employee-list">
       <li ng-repeat="employee in ctrl.employees"
           ng-click="ctrl.selectEmployee(employee)"
-          ng-dblclick="ctrl.editEmployee()"
           ng-class="employee.id == ctrl.selectedEmployee.id && 'active'">
         {{employee.firstName}} {{employee.lastName}}
       </li>
