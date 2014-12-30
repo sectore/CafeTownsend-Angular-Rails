@@ -1,5 +1,15 @@
 # CafeTownsend-Angular-Rails Changelog
 
+## Version 0.9.0 // 2014-12-30
+
+* Updating to latest AngularJS v.1.3.8
+* Updating to latest Rails v.4.2.0
+* Bug fixed: Double-click on employee does not fire an event
+* Bug fixed: Callback of "edit" button does not have reference to controller
+* Bug fixed: RSpec does not compare json response.body
+* ng-cloak directive to header added (incl. angular-csp.css)
+
+
 ## Version 0.8.0 // 2014-09-29
 
 * Updating to AngularJS v.1.3.0-rc.3
