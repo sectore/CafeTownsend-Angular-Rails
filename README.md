@@ -85,10 +85,10 @@ Running all tests with [Guard](https://github.com/guard/guard) and [Spring](http
 
 
 ##Version history
-[CHANGELOG file](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/CHANGELOG.md)
+[CHANGELOG](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/CHANGELOG.md)
 
 ##License
-`CafeTownsend-Angular-Rails` is licensed for use under the terms of the [MIT License](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/LICENSE.md).
+[MIT](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/LICENSE.md).
 
 ##Author
 Jens Krause // [WEBSECTOR.DE](http://www.websector.de)
