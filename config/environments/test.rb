@@ -33,4 +33,7 @@ CafeTownsendAngularRails::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Rails 4.2: Ordering of test cases
+  config.active_support.test_order = :sorted
 end
