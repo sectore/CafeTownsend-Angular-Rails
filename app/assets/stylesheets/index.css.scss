@@ -135,22 +135,25 @@ footer
   header
 **********************************/
 
+$HEADER_HEIGHT: 50px;
+
 header{
 
-  height: 50px;
-
-  div{
-    position: relative;
-    height: 50px;
-  }
+  height: $HEADER_HEIGHT;
 
   p#greetings{
-    @include position(absolute, 0 0 4px 40px);
+    @include position(absolute, null null 4px 40px);
   }
 
   p.main-button{
-    @include position(absolute, 0 15px -5px 0);
+    @include position(absolute, null 15px -5px null);
   }
+}
+
+.header-container,{
+  position: relative;
+  height: $HEADER_HEIGHT;
+  top:0px;
 }
 
 .header-container.hide-header-add,
@@ -162,10 +165,9 @@ header{
 .header-container.hide-header,
 .header-container.hide-header-remove,
 .header-container.hide-header-add.hide-header-add-active{
-  top:50px;
+  top:$HEADER_HEIGHT;
 }
 // show
-.header-container,
 .header-container.hide-header-add,
 .header-container.hide-header-remove.hide-header-remove-active,{
   top:0px;
