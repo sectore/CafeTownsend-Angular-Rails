@@ -16,7 +16,7 @@ describe SessionsController, :type => :controller do
       it "an user is created and returned" do
         post :create, {name: user_created.name, password: user_created.password}
         expected_json = {user: user_created, authorized: 'true' }.to_json
-        expect(response.body).to eq expected_json
+        expect(response.body).to be_json_eql expected_json
       end
     end
 

@@ -30,6 +30,8 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.include ControllerMacros
+
+  config.include JsonSpec::Helpers
 end
 
 # Faker does not support random dates
