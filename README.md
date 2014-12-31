@@ -1,5 +1,6 @@
 #AngularJS (v.1.3.8) + Rails (v.4.2.0) port of Cafe Townsend application
 
+[![Build Status](https://travis-ci.org/sectore/CafeTownsend-Angular-Rails.png?branch=master)](https://travis-ci.org/sectore/CafeTownsend-Angular-Rails/)
 
 ##About
 [AngularJS](http://http://angularjs.org/) and [Rails](http://rubyonrails.org/) port of the famous Cafe Townsend application originally written in ActionScript.
@@ -92,6 +93,3 @@ Running all tests with [Guard](https://github.com/guard/guard) and [Spring](http
 
 ##Author
 Jens Krause // [WEBSECTOR.DE](http://www.websector.de)
-
-[![Build Status](https://travis-ci.org/sectore/CafeTownsend-Angular-Rails.png?branch=master)](https://travis-ci.org/sectore/CafeTownsend-Angular-Rails/)
-
