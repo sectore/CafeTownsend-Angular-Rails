@@ -1,16 +1,15 @@
-<div
-    ng-controller="CreateEmployeeController as ctrl">
+<div>
   <ul
       id="sub-nav"
       >
     <li><a
         class="subButton bCancel"
-        ng-click="ctrl.browseToOverview()">Cancel</a>
+        ng-click="createEmployeeCtrl.browseToOverview()">Cancel</a>
     </li>
   </ul>
   <form
       name="employeeForm"
-      ng-submit="ctrl.submit(employeeForm.$valid)"
+      ng-submit="createEmployeeCtrl.submit(employeeForm.$valid)"
       >
     <fieldset>
       <legend>
@@ -24,7 +23,7 @@
         <input
             type="text"
             name="firstName"
-            ng-model="ctrl.selectedEmployee.firstName"
+            ng-model="createEmployeeCtrl.selectedEmployee.firstName"
             required
             autofocus
             />
@@ -37,7 +36,7 @@
         <input
             type="text"
             name="lastName"
-            ng-model="ctrl.selectedEmployee.lastName"
+            ng-model="createEmployeeCtrl.selectedEmployee.lastName"
             required
             />
 
@@ -59,7 +58,7 @@
         <input
             type="text"
             name="date"
-            ng-model="ctrl.selectedEmployee.startDate"
+            ng-model="createEmployeeCtrl.selectedEmployee.startDate"
             date-format-validator
             required
             />
@@ -81,7 +80,7 @@
             type="email"
             name="email"
             email-format-validator
-            ng-model="ctrl.selectedEmployee.email"
+            ng-model="createEmployeeCtrl.selectedEmployee.email"
             required
             />
       </label>

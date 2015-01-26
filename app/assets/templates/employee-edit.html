@@ -1,16 +1,15 @@
-<div
-    ng-controller="EditEmployeeController as ctrl">
+<div>
   <ul
       id="sub-nav"
       >
     <li><a
         class="subButton bBack"
-        ng-click="ctrl.browseToOverview()">Back</a>
+        ng-click="editEmployeeCtrl.browseToOverview()">Back</a>
     </li>
   </ul>
   <form
       name="employeeForm"
-      ng-submit="ctrl.submit(employeeForm.$valid)">
+      ng-submit="editEmployeeCtrl.submit(employeeForm.$valid)">
     <fieldset>
       <legend>
         Edit
@@ -23,7 +22,7 @@
         <input
             type="text"
             name="firstName"
-            ng-model="ctrl.selectedEmployee.firstName"
+            ng-model="editEmployeeCtrl.selectedEmployee.firstName"
             required
             autofocus
             />
@@ -36,7 +35,7 @@
         <input
             type="text"
             name="lastName"
-            ng-model="ctrl.selectedEmployee.lastName"
+            ng-model="editEmployeeCtrl.selectedEmployee.lastName"
             required
             />
 
@@ -57,7 +56,7 @@
         <input
             type="text"
             name="date"
-            ng-model="ctrl.selectedEmployee.startDate"
+            ng-model="editEmployeeCtrl.selectedEmployee.startDate"
             date-format-validator
             required
             />
@@ -79,7 +78,7 @@
             type="email"
             name="email"
             email-format-validator
-            ng-model="ctrl.selectedEmployee.email"
+            ng-model="editEmployeeCtrl.selectedEmployee.email"
             required
             />
       </label>
@@ -92,7 +91,7 @@
         </button>
         <p
             class="main-button"
-            ng-click="ctrl.deleteEmployee()">Delete</p>
+            ng-click="editEmployeeCtrl.deleteEmployee()">Delete</p>
       </div>
 
     </fieldset>

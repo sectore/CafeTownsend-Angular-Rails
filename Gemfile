@@ -74,6 +74,7 @@ group :test do
   gem 'launchy', '~> 2.4.3'
   gem 'selenium-webdriver', '~> 2.44.0'
   gem 'json_spec', '~> 1.1.4'
+  gem 'phantomjs', '~> 1.9.8.0'
 end
 
 group :production do
@@ -98,4 +99,4 @@ gem 'ruby-debug-ide', '~> 0.4.24'
 
 gem 'angularjs-rails-resource', '~> 1.2.1'
 
-ruby '2.1.0'
+ruby '2.2.0'

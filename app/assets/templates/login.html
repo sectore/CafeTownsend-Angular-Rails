@@ -1,13 +1,11 @@
 <form
     id="login-form"
-    ng-controller="LoginController as ctrl"
-    ng-submit="ctrl.submit(loginForm.$valid)"
+    ng-submit="loginCtrl.submit(loginForm.$valid)"
     name="loginForm">
   <fieldset>
     <legend>Login</legend>
-    <div class="error-message"
-        >
-      <div ng-if="!!ctrl.hasLoginError()">{{ctrl.loginError}}</div>
+    <div class="error-message">
+      <div ng-if="!!loginCtrl.hasLoginError()">{{loginCtrl.loginError}}</div>
       <div ng-if="loginForm.$submitted || loginForm.name.$touched"
            ng-messages="loginForm.name.$error">
         <div ng-message="required">You did not enter your username!</div>
@@ -25,7 +23,7 @@
       <input
           type="text"
           name="name"
-          ng-model="ctrl.user.name"
+          ng-model="loginCtrl.user.name"
           required
           autofocus
           />
@@ -38,7 +36,7 @@
       <input
           type="password"
           name="password"
-          ng-model="ctrl.user.password"
+          ng-model="loginCtrl.user.password"
           required
           />
     </label>
