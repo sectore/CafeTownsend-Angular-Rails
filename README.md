@@ -91,5 +91,9 @@ Running all tests with [Guard](https://github.com/guard/guard) and [Spring](http
 ##License
 [MIT](https://github.com/sectore/CafeTownsend-Angular-Rails/blob/master/LICENSE.md).
 
+## Contributors
+- [Oleg Orlov](https://github.com/OrelSokolov)
+- [melnikovsansan](https://github.com/melnikovsansan)
+
 ##Author
 Jens Krause // [WEBSECTOR.DE](http://www.websector.de)
