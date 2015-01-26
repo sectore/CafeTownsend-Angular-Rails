@@ -98,4 +98,4 @@ gem 'ruby-debug-ide', '~> 0.4.24'
 
 gem 'angularjs-rails-resource', '~> 1.2.1'
 
-ruby '2.1.0'
+ruby '2.2.0'
