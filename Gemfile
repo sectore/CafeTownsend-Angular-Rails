@@ -57,7 +57,7 @@ group :development, :test do
   gem 'guard-teaspoon'
   gem 'spring-commands-rspec'
   gem 'spring-commands-teaspoon'
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 2.1'
 end
 
 group :development do
